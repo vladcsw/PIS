@@ -1,0 +1,78 @@
+
+<div class="grid p-fluid">
+    <div class="col-12">
+        <div class="card card-w-title">
+            <p-megaMenu [model]="tieredItems" orientation="horizontal">
+            </p-megaMenu>            
+        </div>
+    </div>
+</div>
+<div class="grid">
+    <div class="col-12">
+		<div class="card">
+			<h5>Formulario Persona</h5>
+			<div class="p-fluid p-formgrid grid">
+				<div class="field col-12 md:col-4">
+					<label htmlFor="firstname2">Nombres</label>
+					<input pInputText id="firstname2" type="text" />
+				</div>
+				<div class="field col-12 md:col-4">
+					<label htmlFor="lastname2">Primer apellido</label>
+					<input pInputText id="lastname2" type="text" />
+				</div>
+                <div class="field col-12 md:col-4">
+					<label htmlFor="firstname3">Segundo apellido</label>
+					<input pInputText id="firstname3" type="text" />
+				</div>
+				
+                <div class="field col-12  md:col-6">
+					<label htmlFor="address">Fecha de Nacimiento</label>
+					<p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+				</div>
+
+                <div class="field col-12 md:col-6">
+					<label htmlFor="natural">Natural</label>
+					<input pInputText id="natural" type="text" />
+				</div>
+
+                <div class="field col-12 md:col-6">
+					<label htmlFor="state">Estado Civil</label>
+					<p-dropdown [options]="estadocivil" optionLabel="name"></p-dropdown>
+				</div>
+
+                <div class="field col-12 md:col-6">
+					<label htmlFor="state">Genero </label>
+					<p-dropdown [options]="genero" optionLabel="name"></p-dropdown>
+				</div>
+
+                <div class="field col-12 md:col-6">
+					<label htmlFor="state">Tipo de Documento </label>
+					<p-dropdown [options]="documentos" optionLabel="name"></p-dropdown>
+				</div>
+
+                <div class="field col-12 md:col-6">
+					<label htmlFor="documento">Documento</label>
+					<input pInputText id="documento" type="text" />
+				</div>
+                
+                <P class="col-12"> Ubigeo</P>
+                <div class="field col-12 md:col-4">
+					<label htmlFor="state">Departamento </label>
+					<p-dropdown [options]="departamentos" optionLabel="name"></p-dropdown>
+				</div>
+                <div class="field col-12 md:col-4">
+					<label htmlFor="state">Provincia </label>
+					<p-dropdown [options]="provincias" optionLabel="name"></p-dropdown>
+				</div>
+                <div class="field col-12 md:col-4">
+					<label htmlFor="state">Distrito </label>
+					<p-dropdown [options]="distritos" optionLabel="name"></p-dropdown>
+				</div>
+                <div class="field col-12 md:col-4 ">
+					<button pButton pRipple label="Guardar" class="mr-2 mb-2"></button>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
