@@ -1,0 +1,32 @@
+<div class="login-body">
+    <div class="login-panel"></div>
+    <div class="login-content">
+        <img src="assets/layout/images/logo.png" style="margin-bottom: 0px;" alt="babylon-layout"/>
+
+        <h1>SISTEMA DE INFORMACION NACIONAL DE INTERDICCION CONTRA EL TRAFICO ILICITO DE DROGAS</h1>
+        <p>Bienvenido ingrese sus credenciales.</p>
+        <div class="login-input-wrapper">
+            <input type="text" autocomplete="off" placeholder="Usuario" pInputText>
+            <i class="pi pi-user"></i>
+        </div>
+
+        <div class="login-input-wrapper">
+            <input type="password" autocomplete="off" placeholder="Contraseña" pInputText>
+            <i class="pi pi-lock"></i>
+        </div>
+        <div class="login-input-wrapper">
+            <i class="pi pi-lock"></i>
+            <input type="text" autocomplete="off" placeholder="CODIGO" pInputText>
+        </div>
+
+        <div class="login-input-wrapper bg-primary p-1 flex">
+           <div class="flex flex-none align-items-center ">
+            <button pButton  icon="pi pi-replay" class="bg-primary" (click)="getCaptcha()"></button>
+           </div>
+           <div class="flex flex-grow-1 align-items-center text-2xl ml-2" style="letter-spacing: 10px;">
+            {{captcha}}
+           </div>
+        </div>
+        <button [routerLink]="['/']" icon="pi pi-search" pButton type="button" label="Iniciar  Sesion"></button>
+    </div>
+</div>

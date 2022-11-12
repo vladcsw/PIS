@@ -32,6 +32,7 @@ import {AppHelpComponent} from './pages/app.help.component';
 import {AppWizardComponent} from './pages/app.wizard.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
 import { PersonaComponent } from './components/persona/persona.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     imports: [
@@ -66,12 +67,14 @@ import { PersonaComponent } from './components/persona/persona.component';
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'persona', component: PersonaComponent},
+                    
                 ]
             },
+            {path: 'login', component: LoginComponent},
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},
-            {path: 'login', component: AppLoginComponent},
+            
             {path: 'wizard', component: AppWizardComponent},
             {path: '**', redirectTo: '/notfound'},
         ], {scrollPositionRestoration: 'enabled'})
