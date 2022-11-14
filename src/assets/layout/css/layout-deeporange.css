@@ -2193,7 +2193,7 @@ a {
 
 @media screen and (min-width: 768px) {
   .login-body {
-    background: url("../../layout/images/pages/bg-login.jpg");
+    background: url("../../layout/images/pages/bg-fondo-login.jpg");
     background-size: cover;
   }
   .login-body .login-panel {
