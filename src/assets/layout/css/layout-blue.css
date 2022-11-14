@@ -2152,7 +2152,7 @@ a {
 .login-body .login-content img {
   display: inline-block;
   margin-bottom: 160px;
-  width: 200px;
+  width: 100px;
 }
 .login-body .login-content h1 {
   font-size: 28px;
@@ -2202,6 +2202,7 @@ a {
     display: block;
     position: fixed;
     background-color: #ffffff;
+    background-image: url("../../layout/images/pages/marca.png");
     height: 200%;
     width: 100%;
     left: -50%;
@@ -3460,6 +3461,7 @@ h5 {
 
 h6 {
   font-size: 1rem;
+  color:#357b38
 }
 
 mark {

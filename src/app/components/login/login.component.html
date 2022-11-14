@@ -3,9 +3,9 @@
     <div class="login-content">
         <img src="assets/layout/images/logo.png" style="margin-bottom: 0px;" alt="babylon-layout"/>
 
-        <h1>SISTEMA DE INFORMACION <br>
+        <h5>SISTEMA DE INFORMACION <br>
             NACIONAL DE INTERDICCION CONTRA <br>
-            EL TRAFICO ILICITO DE DROGAS</h1>
+            EL TRAFICO ILICITO DE DROGAS</h5>
         <p>Bienvenido ingrese sus credenciales.</p>
         <div class="login-input-wrapper">
             <input type="text" autocomplete="off" placeholder="Usuario" pInputText>
@@ -20,15 +20,15 @@
             <i class="pi pi-lock"></i>
             <input type="text" autocomplete="off" placeholder="CODIGO" pInputText>
         </div>
-
         <div class="login-input-wrapper bg-primary p-1 flex">
-           <div class="flex flex-none align-items-center ">
-            <button pButton  icon="pi pi-replay" class="bg-primary" (click)="getCaptcha()"></button>
-           </div>
-           <div class="flex flex-grow-1 align-items-center text-2xl ml-2" style="letter-spacing: 10px;">
-            {{captcha}}
-           </div>
-        </div>
+            <div class="flex flex-none align-items-center ">
+             <button pButton  icon="pi pi-replay" class="bg-primary" (click)="getCaptcha()"></button>
+            </div>
+            <div class="flex flex-grow-1 align-items-center text-2xl ml-2" style="letter-spacing: 10px;">
+             {{captcha}}
+            </div>
+         </div>
         <button [routerLink]="['/']" icon="pi pi-search" pButton type="button" label="Iniciar  Sesion"></button>
+        <h6>Resetear contraseña.</h6>
     </div>
 </div>
