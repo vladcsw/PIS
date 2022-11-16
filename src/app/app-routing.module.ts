@@ -33,6 +33,7 @@ import {AppWizardComponent} from './pages/app.wizard.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
 import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
+import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 
 @NgModule({
     imports: [
@@ -67,6 +68,7 @@ import { LoginComponent } from './components/login/login.component';
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'persona', component: PersonaComponent},
+                    {path: 'agente/docsEnv', component: DocEnviadoComponent},
                     
                 ]
             },

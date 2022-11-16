@@ -153,6 +153,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
+import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -294,6 +295,7 @@ FullCalendarModule.registerPlugins([
         BlocksComponent,
         PersonaComponent,
         LoginComponent,
+        DocEnviadoComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
