@@ -20,9 +20,26 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
                     {label: 'Persona', icon: 'pi pi-fw pi-user-edit', routerLink: ['/persona']},
-                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']}
+                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},
+                    {label: 'AGENTE', icon: 'pi pi-fw pi-user',
+                        items:[
+                            {label:'Envio de doc', icon: 'pi pi-fw pi-send',routerLink: ['agente/docsEnv']},
+                            {label:'Solicitudes de inf.', icon: 'pi pi-fw pi-file'}
+                        ]
+                    },
+                    {label: 'ANALISTA', icon:'pi pi-fw pi-user',
+                    items:[
+                        {label:'Doc. generar', icon:'pi pi-fw pi-file'},
+                        {label:'Doc. recibidos', icon:'pi pi-fw- pi-copy'},
+                        {label:'Crear carpeta', icon:'pi pi-fw pi-folder-open'},
+                        {label:'Bandeja de carpetas', icon:'pi pi-fw pi-inbox'},
+                        {label:'Documentos pasivos', icon:'pi pi-fw pi-lock-open'}
+                        
+                    ]
+                    }
                 ]
             },
+
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
                 items: [
