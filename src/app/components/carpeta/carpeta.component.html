@@ -1,0 +1,173 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-toolbar styleClass="mb-4 mt-3">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"  (click)="newDocAngente()" ></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
+                        chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+                </ng-template>
+            </p-toolbar>
+
+
+
+
+            <p-dialog [(visible)]="carpetaDialog" [style]="{width: '700px'}" header="Detalles del documento" [modal]="true" class="p-fluid">
+                <ng-template pTemplate="content">
+    
+                    <p-tabView  [(activeIndex)]="index">
+                       <p-tabPanel header = "Documento Inicial">
+                        <div class="field">
+                            <labe> Origen</labe>
+                            <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
+                        </div>
+                        <div class="field">
+                            <labe> CIP del instructor</labe>
+                            <span _ngcontent-lys-c169="" class="p-input-icon-right">
+                                <input _ngcontent-lys-c169="" type="text" pinputtext=""  class="p-inputtext p-component p-element">
+                                <i _ngcontent-lys-c169="" class="pi pi-search"></i>
+                            </span>
+                            
+                        </div>
+
+                        <p-fieldset legend="Datos del instructor" toggleable="true" class="line-height-3 m-0">
+                            <div class="formgrid grid">
+                                <div class="field col">
+                                    <div class="field">
+                                        <labe> Origen:</labe>
+                                    </div>
+                                    <div class="field">
+                                        <labe> CIP:</labe>
+                                    </div>
+                                    <div class="field">
+                                        <labe> DNI:</labe>
+                                    </div>
+                                    <div class="field">
+                                        <labe> Nombres:</labe>
+                                    </div>
+                                    <div class="field">
+                                        <labe> Grado:</labe>
+                                    </div>
+                                    <div class="field">
+                                        <labe> Unidad:</labe>
+                                    </div>
+                                </div>
+                                <div class="field col">
+                                    <div class="field">
+                                        <labe> Telefono:</labe>
+                                    </div>
+                                    <div class="field">
+                                        <labe> Email:</labe>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </p-fieldset>
+
+                        <div class="field mt-3">
+                            <labe> Tipo de documento</labe>
+                            <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
+                        </div>
+
+                        <div class="formgrid grid">
+                            <div class="field col">
+                                <labe> Numero</labe>
+                                <input _ngcontent-lys-c169="" type="text" pinputtext="" class="p-inputtext p-component p-element">
+                            </div>
+                            <div class="field col">
+                                <labe> Año</labe>
+                                <input _ngcontent-lys-c169="" type="text" pinputtext="" class="p-inputtext p-component p-element">
+                            </div>
+                        </div>
+                        <div class="formgrid grid">
+                            <div class="field col">
+                                <labe> Fecha de recepción</labe>
+                                <input type="date" pInputText id="name"   />
+                            </div>
+                            <div class="field col">
+                                <labe> Clasificación</labe>
+                                <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="field ">
+                            <labe> Resumen del hecho</labe>
+                            <textarea type="text" pInputText></textarea>
+                        </div>
+
+                       </p-tabPanel>
+                       <p-tabPanel header = "Archivos ajuntos" >
+                            <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept="application/pdf"></p-fileUpload>
+                        </p-tabPanel>
+                        <p-tabPanel header = "Previsualización">
+                            <div class="card">
+                                <p-fieldset legend="Datos del documento" >
+                                    <ng-template pTemplate="content">
+                                        <div class="formgrid grid">
+                                            <div class="field col">
+                                                <div class="field">
+                                                    <labe> Origen:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> CIP del instructor:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Tipo de documento:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Numero:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Fecha de recepción:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Año:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Año:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Resumen hecho:</labe>
+                                                </div>
+                                            </div>
+                                            <div class="field col" >
+                                                <div class="field">
+                                                    <labe> Año:</labe>
+                                                </div>
+                                                <div class="field">
+                                                    <labe> Clasificación:</labe>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </p-fieldset>
+                            </div>
+                            <div class="card">
+                                <p-fieldset legend="Documentos adjuntos" >
+                                    <ng-template pTemplate="content">
+                                            <div class="field col">    
+                                            </div>
+                                    </ng-template>
+                                </p-fieldset>
+                            </div>
+                            
+                        </p-tabPanel>
+                    </p-tabView>
+                </ng-template>
+    
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="openNext()"></button>
+                </ng-template>
+            </p-dialog>
+
+
+        </div>
+    </div>
+</div>

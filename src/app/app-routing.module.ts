@@ -35,6 +35,7 @@ import {BlocksComponent} from './blocks/blocks/blocks.component';
 import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
+import { CarpetaComponent } from './components/carpeta/carpeta.component'
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.compon
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'persona', component: PersonaComponent},
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
+                    {path: 'carpeta/carpeEnv', component: CarpetaComponent},
                     {path: 'modulo', component: ModuloInicioComponent}// agrege
                     
                 ]

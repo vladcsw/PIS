@@ -33,7 +33,7 @@ export class AppMenuComponent implements OnInit {
                         {label:'Doc. generar', icon:'pi pi-fw pi-file'},
                         {label:'Doc. recibidos', icon:'pi pi-fw- pi-copy'},
                         {label:'Crear carpeta', icon:'pi pi-fw pi-folder-open'},
-                        {label:'Bandeja de carpetas', icon:'pi pi-fw pi-inbox'},
+                        {label:'Bandeja de carpetas', icon:'pi pi-fw pi-inbox', routerLink:['carpeta/carpeEnv']},
                         {label:'Documentos pasivos', icon:'pi pi-fw pi-lock-open'}
                         
                     ]

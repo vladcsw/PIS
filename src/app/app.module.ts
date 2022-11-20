@@ -155,6 +155,7 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 import { ModuloInicioComponent } from './components/modulo-inicio/modulo-inicio.component';
+import { CarpetaComponent } from './components/carpeta/carpeta.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -298,6 +299,7 @@ FullCalendarModule.registerPlugins([
         LoginComponent,
         DocEnviadoComponent,
         ModuloInicioComponent,
+        CarpetaComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
