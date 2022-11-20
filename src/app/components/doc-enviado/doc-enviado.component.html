@@ -53,6 +53,7 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
+                        <th pSortableColumn="numero">N° <p-sortIcon field="numero"></p-sortIcon></th>
                         <th pSortableColumn="tipoDocumento">Ampliaciones <p-sortIcon field="tipoDocumento"></p-sortIcon></th>
                         <th pSortableColumn="nombre">Acciones <p-sortIcon field="nombre"></p-sortIcon></th>
                         <th pSortableColumn="primerApellido">Codigo <p-sortIcon field="primerApellido"></p-sortIcon></th>
@@ -114,23 +115,25 @@
                     </div>
                     <div class="field">
                         <labe> Prioridad</labe>
-                        <input type="text" pInputText id="name"   />
+                        <p-dropdown [options]="prioridad" optionLabel="name"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Clasificación</labe>
-                        <input type="text" pInputText id="name"   />
-                    </div>
-                    <div class="field">
-                        <labe> Cla. Subtipo</labe>
-                        <input type="text" pInputText id="name"   />
+                        <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Fecha de obtención inf.</labe>
-                        <input type="text" pInputText id="name"   />
+                        <input type="date" pInputText id="name"   />
                     </div>
-                    <div class="field">
+                    <div _ngcontent-lys-c169="" class="field">
                         <labe> Personas</labe>
-                        <input type="text" pInputText id="name"   />
+                        <span _ngcontent-lys-c169="" class="p-input-icon-right">
+                            <input _ngcontent-lys-c169="" type="text" pinputtext="" placeholder="Buscar por alias" class="p-inputtext p-component p-element">
+                            <i _ngcontent-lys-c169="" class="pi pi-search"></i>
+                        </span>     </div>
+                    <div class="field">
+                        <labe> ¿Que, Quien, Cuando, Como?</labe>
+                        <textarea type="text" pInputText></textarea>
                     </div>
 
                    </p-tabPanel>
@@ -139,7 +142,128 @@
 
                     </p-tabPanel>
                     <p-tabPanel header = "Previsualización">
-                    
+                        <div class="card">
+                            <p-fieldset legend="Datos del documento" >
+                                <ng-template pTemplate="content">
+                                    <div class="formgrid grid">
+                                        <div class="field col">
+                                            <div class="field">
+                                                <labe> Origen:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Tipo de documento:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Número:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Siglas:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Prioridad:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Fecha de recepción:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Resumen hecho:</labe>
+                                            </div>
+                                        </div>
+                                        <div class="field col" >
+                                            <div class="field">
+                                                <labe> Procedencia:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Denominación:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Año:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Clasificación:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Días plazo de atención:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Número de folio:</labe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-fieldset>
+                        </div>
+                        <div class="card">
+                            <p-fieldset legend="Documentos adjuntos" >
+                                <ng-template pTemplate="content">
+                                        <div class="field col">    
+                                        </div>
+                                </ng-template>
+                            </p-fieldset>
+                        </div>
+                        <div class="card">
+                            <p-fieldset legend="Georeferenciación del hecho" >
+                                <ng-template pTemplate="content">
+                                    <div class="formgrid grid">
+                                        <div class="field col">
+                                            <div class="field">
+                                                <labe> Departamento:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Distrito:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Tipo de la zona:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Tipo vía:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Número:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Manzana:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> N° Departamento:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Longitud:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Referencia:</labe>
+                                            </div>
+                                        </div>
+                                        <div class="field col" >
+                                            <div class="field">
+                                                <labe> Provincia:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Centro poblado:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Nombre de la zona:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Nombre vía:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Kilometro:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Lote:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Interior:</labe>
+                                            </div>
+                                            <div class="field">
+                                                <labe> Latitud:</labe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </p-fieldset>
+                        </div>
                     </p-tabPanel>
                 </p-tabView>
             </ng-template>
