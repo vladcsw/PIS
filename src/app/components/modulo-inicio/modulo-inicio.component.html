@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    html,body{padding: 0; margin: 0;}
+    body{
+      background: linear-gradient(90deg, rgb(145, 146, 145) 50%, rgb(151, 153, 149) 50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: bg 5s infinite linear;
+    }
+a{
+  border-radius: 20px;
+  padding: 10px 50px;
+  margin: 10px;
+  text-decoration: none;
+}
+a:hover{
+  background: rgba(216, 214, 214, 0.543);
+}
+
+@keyframes bg {
+  0% { background: linear-gradient(0deg, rgb(53, 123, 56) 50%, rgb(65, 148, 69) 50%);}
+  25% { background: linear-gradient(45deg, rgb(159, 161, 159) 50%, rgb(165, 165, 163) 50%);}
+  50% { background: linear-gradient(90deg, rgb(53, 123, 56) 50%, rgb(65, 148, 69) 50%); }
+  75% { background: linear-gradient(135deg, rgb(159, 161, 159) 50%, rgb(165, 165, 163) 50%); }
+  100% { background: linear-gradient(180deg, rgb(53, 123, 56) 50%, rgb(65, 148, 69) 50%); }
+}
+  </style>
+</head>
+<head>
+    <title>Center an Image using text align center</title>
+    <style>
+      .img-container {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img-container"> <!-- Block parent element -->
+      <h2><p>Bienvenido al modulo del sistema.</p></h2>
+      <img src="assets/layout/images/div.png" width="300" height="300"/>
+    </div>
+    <div class="agente">
+      <button [routerLink]="['/persona']" icon="pi pi" pButton type="button" label="Agente"></button>
+      
+  </div>
+  <p>      </p>
+  <div class="analista">
+      <button [routerLink]="['/persona']" icon="pi pi" pButton type="button" label="Analista" ></button>
+  </div>
+  </body>
+
+</html>
+
+
+    
+
+      
+            
+            
+            
+           

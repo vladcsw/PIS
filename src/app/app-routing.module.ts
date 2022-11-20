@@ -1,3 +1,4 @@
+import { ModuloInicioComponent } from './components/modulo-inicio/modulo-inicio.component';
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
@@ -35,6 +36,7 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 
+
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -69,6 +71,7 @@ import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.compon
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'persona', component: PersonaComponent},
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
+                    {path: 'modulo', component: ModuloInicioComponent}// agrege
                     
                 ]
             },
