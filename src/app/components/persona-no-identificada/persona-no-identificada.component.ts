@@ -8,6 +8,7 @@ import { PersonaNoIdentificadaService } from 'src/app/services/persona-no-identi
   templateUrl: './persona-no-identificada.component.html',
   styleUrls: ['./persona-no-identificada.component.scss']
 })
+
 export class PersonaNoIdentificadaComponent implements OnInit {
   estadocivil = ["Soltero", "Casado"
    

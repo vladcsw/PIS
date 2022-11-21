@@ -123,7 +123,8 @@
                     </div>
                     <div class="field">
                         <labe> Fecha de obtención inf.</labe>
-                        <input type="date" pInputText id="name"   />
+                       
+                        <input type="date" pInputText id="name"  [(ngModel)]="docEnviado.fechaObtencion" />
                     </div>
                     <div _ngcontent-lys-c169="" class="field">
                         <labe> Personas</labe>
@@ -133,7 +134,7 @@
                         </span>     </div>
                     <div class="field">
                         <labe> ¿Que, Quien, Cuando, Como?</labe>
-                        <textarea type="text" pInputText></textarea>
+                        <textarea type="text" pInputText  [(ngModel)]="docEnviado.descripcion"  ></textarea>
                     </div>
 
                    </p-tabPanel>

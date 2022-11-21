@@ -3,7 +3,7 @@ export interface DocEnviado{
     asunto: string;
     documento_prioridad:string;
     documento_clasificacion_id: number;
-    //fechaObtención: Date;
+    fechaObtencion: Date | string;
     documento_persona: string;
-    //preguntas: string;
+    descripcion: string;
 }

@@ -25,12 +25,18 @@ documento_clasificacion_id = [
 
   @HostBinding("class") classes ="row";
   
+  dateObj = new Date();
+  month = this.dateObj.getUTCMonth() + 1; //months from 1-12
+  day = this.dateObj.getUTCDate();
+  year = this.dateObj.getUTCFullYear();
+
   docEnviado: DocEnviado = {
     asunto:"asunto de descripcion",
     documento_prioridad:"alto",
     documento_clasificacion_id:1,
-    //fechaObtención: Date(),
-    documento_persona: "Juanito"
+    fechaObtencion: `${this.year}-${this.month}-${this.day}`,
+    documento_persona: "Juanito",
+    descripcion: ""
   }
 
   constructor(private documento: DocEnviadoService, private firstService: FirstServideService) { }
