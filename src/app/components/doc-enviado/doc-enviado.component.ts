@@ -2,6 +2,8 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { DocEnviado } from 'src/app/models/DocEnviado';
 import { DocEnviadoService } from 'src/app/services/doc-enviado.service';
 
+
+import{ FirstServideService } from '../../demo/service/first-servide.service'
 @Component({
   selector: 'app-doc-enviado',
   templateUrl: './doc-enviado.component.html',
@@ -31,12 +33,26 @@ documento_clasificacion_id = [
     documento_persona: "Juanito"
   }
 
-  constructor(private documento: DocEnviadoService) { }
+  constructor(private documento: DocEnviadoService, private firstService: FirstServideService) { }
   docEnviadoDialog: boolean;
+
+  documentoClasificacion: any = [];
 
   index: number = 0;
 
+  
+
+
   ngOnInit(): void {
+    this.firstService.getClasificacion().subscribe(
+      res => {
+        this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION'],
+        console.log(res.valueOf())
+        console.log("hola"),
+        console.log(this.documentoClasificacion)
+      },
+      err => console.log(err)
+    )
   }
   newDocAngente(){
     this.docEnviadoDialog = true;
@@ -49,6 +65,7 @@ documento_clasificacion_id = [
   openPrev() {
       this.index = (this.index === 0) ? 2 : this.index - 1;
   }
+
   save(){
     console.log(this.docEnviado);
     this.documento.saveDocEnviado(this.docEnviado)
@@ -58,4 +75,11 @@ documento_clasificacion_id = [
         )
     
   }
+
+
+  getDocumentoClasificación(){
+
+  }
 }
+export class TabViewDemo {}
+

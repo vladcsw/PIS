@@ -143,7 +143,8 @@ import {IconService} from './demo/service/iconservice';
 import {NodeService} from './demo/service/nodeservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
-
+import{ FirstServideService } from './demo/service/first-servide.service'
+ 
 // Application services
 import {BreadcrumbService} from './app.breadcrumb.service';
 import {MenuService} from './app.menu.service';
@@ -307,6 +308,7 @@ FullCalendarModule.registerPlugins([
         PersonaNoIdentificadaComponent,
     ],
     providers: [
+        FirstServideService,
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, BreadcrumbService, PersonaNoIdentificadaService
