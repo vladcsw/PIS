@@ -13,15 +13,14 @@
 					<label htmlFor="firstname2">Primer Apellido</label>
 					<input pInputText id="firstname2" type="text" [(ngModel)]="personaNoIdentificada.apellido" />
 				</div>
-                <div class="field col-12">
-					<label htmlFor="firstname2">Edad</label>
-					<input pInputText id="firstname2" type="number" [(ngModel)]="personaNoIdentificada.edad" />
-				</div>
 				<div class="field col-12">
 					<label htmlFor="firstname2">Segundo apellido</label>
 					<input pInputText id="firstname2" type="text" />
 				</div>
-
+				<div class="field col-12">
+					<label htmlFor="firstname2">Edad</label>
+					<input pInputText id="firstname2" type="number" [(ngModel)]="personaNoIdentificada.edad" />
+				</div>
                 <div class="field col-12">
 					<label htmlFor="state">Sexo </label>
 					<p-dropdown [options]="genero" optionLabel="name"></p-dropdown>

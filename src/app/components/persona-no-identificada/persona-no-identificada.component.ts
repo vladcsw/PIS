@@ -1,5 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Persona } from 'src/app/models/PersonaNoIdentificada';
+
 import { PersonaNoIdentificadaService } from 'src/app/services/persona-no-identificada.service';
 
 @Component({
@@ -40,7 +41,7 @@ nacionalidades  = [
 
   ngOnInit(): void {
   }
-
+  
   save(){
     
     console.log(this.personaNoIdentificada);
