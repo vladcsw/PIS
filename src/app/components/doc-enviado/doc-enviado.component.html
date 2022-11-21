@@ -111,15 +111,15 @@
                    <p-tabPanel header = "Datos del documento">
                     <div class="field">
                         <labe> Asunto</labe>
-                        <textarea type="text" pInputText></textarea>
+                        <textarea type="text" pInputText [(ngModel)]="docEnviado.asunto"></textarea>
                     </div>
                     <div class="field">
                         <labe> Prioridad</labe>
-                        <p-dropdown [options]="prioridad" optionLabel="name"></p-dropdown>
+                        <p-dropdown [options]="documento_prioridad" optionLabel="name"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Clasificación</labe>
-                        <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
+                        <p-dropdown [options]="documento_clasificacion_id" optionLabel="name"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Fecha de obtención inf.</labe>
@@ -128,7 +128,7 @@
                     <div _ngcontent-lys-c169="" class="field">
                         <labe> Personas</labe>
                         <span _ngcontent-lys-c169="" class="p-input-icon-right">
-                            <input _ngcontent-lys-c169="" type="text" pinputtext="" placeholder="Buscar por alias" class="p-inputtext p-component p-element">
+                            <input _ngcontent-lys-c169="" type="text" [(ngModel)]="docEnviado.documento_persona" pinputtext="" placeholder="Buscar por alias" class="p-inputtext p-component p-element">
                             <i _ngcontent-lys-c169="" class="pi pi-search"></i>
                         </span>     </div>
                     <div class="field">
@@ -270,7 +270,7 @@
 
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="openNext()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
             </ng-template>
         </p-dialog>
     </div>
