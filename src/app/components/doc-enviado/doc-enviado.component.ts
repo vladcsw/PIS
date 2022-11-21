@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { DocEnviado } from 'src/app/models/DocEnviado';
 import { DocEnviadoService } from 'src/app/services/doc-enviado.service';
+import { documento }  from '../../demo/domain/documento'
 
 
 import{ FirstServideService } from '../../demo/service/first-servide.service'
@@ -11,6 +12,9 @@ import{ FirstServideService } from '../../demo/service/first-servide.service'
 })
 
 export class DocEnviadoComponent implements OnInit {
+
+  documentos: documento[];
+  nuevoDocumento: documento;
   documento_prioridad= [
     { name: "alto", code: "alto" },
     { name: "medio", code: "medio" },
@@ -31,13 +35,15 @@ documento_clasificacion_id = [
   year = this.dateObj.getUTCFullYear();
 
   docEnviado: DocEnviado = {
-    asunto:"asunto de descripcion",
-    documento_prioridad:"alto",
+    asunto:"",
+    documento_prioridad:"",
     documento_clasificacion_id:1,
     fechaObtencion: `${this.year}-${this.month}-${this.day}`,
-    documento_persona: "Juanito",
+    documento_persona: "",
     descripcion: ""
   }
+
+  
 
   constructor(private documento: DocEnviadoService, private firstService: FirstServideService) { }
   docEnviadoDialog: boolean;
@@ -52,15 +58,21 @@ documento_clasificacion_id = [
   ngOnInit(): void {
     this.firstService.getClasificacion().subscribe(
       res => {
-        this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION'],
-        console.log(res.valueOf())
-        console.log("hola"),
-        console.log(this.documentoClasificacion)
+        this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
+
       },
       err => console.log(err)
     )
+
+    this.firstService.getDocumento().subscribe(
+      res=>{
+        this.documentos = res['data']['documentos']
+      },
+      err=>console.log(err)
+    )
   }
   newDocAngente(){
+    this.nuevoDocumento = {};
     this.docEnviadoDialog = true;
   }
 
@@ -81,6 +93,7 @@ documento_clasificacion_id = [
         )
     
   }
+  
 
 
   getDocumentoClasificación(){

@@ -16,4 +16,8 @@ export class FirstServideService {
    getClasificacion(){
     return this.http.get(`${this.API_URI}documento_clasificacion/list`)
    }
+
+   getDocumento(){
+    return this.http.get(`${this.API_URI}documento/list`)
+   }
 }

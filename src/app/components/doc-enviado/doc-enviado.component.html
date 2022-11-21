@@ -33,7 +33,7 @@
             </p-toolbar>
 
 
-            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+            <p-table #dt  [value]="documentos" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -63,31 +63,35 @@
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-person>
+                <ng-template pTemplate="body" let-documento>
                     <tr>
                         <td>
                             <p-tableCheckbox ></p-tableCheckbox>
                         </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Documento</span>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">N°</span>
+                            {{documento.id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">ASUNTO</span>
+                            {{documento.asunto}}
                             
                         </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Nombre</span>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">PRIORIDAD</span>
+                            {{documento.prioridad}}
+                        </td>
+                        <td style="width:14%; min-width:8rem;"><span class="p-column-title">CLASIFICACION</span>
+                            
+                            {{documento.documento_clasificacion_id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
+                            {{documento.fechaObtencion}}
                             
                         </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">P .Apellido</span>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PERSONA</span>
+                            {{documento.documento_persona}}
                             
                         </td>
-                        <td style="width:14%; min-width:8rem;">
-                            <span class="p-column-title">S .Apellido</span>
-                            
-                        </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Nro Documento </span>
-                            
-                        </td>
-                        <td style="width:14%; min-width: 10rem;">
-                            <span class="p-column-title">Status</span>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            {{documento.descripcion}}
                             
                         </td>
                         <td>
