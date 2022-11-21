@@ -8,9 +8,8 @@ import { PersonaNoIdentificadaService } from 'src/app/services/persona-no-identi
   styleUrls: ['./persona-no-identificada.component.scss']
 })
 export class PersonaNoIdentificadaComponent implements OnInit {
-  estadocivil = [
-    { name: 'Soltero', code: 'Soltero' },
-    { name: 'Casado', code: 'Casado' }
+  estadocivil = ["Soltero", "Casado"
+   
 ];
 genero = [
   { name: 'Masculino', code: 'Masculino' },
@@ -28,12 +27,13 @@ nacionalidades  = [
 ];
 
   @HostBinding("class") classes ="row";
-  
+
   personaNoIdentificada: Persona = {
-    nombre: "Karen",
-    apellido: "Aurelio",
-    edad: 10,
-    estadoCivil: "soltero",
+    nombre: "",
+    apellido: "",
+    edad: 0,
+    estadoCivil: "",
+    
   }
 
   constructor(private persona: PersonaNoIdentificadaService) { }
@@ -42,6 +42,7 @@ nacionalidades  = [
   }
 
   save(){
+    
     console.log(this.personaNoIdentificada);
     this.persona.savePersonaNoIdentificada(this.personaNoIdentificada)
     .subscribe(

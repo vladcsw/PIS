@@ -14,6 +14,10 @@
 					<input pInputText id="firstname2" type="text" [(ngModel)]="personaNoIdentificada.apellido" />
 				</div>
                 <div class="field col-12">
+					<label htmlFor="firstname2">Edad</label>
+					<input pInputText id="firstname2" type="number" [(ngModel)]="personaNoIdentificada.edad" />
+				</div>
+				<div class="field col-12">
 					<label htmlFor="firstname2">Segundo apellido</label>
 					<input pInputText id="firstname2" type="text" />
 				</div>
@@ -22,6 +26,13 @@
 					<label htmlFor="state">Sexo </label>
 					<p-dropdown [options]="genero" optionLabel="name"></p-dropdown>
 				</div>
+				<div class="field col-12">
+					<label htmlFor="state">Estado civil </label>
+					<p-dropdown [options]="estadocivil"  [(ngModel)]="personaNoIdentificada.estadoCivil">
+						
+					</p-dropdown>
+				</div>
+				
                 <div class="field col-12">
 					<label htmlFor="firstname2">Nº DOC Identificacion</label>
 					<input pInputText id="firstname2" type="text" />
