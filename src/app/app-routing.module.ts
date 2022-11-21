@@ -36,6 +36,8 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 import { CarpetaComponent } from './components/carpeta/carpeta.component'
+import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
+import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
 
 
 @NgModule({
@@ -71,8 +73,10 @@ import { CarpetaComponent } from './components/carpeta/carpeta.component'
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'blocks', component: BlocksComponent},
                     {path: 'persona', component: PersonaComponent},
+                    {path: 'personaNoIdentificada', component: PersonaNoIdentificadaComponent},
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
                     {path: 'carpeta/carpeEnv', component: CarpetaComponent},
+                    {path: 'analista/crearCarpeta', component: CrearCarpetaComponent},
                     {path: 'modulo', component: ModuloInicioComponent}// agrege
                     
                 ]

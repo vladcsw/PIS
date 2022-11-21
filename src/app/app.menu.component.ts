@@ -21,6 +21,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
                     {label: 'Modulo', icon: 'pi pi-fw pi-list', routerLink: ['/modulo']},
                     {label: 'Persona', icon: 'pi pi-fw pi-user-edit', routerLink: ['/persona']},
+                    {label: 'Persona no identificada', icon: 'pi pi-fw pi-user-edit', routerLink: ['/personaNoIdentificada']},
                     {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},
                     {label: 'AGENTE', icon: 'pi pi-fw pi-user',
                         items:[
@@ -32,7 +33,7 @@ export class AppMenuComponent implements OnInit {
                     items:[
                         {label:'Doc. generar', icon:'pi pi-fw pi-file'},
                         {label:'Doc. recibidos', icon:'pi pi-fw- pi-copy'},
-                        {label:'Crear carpeta', icon:'pi pi-fw pi-folder-open'},
+                        {label:'Crear carpeta', icon:'pi pi-fw pi-folder-open',routerLink:['analista/crearCarpeta']},
                         {label:'Bandeja de carpetas', icon:'pi pi-fw pi-inbox', routerLink:['carpeta/carpeEnv']},
                         {label:'Documentos pasivos', icon:'pi pi-fw pi-lock-open'}
                         

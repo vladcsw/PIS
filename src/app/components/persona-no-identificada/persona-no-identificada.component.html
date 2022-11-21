@@ -1,0 +1,49 @@
+<div class="grid  flex justify-content-center">
+    <div class="col-12 md:col-6">
+		<div class="card ">
+			<h5 class="text-center text-3xl">PERSONA NO ENCONTRADA</h5>
+			<div class="p-fluid p-formgrid grid">
+				
+                <div class="field col-12 ">
+					<label htmlFor="firstname2">Nombres</label>
+					<input pInputText id="firstname2" type="text" />
+				</div>
+
+                <div class="field col-12">
+					<label htmlFor="firstname2">Primer Apellido</label>
+					<input pInputText id="firstname2" type="text" />
+				</div>
+                <div class="field col-12">
+					<label htmlFor="firstname2">Segundo apellido</label>
+					<input pInputText id="firstname2" type="text" />
+				</div>
+
+                <div class="field col-12">
+					<label htmlFor="state">Sexo </label>
+					<p-dropdown [options]="genero" optionLabel="name"></p-dropdown>
+				</div>
+                <div class="field col-12">
+					<label htmlFor="firstname2">Nº DOC Identificacion</label>
+					<input pInputText id="firstname2" type="text" />
+				</div>
+
+                <div class="field col-12">
+					<label htmlFor="state">Nacionalidad </label>
+					<p-dropdown [options]="nacionalidades" optionLabel="name"></p-dropdown>
+				</div>
+                <div class="field col-12">
+					<label htmlFor="firstname2">Nacionalidad</label>
+					<span class="p-input-icon-right">
+						<input type="text" pInputText placeholder="Search"/>
+						<i class="pi pi-search"></i>
+					</span>
+				</div>
+                <div class="field col-12">
+					<label htmlFor="firstname2">Apelativos</label>
+					<input pInputText id="firstname2" type="text" />
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
