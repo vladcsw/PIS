@@ -158,6 +158,7 @@ import { ModuloInicioComponent } from './components/modulo-inicio/modulo-inicio.
 import { CarpetaComponent } from './components/carpeta/carpeta.component';
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
+import { PersonaNoIdentificadaService } from './services/persona-no-identificada.service';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -308,7 +309,7 @@ FullCalendarModule.registerPlugins([
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, BreadcrumbService
+        PhotoService, ProductService, MenuService, BreadcrumbService, PersonaNoIdentificadaService
     ],
     bootstrap: [AppComponent]
 })

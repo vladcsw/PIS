@@ -6,12 +6,12 @@
 				
                 <div class="field col-12 ">
 					<label htmlFor="firstname2">Nombres</label>
-					<input pInputText id="firstname2" type="text" />
+					<input pInputText id="firstname2" type="text"  [(ngModel)]="personaNoIdentificada.nombre"/>
 				</div>
 
                 <div class="field col-12">
 					<label htmlFor="firstname2">Primer Apellido</label>
-					<input pInputText id="firstname2" type="text" />
+					<input pInputText id="firstname2" type="text" [(ngModel)]="personaNoIdentificada.apellido" />
 				</div>
                 <div class="field col-12">
 					<label htmlFor="firstname2">Segundo apellido</label>
@@ -43,7 +43,7 @@
 					<input pInputText id="firstname2" type="text" />
 				</div>
 				<div class="field col-12 md:col-6 ">
-					<button pButton pRipple label="Guardar" class="mr-2 mb-2"></button>
+					<button pButton pRipple label="Guardar" class="mr-2 mb-2" (click)="save()"></button>
 				</div>
 			</div>
 		</div>

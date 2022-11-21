@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { Persona } from 'src/app/models/PersonaNoIdentificada';
+import { PersonaNoIdentificadaService } from 'src/app/services/persona-no-identificada.service';
 
 @Component({
   selector: 'app-persona-no-identificada',
@@ -24,9 +26,29 @@ nacionalidades  = [
   { name: 'Ecuador', code: 'Ecuador' },
   { name: 'Venezuela', code: 'Venezuela' }
 ];
-  constructor() { }
+
+  @HostBinding("class") classes ="row";
+  
+  personaNoIdentificada: Persona = {
+    nombre: "Karen",
+    apellido: "Aurelio",
+    edad: 10,
+    estadoCivil: "soltero",
+  }
+
+  constructor(private persona: PersonaNoIdentificadaService) { }
 
   ngOnInit(): void {
+  }
+
+  save(){
+    console.log(this.personaNoIdentificada);
+    this.persona.savePersonaNoIdentificada(this.personaNoIdentificada)
+    .subscribe(
+      res => {console.log(res);},
+      err => {console.log("backend no responde");}
+        )
+    
   }
 
 }
