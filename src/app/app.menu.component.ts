@@ -16,20 +16,20 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             {
-                label: 'Home Page', icon: 'pi pi-fw pi-home',
+                label: 'Menu Principal', icon: 'pi pi-fw pi-home',
                 items: [
-                    {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
+                    /*{label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},*/
                     {label: 'Modulo', icon: 'pi pi-fw pi-list', routerLink: ['/modulo']},
                     {label: 'Persona', icon: 'pi pi-fw pi-user-edit', routerLink: ['/persona']},
                     {label: 'Persona no identificada', icon: 'pi pi-fw pi-user-edit', routerLink: ['/personaNoIdentificada']},
-                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},
-                    {label: 'AGENTE', icon: 'pi pi-fw pi-user',
+                    /*{label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},*/
+                    {label: 'Agente', icon: 'pi pi-fw pi-user',
                         items:[
                             {label:'Envio de doc', icon: 'pi pi-fw pi-send',routerLink: ['agente/docsEnv']},
                             {label:'Solicitudes de inf.', icon: 'pi pi-fw pi-file'}
                         ]
                     },
-                    {label: 'ANALISTA', icon:'pi pi-fw pi-user',
+                    {label: 'Analista', icon:'pi pi-fw pi-user',
                     items:[
                         {label:'Doc. generar', icon:'pi pi-fw pi-file'},
                         {label:'Doc. recibidos', icon:'pi pi-fw- pi-copy'},
@@ -40,8 +40,8 @@ export class AppMenuComponent implements OnInit {
                     ]
                     }
                 ]
-            },
-
+            }
+/*
             {
                 label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
                 items: [
@@ -146,7 +146,8 @@ export class AppMenuComponent implements OnInit {
                         label: 'Buy Now', icon: 'pi pi-fw pi-money-bill', url: ['https://www.primefaces.org/store']
                     }
                 ]
-            }
+            }*/
         ];
+        
     }
 }
