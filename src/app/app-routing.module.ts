@@ -38,6 +38,8 @@ import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.compon
 import { CarpetaComponent } from './components/carpeta/carpeta.component'
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
+import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
+import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { PersonaNoIdentificadaComponent } from './components/persona-no-identifi
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
                     {path: 'carpeta/carpeEnv', component: CarpetaComponent},
                     {path: 'analista/crearCarpeta', component: CrearCarpetaComponent},
+                    {path: 'analista/docRecibidos', component: DocRecibidosComponent},
+                    {path: 'analista/vistaDoc', component: VistaDocComponent},
                     {path: 'modulo', component: ModuloInicioComponent}// agrege
                     
                 ]

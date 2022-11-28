@@ -160,6 +160,8 @@ import { CarpetaComponent } from './components/carpeta/carpeta.component';
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
 import { PersonaNoIdentificadaService } from './services/persona-no-identificada.service';
+import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
+import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -306,6 +308,8 @@ FullCalendarModule.registerPlugins([
         CarpetaComponent,
         CrearCarpetaComponent,
         PersonaNoIdentificadaComponent,
+        DocRecibidosComponent,
+        VistaDocComponent,
     ],
     providers: [
         FirstServideService,
