@@ -162,6 +162,7 @@ import { PersonaNoIdentificadaComponent } from './components/persona-no-identifi
 import { PersonaNoIdentificadaService } from './services/persona-no-identificada.service';
 import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
 import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
+import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component';
 
 FullCalendarModule.registerPlugins([
     dayGridPlugin,
@@ -310,6 +311,7 @@ FullCalendarModule.registerPlugins([
         PersonaNoIdentificadaComponent,
         DocRecibidosComponent,
         VistaDocComponent,
+        DocInteligenciaComponent,
     ],
     providers: [
         FirstServideService,

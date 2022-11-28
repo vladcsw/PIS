@@ -1,6 +1,6 @@
 import { ModuloInicioComponent } from './components/modulo-inicio/modulo-inicio.component';
 import {RouterModule} from '@angular/router';
-import {NgModule} from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
 import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
@@ -36,6 +36,7 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 import { CarpetaComponent } from './components/carpeta/carpeta.component'
+import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component'; 
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
 import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
@@ -79,6 +80,7 @@ import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
                     {path: 'carpeta/carpeEnv', component: CarpetaComponent},
                     {path: 'analista/crearCarpeta', component: CrearCarpetaComponent},
+                    {path: 'analista/docInteligencia',component:DocInteligenciaComponent},
                     {path: 'analista/docRecibidos', component: DocRecibidosComponent},
                     {path: 'analista/vistaDoc', component: VistaDocComponent},
                     {path: 'modulo', component: ModuloInicioComponent}// agrege
