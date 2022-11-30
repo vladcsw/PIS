@@ -165,7 +165,11 @@ import { VincularCarpetaComponent } from './components/vincular-carpeta/vincular
 
 import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
 import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
+
 import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component';
+
+
+import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -318,7 +322,11 @@ FullCalendarModule.registerPlugins([
 
         DocRecibidosComponent,
         VistaDocComponent,
-        DocInteligenciaComponent
+
+        DocInteligenciaComponent,
+
+
+        PedidoInfoComponent,
 
     ],
     providers: [

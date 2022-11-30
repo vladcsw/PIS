@@ -44,6 +44,7 @@ import { VincularCarpetaComponent } from './components/vincular-carpeta/vincular
 
 import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
 import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
+import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
 
 
 
@@ -92,7 +93,7 @@ import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
                     {path: 'analista/docRecibidos', component: DocRecibidosComponent},
                     {path: 'analista/vistaDoc', component: VistaDocComponent},
                     
-
+                    {path: 'analista/pedidoInf', component: PedidoInfoComponent}
                     
                 ]
             },

@@ -1,0 +1,36 @@
+<div class="grid  p-fluid justify-content-center">
+    <div class="col-8 " >
+        <div class="card">
+            <div class="flex flex-wrap align-items-center justify-content-center card-container pb-5">
+                <h5 class="text-center text-3xl">ORDEN DE BUSQUEDA Nº0105-2022</h5>
+            </div>
+
+            <h5>Para</h5>
+			<p-dropdown  placeholder="Para" [showClear]="true"></p-dropdown>
+
+            <h5>Asunto</h5>
+            
+            <input type="text" pInputText placeholder="Default">
+            
+
+            <h5>Prioridad</h5>
+			<p-dropdown  placeholder="Seleccione la prioridad" [showClear]="true"></p-dropdown>
+
+                   
+        </div>
+
+
+        <div class="card">
+            
+            <h5>Asunto</h5>
+			<textarea rows="2" cols="80" placeholder="Your Message" pInputTextarea></textarea>
+
+            <h5>Pedido</h5>
+			<textarea rows="2" cols="80" placeholder="Your Message" pInputTextarea></textarea>
+
+            <div class="field col-12 md:col-6 ">
+                <button pButton pRipple label="Solicitar" class="mr-2 mb-2" ></button>
+            </div>
+        </div>
+    </div>
+</div>
