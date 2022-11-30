@@ -20,4 +20,9 @@ export class FirstServideService {
    getDocumento(){
     return this.http.get(`${this.API_URI}documento/list`)
    }
+    
+   getCarpeta(){
+    return this.http.get(`${this.API_URI}carpeta/list`)
+   }
+
 }
