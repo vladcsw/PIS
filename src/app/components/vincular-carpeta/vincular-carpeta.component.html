@@ -6,22 +6,7 @@
                 <h5 class="text-center text-3xl">VINCULAR A UNA CARPETA</h5>
             </div>
            
-            <br />
-            <p-fieldset legend="Filtros" >
-                <ng-template pTemplate="content">
-                    <div class="formgrid grid">
-                        <div class="field col">
-                            <label for="inicicios" class="mr-3">Inicio</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
-                        </div>
-                        <div class="field col" >
-                            <label for="name" class="mr-3">Fin</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-fieldset>
-            <br/>
+
             <p-table #dt [value]="carpetas"  responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
@@ -29,7 +14,7 @@
                  selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Administrar carpetas</h5>
+                        <h5 class="m-0">Seleccionar la carpeta</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"

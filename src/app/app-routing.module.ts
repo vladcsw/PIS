@@ -39,12 +39,11 @@ import { CarpetaComponent } from './components/carpeta/carpeta.component'
 import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component'; 
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
-
 import { VincularCarpetaComponent } from './components/vincular-carpeta/vincular-carpeta.component';
-
 import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
 import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
 import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
+import { DocumentoInformacionComponent} from './components/documento-informacion/documento-informacion.component';
 
 
 
@@ -85,15 +84,13 @@ import { PedidoInfoComponent } from './components/pedido-info/pedido-info.compon
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
                     {path: 'carpeta/carpeEnv', component: CarpetaComponent},
                     {path: 'analista/crearCarpeta', component: CrearCarpetaComponent},
-
                     {path: 'modulo', component: ModuloInicioComponent},// agrege
                     {path: 'vincularc', component: VincularCarpetaComponent},//agregue
-
-                    {path: 'analista/docInteligencia',component:DocInteligenciaComponent},
+                    {path: 'analista/docInteligencia/:id',component:DocInteligenciaComponent},
                     {path: 'analista/docRecibidos', component: DocRecibidosComponent},
                     {path: 'analista/vistaDoc', component: VistaDocComponent},
-                    
-                    {path: 'analista/pedidoInf', component: PedidoInfoComponent}
+                    {path: 'analista/pedidoInf', component: PedidoInfoComponent},
+                    {path: 'analista/docRecib/analisis', component: DocumentoInformacionComponent}
                     
                 ]
             },

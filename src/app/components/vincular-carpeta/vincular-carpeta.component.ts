@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import{ FirstServideService } from '../../demo/service/first-servide.service'
+import{ FirstService } from '../../demo/service/first-service'
 import { Carpeta } from 'src/app/demo/domain/carpeta';
 @Component({
   selector: 'app-vincular-carpeta',
@@ -10,7 +10,7 @@ import { Carpeta } from 'src/app/demo/domain/carpeta';
 export class VincularCarpetaComponent implements OnInit {
   carpetas:Carpeta[];
   constructor(
-    private firtService:FirstServideService
+    private firtService:FirstService
   ) { }
 
   ngOnInit(): void {

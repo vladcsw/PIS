@@ -9,41 +9,48 @@
                     <div class="formgrid grid">
                         <div class="field col">
                             <div class="field">
-                                <labe> Asunto:</labe>
+                                <b> Codigo:</b>
+                                <p>{{documento.codigo}}</p>
                             </div>
                             <div class="field">
-                                <labe> Fecha de obtencion de informacion:</labe>
+                                <b> Asunto:</b>
+                                <p>{{documento.asunto}}</p>
                             </div>
                             <div class="field">
-                                <labe> Personas:</labe>
+                                <b> Fecha de obtencion de informacion:</b>
+                                <p>{{documento.obtencionInformacion}}</p>
+                            </div>
+                            <div class="field">
+                                <b> Personas:</b>
+                            </div>
+                            <div class="field">
+                                <b> Descripción:</b>
+                                <p>{{documento.descripcion}}</p>
                             </div>
                            
                         </div>
                         <div class="field col" >
                             <div class="field">
-                                <labe> Prioridad:</labe>
+                                <b> Prioridad:</b>
+                                <p>{{replaceValuesPrioridad(documento.documento_prioridad_id)}}</p>
                             </div>
                             <div class="field">
-                                <labe> Clasificación:</labe>
+                                <b> Clasificación:</b>
+                                <p>{{replaceValuesClasificacion(documento.documento_clasificacion_id)}}</p>
                             </div>
                         </div>
                     </div>
                         <div class="field col">
-                            <button (click)="redirect()" pButton pRipple label="Tratamiento de información" 
-                                class="p-element p-ripple p-button-outlined p-button-secondary mr-2 mb-2 p-button p-component" >
-                            </button>
-                            <button (click)="redirect()" pButton  pRipple  label="Pedido de información"  
-                            class="p-element p-ripple p-button-outlined p-button-secondary mr-2 mb-2 p-button p-component" >
-                            </button>
-                            <button (click)="redirect()" pButton pRipple label="Archivar documento" 
-                            class="p-element p-ripple p-button-outlined p-button-secondary mr-2 mb-2 p-button p-component" >
-                        </button>
-                        <button (click)="redirect()" pButton pRipple label="Vincular a una carpeta" 
-                        class="p-element p-ripple p-button-outlined p-button-secondary mr-2 mb-2 p-button p-component" >
-                    </button>
-                    <button (click)="redirect()" pButton pRipple label="Crear carpeta" 
-                    class="p-element p-ripple p-button-outlined p-button-secondary mr-2 mb-2 p-button p-component" >
-                </button>
+                            
+                            <a [routerLink]="['/analista/docRecib/analisis']" pButton type="button" label="Tratamiento de información" class=" mr-2 p-button-warning"></a>
+                            <a [routerLink]="['/analista/pedidoInf']" pButton type="button" label="Pedido de información" class=" mr-2 p-button-warning"></a>
+                            <button pButton type="button" label="Archivar documento " class=" mr-2 p-button-warning"></button>
+                            <a [routerLink]="['/vincularc']" pButton type="button" label="Vincular a una carpeta" class=" mr-2 p-button-warning"></a>
+                            <button pButton type="button" label="Crear carpeta" class=" mr-2 p-button-warning"></button>
+
+
+
+                           
                         </div>
                         
                 

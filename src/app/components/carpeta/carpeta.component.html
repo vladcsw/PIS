@@ -1,6 +1,11 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
+
+            <div class="flex flex-wrap align-items-center justify-content-center card-container">
+                <h5 class="text-center text-3xl">Bandeja de carpetas</h5>
+            </div>
+
             <p-toolbar styleClass="mb-4 mt-3">
                 <ng-template pTemplate="left">
                     <div class="my-2">
@@ -9,12 +14,92 @@
                     </div>
                 </ng-template>
 
-                <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
-                        chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-                </ng-template>
+                
             </p-toolbar>
+            <br />
+            <p-fieldset legend="Filtros" >
+                <ng-template pTemplate="content">
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="inicicios" class="mr-3">Inicio</label>
+                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
+                        </div>
+                        <div class="field col" >
+                            <label for="name" class="mr-3">Fin</label>
+                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-fieldset>
+            <br/>
+            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Administrar Documentos</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" > 
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="tipoDocumento">Nº <p-sortIcon field="tipoDocumento"></p-sortIcon></th>
+                        <th pSortableColumn="nombre">ACCIONES  <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="primerApellido">CODIGO <p-sortIcon field="primerApellido"></p-sortIcon></th>
+                        <th pSortableColumn="segundoApellido">EQUIPO OPERATIVO <p-sortIcon field="segundoApellido"></p-sortIcon></th>
+                        <th pSortableColumn="documento">FECHA PEDIDO <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th pSortableColumn="documento">FECHA REVISION  <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th pSortableColumn="documento">CARPETA INTERNA <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th pSortableColumn="documento">ESTADO <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-person>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox ></p-tableCheckbox>
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Documento</span>
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Nombre</span>
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">P .Apellido</span>
+                            
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">S .Apellido</span>
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Nro Documento </span>
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;">
+                            <span class="p-column-title">Status</span>
+                            
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
 
 
 

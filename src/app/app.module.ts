@@ -143,7 +143,7 @@ import {IconService} from './demo/service/iconservice';
 import {NodeService} from './demo/service/nodeservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
-import{ FirstServideService } from './demo/service/first-servide.service'
+import{ FirstService } from './demo/service/first-service'
  
 // Application services
 import {BreadcrumbService} from './app.breadcrumb.service';
@@ -170,6 +170,7 @@ import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inte
 
 
 import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
+import { DocumentoInformacionComponent } from './components/documento-informacion/documento-informacion.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -327,10 +328,11 @@ FullCalendarModule.registerPlugins([
 
 
         PedidoInfoComponent,
+          DocumentoInformacionComponent,
 
     ],
     providers: [
-        FirstServideService,
+        FirstService,
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, BreadcrumbService, PersonaNoIdentificadaService

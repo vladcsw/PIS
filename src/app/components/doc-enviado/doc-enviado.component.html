@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            <h5>Filtros</h5>
+            <h4>Documentos enviados</h4>
             <p-fieldset legend="Filtros" >
                 <ng-template pTemplate="content">
                     <div class="formgrid grid">
@@ -25,11 +25,7 @@
                     </div>
                 </ng-template>
 
-                <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
-                        chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
-                </ng-template>
+                
             </p-toolbar>
 
 
@@ -50,24 +46,19 @@
                 </ng-template>
                 <ng-template pTemplate="header" > 
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
+                       
                         <th pSortableColumn="id">N° <p-sortIcon field="id"></p-sortIcon></th>
                         <th pSortableColumn="asunto">ASUNTO <p-sortIcon field="asunto"></p-sortIcon></th>
                         <th pSortableColumn="documento_prioridad">PRIORIDAD<p-sortIcon field="documento_prioridad"></p-sortIcon></th>
                         <th pSortableColumn="documento_clasificacion_id">CLASIFICACION <p-sortIcon field="documento_clasificacion_id"></p-sortIcon></th>
                         <th pSortableColumn="fechaObtención">FECHA OBTENCION INF. <p-sortIcon field="fechaObtención"></p-sortIcon></th>
-                        <th pSortableColumn="documento_persona">PERSONA<p-sortIcon field="documento_persona"></p-sortIcon></th>
                         <th pSortableColumn="preguntas">PREGUNTAS <p-sortIcon field="preguntas"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-documento>
                     <tr>
-                        <td>
-                            <p-tableCheckbox ></p-tableCheckbox>
-                        </td>
+                        
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">N°</span>
                             {{documento.id}}
                         </td>
@@ -76,18 +67,13 @@
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">PRIORIDAD</span>
-                            {{documento.prioridad}}
+                            {{replaceValuesPrioridad(documento.documento_prioridad_id)}}
                         </td>
                         <td style="width:14%; min-width:8rem;"><span class="p-column-title">CLASIFICACION</span>
-                            
-                            {{documento.documento_clasificacion_id}}
+                            {{replaceValuesClasificacion(documento.documento_clasificacion_id)}}
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            {{documento.fechaObtencion}}
-                            
-                        </td>
-                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PERSONA</span>
-                            {{documento.documento_persona}}
+                            {{documento.obtencionInformacion}}
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
@@ -98,7 +84,7 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -117,18 +103,17 @@
                     </div>
                     <div class="field">
                         <labe> Prioridad</labe>
-                        <p-dropdown [options]="documento_prioridad" optionLabel="name"></p-dropdown>
+                        <p-dropdown [options]="documentoPrioridad" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_prioridad_id" optionValue="id"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Clasificación</labe>
-
-                        <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion"></p-dropdown>
+                        <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_clasificacion_id" optionValue="id"></p-dropdown>
 
                     </div>
                     <div class="field">
                         <labe> Fecha de obtención inf.</labe>
                        
-                        <input type="date" pInputText id="name"  [(ngModel)]="docEnviado.fechaObtencion" />
+                        <input type="date" pInputText id="name"  [(ngModel)]="docEnviado.obtencionInformacion" />
                     </div>
                     <div _ngcontent-lys-c169="" class="field">
                         <labe> Personas</labe>

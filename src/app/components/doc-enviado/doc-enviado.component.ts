@@ -2,9 +2,11 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { DocEnviado } from 'src/app/models/DocEnviado';
 import { DocEnviadoService } from 'src/app/services/doc-enviado.service';
 import { documento }  from '../../demo/domain/documento'
+import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
+import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
 
 
-import{ FirstServideService } from '../../demo/service/first-servide.service'
+import{ FirstService } from '../../demo/service/first-service'
 @Component({
   selector: 'app-doc-enviado',
   templateUrl: './doc-enviado.component.html',
@@ -12,19 +14,10 @@ import{ FirstServideService } from '../../demo/service/first-servide.service'
 })
 
 export class DocEnviadoComponent implements OnInit {
-
+  documentoClasificacion: documentoClasificacion  [];
+  documentoPrioridad: documentoPrioridad  [];
   documentos: documento[];
   nuevoDocumento: documento;
-  documento_prioridad= [
-    { name: "alto", code: "alto" },
-    { name: "medio", code: "medio" },
-    { name: "bajo", code: "bajo" }
-
-];
-documento_clasificacion_id = [
-    { name: 5, code: 5 },
-    { name: 500, code: 500 }
-];
 
 
   @HostBinding("class") classes ="row";
@@ -45,10 +38,11 @@ documento_clasificacion_id = [
 
   
 
-  constructor(private documento: DocEnviadoService, private firstService: FirstServideService) { }
+  constructor(private documento: DocEnviadoService, private firstService: FirstService) { }
   docEnviadoDialog: boolean;
 
-  documentoClasificacion: any = [];
+  
+  
 
   index: number = 0;
 
@@ -64,12 +58,26 @@ documento_clasificacion_id = [
       err => console.log(err)
     )
 
+
+    this.firstService.getDocumentoPrioridad().subscribe(
+      res => {
+        this.documentoPrioridad = res['data']['PRIORIDAD']
+
+      },
+      err => console.log(err)
+    )
+
+    
+
     this.firstService.getDocumento().subscribe(
       res=>{
         this.documentos = res['data']['documentos']
       },
       err=>console.log(err)
     )
+
+   
+
   }
   newDocAngente(){
     this.nuevoDocumento = {};
@@ -85,6 +93,7 @@ documento_clasificacion_id = [
   }
 
   save(){
+    console.log("este documento se va a enviar:")
     console.log(this.docEnviado);
     this.documento.saveDocEnviado(this.docEnviado)
     .subscribe(
@@ -93,12 +102,47 @@ documento_clasificacion_id = [
         )
     
   }
+  getDocuments(){
+    this.firstService.getDocumento().subscribe(
+      res=>{
+        this.documentos = res['data']['documentos']
+      },
+      err=>console.log(err)
+    )
+  }
+  delete(id:number){
+    this.firstService.deleteDocumento(id).subscribe(
+      res =>{
+        console.log(res);
+        this.getDocuments()
+      },
+      err=> console.log(err)
+    )
+    
+  }
   
 
 
-  getDocumentoClasificación(){
 
+  replaceValuesClasificacion(idT:number){
+    for (let valor of this.documentoClasificacion){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    } 
+    return "No clasificado"
   }
+  replaceValuesPrioridad(idT:number){
+    for (let valor of this.documentoPrioridad){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    } 
+    return "No clasificado"
+  }
+
+  
 }
 export class TabViewDemo {}
+
 

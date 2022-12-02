@@ -1,62 +1,43 @@
-<!DOCTYPE html>
-<html lang="es">
-  <div class="inicio-content">
-    <h2>Bienvenido al modulo del sistema</h2>
-  </div>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-  <style>
-    html,body{padding: 0; margin: 0;}
-    body{
-      background: linear-gradient(90deg, rgb(145, 146, 145) 50%, rgb(151, 153, 149) 50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      animation: bg 7s infinite linear;
-    }
-a{
-  border-radius: 20px;
-  padding: 10px 50px;
-  margin: 10px;
-  text-decoration: none;
-}
-a:hover{
-  background: rgba(216, 214, 214, 0.543);
-}
 
-@keyframes bg {
-  0% { background: linear-gradient(0deg, rgb(107, 153, 110) 50%, rgb(145, 198, 147) 50%);}
-  25% { background: linear-gradient(45deg, rgb(145, 198, 147) 50%, rgb(107, 153, 110) 50%);}
-  50% { background: linear-gradient(90deg, rgb(107, 153, 110) 50%, rgb(145, 198, 147) 50%); }
-  75% { background: linear-gradient(135deg, rgb(145, 198, 147) 50%, rgb(107, 153, 110) 50%); }
-  100% { background: linear-gradient(180deg, rgb(107, 153, 110) 50%, rgb(145, 198, 147) 50%); }
-}
-  </style>
-</head>
-<head>
-  </head>
-  <body>
-    <div class="img-container"> <!-- Block parent element -->
-      <img src="assets/layout/images/div.png" width="400" height="400"/>
-    </div>
-    <div class="agente">
-      <button [routerLink]="['/agente/docsEnv']" icon="pi pi-user" pButton type="button" label="Agente"></button>
-  </div>
-  <div class="analista">
-      <button [routerLink]="['/persona']" icon="pi pi" pButton type="button" label="Analista" ></button>
-  </div>
-  </body>
-
-</html>
-
-
-    
+<div class="layout-dashboard">
+  <div class="grid">
+    <div class="col-6 lg:col-4">
+      <div class="user-card card">
+        <div class="user-card-header">
+          <img src="assets/layout/images/dashboard/bg-header.png" alt="babylon-layout" class="profile-image" />
+        </div>
+        <div class="user-card-content">
+          <div class="user-card-name">
+            <span>Modulo de agente</span>
+          </div>
+          
+          <div class="user-detail p-2">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aliquam facilis culpa nam consectetur doloremque, explicabo, earum vero sed inventore libero. Aut veniam consectetur fuga in, voluptatem vero deleniti enim.</p>
+            <button pButton id="user-button" [routerLink]="['/agente/docsEnv']" type="button" icon="pi pi-sign-in" class="secondary-btn" ></button>
+          </div>
+        </div>
+      </div>
 
       
-            
-            
-            
-           
+
+      
+    </div>
+    <div class="col-6 lg:col-4">
+      <div class="user-card card">
+        <div class="user-card-header">
+          <img src="assets/layout/images/dashboard/bg-header.png" alt="babylon-layout" class="profile-image" />
+        </div>
+        <div class="user-card-content">
+          <div class="user-card-name">
+            <span>Modulo de analista</span>
+          </div>
+          
+          <div class="user-detail p-2">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo aliquam facilis culpa nam consectetur doloremque, explicabo, earum vero sed inventore libero. Aut veniam consectetur fuga in, voluptatem vero deleniti enim.</p>
+            <button pButton id="user-button" [routerLink]="['/carpeta/carpeEnv']" type="button" icon="pi pi-sign-in" class="secondary-btn" ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

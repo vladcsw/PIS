@@ -1,4 +1,4 @@
-export interface documentoClasificacion{
+export interface documentoPrioridad{
     id?: number;
     descripcion?: string
 }
