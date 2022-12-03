@@ -4,7 +4,8 @@ import { DocEnviadoService } from 'src/app/services/doc-enviado.service';
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
-
+import { Observable } from 'rxjs';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import{ FirstService } from '../../demo/service/first-service'
 @Component({
@@ -18,6 +19,16 @@ export class DocEnviadoComponent implements OnInit {
   documentoPrioridad: documentoPrioridad  [];
   documentos: documento[];
   nuevoDocumento: documento;
+
+  //Lista de archivos seleccionados
+  selectedFiles: FileList;
+  //Es el array que contiene los items para mostrar el progreso de subida de cada archivo
+  progressInfo = []
+  //Mensaje que almacena la respuesta de las Apis
+  message = '';
+  //Nombre del archivo para usarlo posteriormente en la vista html
+  fileName = "";
+  fileInfos: Observable<any>;
 
 
   @HostBinding("class") classes ="row";
@@ -76,12 +87,46 @@ export class DocEnviadoComponent implements OnInit {
       err=>console.log(err)
     )
 
-   
+ 
 
   }
   newDocAngente(){
     this.nuevoDocumento = {};
     this.docEnviadoDialog = true;
+  }
+  uploadfun(event) {
+    this.progressInfo = [];
+    event.files.length == 1 ? this.fileName = event.files[0].name : this.fileName = event.files.length + " archivos";
+    this.selectedFiles = event.files;
+    console.log("Multiple Files are uploaded: ", event.files);
+
+  }
+  uploadAllFiles(){
+    console.log("Iniciando subida");
+    this.message = '';
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      this.upload(i, this.selectedFiles[i]);
+      console.log("Subiendo el archivo: ", this.selectedFiles[i]);
+    }
+    console.log("Se terminaron de subir");
+  }
+  upload(index, file)
+  {
+    this.progressInfo[index] = { value: 0, fileName: file.name };
+
+    this.documento.upload(file).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progressInfo[index].value = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.fileInfos = this.documento.getFiles();
+        }
+      },
+      err => {
+        this.progressInfo[index].value = 0;
+        this.message = 'No se puede subir el archivo ' + file.name;
+      });
+
   }
 
   openNext() {

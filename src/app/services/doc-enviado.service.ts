@@ -1,6 +1,7 @@
 import { DocEnviado } from '../models/DocEnviado';
 import { Injectable } from '@angular/core';
-import { HttpClient} from "@angular/common/http";
+import { HttpClient, HttpRequest,HttpEvent} from "@angular/common/http";
+import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
@@ -21,4 +22,18 @@ export class DocEnviadoService {
     saveDocEnviado(doc:  DocEnviado) {
         return this.http.post(`${this.API_URI}/documento/save`, doc);
     }
+    upload(file: File): Observable<HttpEvent<any>>{
+        const formData: FormData = new FormData();
+        formData.append('files', file);
+       
+        const req = new HttpRequest('POST', `${this.API_URI}/upload`, formData, {
+          reportProgress: true,
+          responseType: 'json'
+        });
+        return this.http.request(req);
+      }
+      getFiles(){
+        return this.http.get(`${this.API_URI}/files`);
+      }
+    
 }

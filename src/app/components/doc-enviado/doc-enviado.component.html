@@ -128,7 +128,11 @@
 
                    </p-tabPanel>
                    <p-tabPanel header = "Archivos ajuntos" >
-                        <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept="application/pdf"></p-fileUpload>
+                        <p-fileUpload name="myfile[]" url="./upload.php" 
+                        multiple="multiple" accept="application/pdf"
+                        [customUpload]="true"
+                        (uploadHandler)="uploadfun($event)"
+                        [auto]="true"></p-fileUpload>
 
                     </p-tabPanel>
                     <p-tabPanel header = "Previsualización">
@@ -261,6 +265,7 @@
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+                <button pButton pRipple label="Upload" icon="pi pi-check" class="p-button-text" (click)="uploadAllFiles()"></button>
             </ng-template>
         </p-dialog>
     </div>
