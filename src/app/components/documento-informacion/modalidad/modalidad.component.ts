@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-documento-informacion',
-  templateUrl: './documento-informacion.component.html',
-  styleUrls: ['./documento-informacion.component.scss']
+  selector: 'app-modalidad',
+  templateUrl: './modalidad.component.html',
+  styleUrls: ['./modalidad.component.scss']
 })
-export class DocumentoInformacionComponent implements OnInit {
-
-  items: MenuItem[];    
-  
-
-  constructor(public router: Router) {}
+export class ModalidadComponent implements OnInit {
+  items: MenuItem[];
+  constructor() { }
 
   ngOnInit(): void {
-    
-    this.items = [
-      {label: 'PERSONAS', icon: 'pi pi-fw pi-users'},
+      this.items = [
+      {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis']},
       {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', routerLink: ['/analista/docRecib/analisis/inmuebles']},
       {label: 'EMPRESAS', icon: 'pi pi-fw pi-globe', routerLink: ['/analista/docRecib/analisis/empresas']},
       {label: 'INSUMOS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/insumos']},

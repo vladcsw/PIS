@@ -98,6 +98,23 @@
                 <p-tabView  [(activeIndex)]="index">
                    <p-tabPanel header = "Datos del documento">
                     <div class="field">
+                        <labe> Tipo de documento</labe>
+                        <p-dropdown  optionLabel="descripcion"  optionValue="id"></p-dropdown>
+                    </div>
+                    <div class="formgrid grid">
+
+                        <div class="field col">
+                            <labe> Organo</labe>
+                            <p-dropdown  optionLabel="descripcion"  optionValue="id"></p-dropdown>
+                        </div>
+                        <div class="field col">
+                            <labe> Sub-organo</labe>
+                            <p-dropdown  optionLabel="descripcion"  optionValue="id"></p-dropdown>
+                        </div>
+
+                    </div>
+                    
+                    <div class="field">
                         <labe> Asunto</labe>
                         <textarea type="text" pInputText [(ngModel)]="docEnviado.asunto"></textarea>
                     </div>
@@ -116,9 +133,9 @@
                         <input type="date" pInputText id="name"  [(ngModel)]="docEnviado.obtencionInformacion" />
                     </div>
                     <div _ngcontent-lys-c169="" class="field">
-                        <labe> Personas</labe>
+                        <labe> Agente que firma</labe>
                         <span _ngcontent-lys-c169="" class="p-input-icon-right">
-                            <input _ngcontent-lys-c169="" type="text" [(ngModel)]="docEnviado.documento_persona" pinputtext="" placeholder="Buscar por alias" class="p-inputtext p-component p-element">
+                            <input _ngcontent-lys-c169="" type="text" [(ngModel)]="docEnviado.documento_persona" pinputtext="" placeholder="Buscar CIP" class="p-inputtext p-component p-element">
                             <i _ngcontent-lys-c169="" class="pi pi-search"></i>
                         </span>     </div>
                     <div class="field">

@@ -44,6 +44,13 @@ import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.
 import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
 import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
 import { DocumentoInformacionComponent} from './components/documento-informacion/documento-informacion.component';
+import { InmueblesComponent } from './components/documento-informacion/inmuebles/inmuebles.component';
+import { AgendaComponent } from './components/documento-informacion/agenda/agenda.component';
+import { ArmaComponent } from './components/documento-informacion/arma/arma.component';
+import { CuentaBanComponent } from './components/documento-informacion/cuenta-ban/cuenta-ban.component';
+import {EmpresasComponent } from './components/documento-informacion/empresas/empresas.component';
+import { InsumoComponent } from './components/documento-informacion/insumo/insumo.component';
+import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
 
 
 
@@ -90,7 +97,15 @@ import { DocumentoInformacionComponent} from './components/documento-informacion
                     {path: 'analista/docRecibidos', component: DocRecibidosComponent},
                     {path: 'analista/vistaDoc', component: VistaDocComponent},
                     {path: 'analista/pedidoInf', component: PedidoInfoComponent},
-                    {path: 'analista/docRecib/analisis', component: DocumentoInformacionComponent}
+                    {path: 'analista/docRecib/analisis', component: DocumentoInformacionComponent},
+                    {path: 'analista/docRecib/analisis/inmuebles', component: InmueblesComponent},
+                    {path: 'analista/docRecib/analisis/empresas', component: EmpresasComponent},
+                    {path: 'analista/docRecib/analisis/insumos', component: InsumoComponent},
+                    {path: 'analista/docRecib/analisis/armas', component: ArmaComponent},
+                    {path: 'analista/docRecib/analisis/cuentas', component: CuentaBanComponent},
+                    {path: 'analista/docRecib/analisis/modalidad', component: ModalidadComponent},
+                    {path: 'analista/docRecib/analisis/agenda', component: AgendaComponent},
+                    {path: 'analista/docRecib/analisis/juridica', component: DocumentoInformacionComponent},
                     
                 ]
             },

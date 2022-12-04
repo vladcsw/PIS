@@ -3,21 +3,19 @@ import {MenuItem} from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-documento-informacion',
-  templateUrl: './documento-informacion.component.html',
-  styleUrls: ['./documento-informacion.component.scss']
+  selector: 'app-inmuebles',
+  templateUrl: './inmuebles.component.html',
+  styleUrls: ['./inmuebles.component.scss']
 })
-export class DocumentoInformacionComponent implements OnInit {
+export class InmueblesComponent implements OnInit {
 
-  items: MenuItem[];    
-  
+  items: MenuItem[];
 
-  constructor(public router: Router) {}
+  constructor(private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    
     this.items = [
-      {label: 'PERSONAS', icon: 'pi pi-fw pi-users'},
+      {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis']},
       {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', routerLink: ['/analista/docRecib/analisis/inmuebles']},
       {label: 'EMPRESAS', icon: 'pi pi-fw pi-globe', routerLink: ['/analista/docRecib/analisis/empresas']},
       {label: 'INSUMOS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/insumos']},
@@ -27,6 +25,7 @@ export class DocumentoInformacionComponent implements OnInit {
       {label: 'AGENDA', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/agenda']},
       {label: 'PERS. JURIDICA', icon: 'pi pi-fw pi-phone', routerLink: ['/analista/docRecib/analisis/juridica']}
   ];
+
   }
 
 }

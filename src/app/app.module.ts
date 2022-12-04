@@ -171,6 +171,13 @@ import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inte
 
 import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
 import { DocumentoInformacionComponent } from './components/documento-informacion/documento-informacion.component';
+import { InmueblesComponent } from './components/documento-informacion/inmuebles/inmuebles.component';
+import { EmpresasComponent } from './components/documento-informacion/empresas/empresas.component';
+import { InsumoComponent } from './components/documento-informacion/insumo/insumo.component';
+import { ArmaComponent } from './components/documento-informacion/arma/arma.component';
+import { CuentaBanComponent } from './components/documento-informacion/cuenta-ban/cuenta-ban.component';
+import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
+import { AgendaComponent } from './components/documento-informacion/agenda/agenda.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -329,6 +336,13 @@ FullCalendarModule.registerPlugins([
 
         PedidoInfoComponent,
           DocumentoInformacionComponent,
+          InmueblesComponent,
+          EmpresasComponent,
+          InsumoComponent,
+          ArmaComponent,
+          CuentaBanComponent,
+          ModalidadComponent,
+          AgendaComponent,
 
     ],
     providers: [
