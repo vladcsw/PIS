@@ -32,7 +32,7 @@ export class DocEnviadoComponent implements OnInit {
 
 
   @HostBinding("class") classes ="row";
-  
+
   dateObj = new Date();
   month = this.dateObj.getUTCMonth() + 1; //months from 1-12
   day = this.dateObj.getUTCDate();
@@ -47,17 +47,17 @@ export class DocEnviadoComponent implements OnInit {
     descripcion: ""
   }
 
-  
+
 
   constructor(private documento: DocEnviadoService, private firstService: FirstService) { }
   docEnviadoDialog: boolean;
 
-  
-  
+
+
 
   index: number = 0;
 
-  
+
 
 
   ngOnInit(): void {
@@ -78,7 +78,7 @@ export class DocEnviadoComponent implements OnInit {
       err => console.log(err)
     )
 
-    
+
 
     this.firstService.getDocumento().subscribe(
       res=>{
@@ -87,7 +87,7 @@ export class DocEnviadoComponent implements OnInit {
       err=>console.log(err)
     )
 
- 
+
 
   }
   newDocAngente(){
@@ -112,10 +112,12 @@ export class DocEnviadoComponent implements OnInit {
   }
   upload(index, file)
   {
+
     this.progressInfo[index] = { value: 0, fileName: file.name };
 
-    this.documento.upload(file).subscribe(
+    this.documento.upload(file, this.docEnviado).subscribe(
       event => {
+
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfo[index].value = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
@@ -145,7 +147,7 @@ export class DocEnviadoComponent implements OnInit {
       res => {console.log(res);},
       err => {console.log("backend no responde");}
         )
-    
+
   }
   getDocuments(){
     this.firstService.getDocumento().subscribe(
@@ -163,9 +165,9 @@ export class DocEnviadoComponent implements OnInit {
       },
       err=> console.log(err)
     )
-    
+
   }
-  
+
 
 
 
@@ -174,7 +176,7 @@ export class DocEnviadoComponent implements OnInit {
       if(valor.id==idT){
         return valor.descripcion
       }
-    } 
+    }
     return "No clasificado"
   }
   replaceValuesPrioridad(idT:number){
@@ -182,11 +184,11 @@ export class DocEnviadoComponent implements OnInit {
       if(valor.id==idT){
         return valor.descripcion
       }
-    } 
+    }
     return "No clasificado"
   }
 
-  
+
 }
 export class TabViewDemo {}
 
