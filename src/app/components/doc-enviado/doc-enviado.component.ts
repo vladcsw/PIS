@@ -15,10 +15,13 @@ import{ FirstService } from '../../demo/service/first-service'
 })
 
 export class DocEnviadoComponent implements OnInit {
-  documentoClasificacion: documentoClasificacion  [];
-  documentoPrioridad: documentoPrioridad  [];
-  documentos: documento[];
+  documentoClasificacion: any = [];
+  documentoPrioridad: any =[];
+  documentos: any = [];
   nuevoDocumento: documento;
+  organosPoliciales:any = [];
+  subOrganos:any = [];
+  tipoDocumento:any = [];
 
   //Lista de archivos seleccionados
   selectedFiles: FileList;
@@ -61,15 +64,51 @@ export class DocEnviadoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.firstService.getClasificacion().subscribe(
-      res => {
-        this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
+    
+    //this.getDocumentos()
+    //this.getClasificacion()
+    //this.getPrioridades()
 
-      },
-      err => console.log(err)
-    )
+    if (this.organosPoliciales.length==0){
+      this.organosPoliciales=[
+        {descripcion: 'Dirección Nacional de Investigación Criminal', id:'1'},
+        {descripcion: 'Dirección Antidrogas PNP', id:'2'},
+        {descripcion: 'Dirección de Investigación Criminal', id:'3'},
+        {descripcion: 'Dirección de Investigación de Lavado de Activos', id:'4'},
+        {descripcion: 'Dirección Contra la Trata de Personas y Tráfico Ilicito de Migrantes', id:'5'},
+        {descripcion: 'Dirección Contra la Corrupción', id:'6'},
+        {descripcion: 'Dirección de Policía Fiscal', id:'7'},
+        {descripcion: 'Dirección Nacional de Orden y Seguridad', id:'8'},
+        {descripcion: 'Dirección de Seguridad de Estado', id:'9'},
+      ]
+    }
 
+    if (this.tipoDocumento.length==0){
+      this.tipoDocumento=[
+        {descripcion: 'Nota de agente', id:'1'},
+        {descripcion: 'Solicitud de información', id:'2'},
+      ]
+    }
 
+    if(this.documentoClasificacion.length ==0){
+      this.documentoClasificacion=[
+        {descripcion: 'baja', id:1},
+        {descripcion: 'media', id:2},
+        {descripcion: 'alta', id:3},
+      ]
+    }
+    if (this.documentoPrioridad.length==0){
+      this.documentoPrioridad = [
+        {descripcion: 'baja', id:1},
+        {descripcion: 'media', id:2},
+        {descripcion: 'alta', id:3},
+      ]
+    }
+
+    
+  }
+
+  getPrioridades(){
     this.firstService.getDocumentoPrioridad().subscribe(
       res => {
         this.documentoPrioridad = res['data']['PRIORIDAD']
@@ -77,19 +116,29 @@ export class DocEnviadoComponent implements OnInit {
       },
       err => console.log(err)
     )
+  }
 
+  getClasificacion(){
+    this.firstService.getClasificacion().subscribe(
+      res => {
+        this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
 
+      },
+      err => console.log(err)
+    )
+  }
 
+  getDocumentos(){
     this.firstService.getDocumento().subscribe(
       res=>{
-        this.documentos = res['data']['documentos']
+        this.documentos = res
       },
       err=>console.log(err)
     )
 
 
-
   }
+
   newDocAngente(){
     this.nuevoDocumento = {};
     this.docEnviadoDialog = true;

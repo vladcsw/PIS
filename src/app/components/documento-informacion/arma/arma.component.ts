@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
-
+import{ FirstService } from '../../../demo/service/first-service'
+import { Router, ActivatedRoute } from '@angular/router';
+import {Arma} from '../../../demo/domain/arma'
 @Component({
   selector: 'app-arma',
   templateUrl: './arma.component.html',
@@ -8,20 +10,98 @@ import {MenuItem} from 'primeng/api';
 })
 export class ArmaComponent implements OnInit {
   items: MenuItem[];
-  constructor() { }
+  arma:Arma={};
+  armaDialog: boolean;
+  tipoArma:any = [];
+  calificacionArma:any = [];
+  armas:any=[]
+  
+  constructor(private firstService:FirstService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    const params = this.activatedRoute.snapshot.params;
     this.items = [
-      {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis']},
-      {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', routerLink: ['/analista/docRecib/analisis/inmuebles']},
-      {label: 'EMPRESAS', icon: 'pi pi-fw pi-globe', routerLink: ['/analista/docRecib/analisis/empresas']},
-      {label: 'INSUMOS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/insumos']},
-      {label: 'ARMAS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/armas']},
-      {label: 'CUENTAS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/cuentas']},
-      {label: 'MODALIDAD', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/modalidad']},
-      {label: 'AGENDA', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/agenda']},
-      {label: 'PERS. JURIDICA', icon: 'pi pi-fw pi-phone', routerLink: ['/analista/docRecib/analisis/juridica']}
+      {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis', params['id'] ]},
+      {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', routerLink: ['/analista/docRecib/analisis/inmuebles', params['id']]},
+      {label: 'EMPRESAS', icon: 'pi pi-fw pi-globe', routerLink: ['/analista/docRecib/analisis/empresas', params['id']]},
+      {label: 'INSUMOS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/insumos', params['id']]},
+      {label: 'ARMAS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/armas', params['id']]},
+      {label: 'CUENTAS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/cuentas', params['id']]},
+      {label: 'MODALIDAD', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/modalidad', params['id']]},
+      {label: 'AGENDA', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/agenda', params['id']]},
+      
   ];
+
+  if(this.tipoArma.length==0){
+    this.tipoArma=[
+      {descripcion: 'Revólver', id:'1'},
+      {descripcion: 'Pistola', id:'2'},
+      {descripcion: 'Fusil', id:'3'},
+    ]
   }
 
+  if(this.calificacionArma.length==0){
+    this.calificacionArma=[
+      {descripcion: 'Fabrica', id:'1'},
+      {descripcion: 'Hechiza', id:'2'},
+    ]
+  }
+
+  this.getArmas();
+  
+  }
+
+  getArmas(){
+    const params = this.activatedRoute.snapshot.params;
+    this.firstService.getArmasDoc(params['id']).subscribe(
+      res=>{
+        this.armas = res
+        console.log("armas")
+        console.log(res)
+      },
+      err=>console.log(err)
+    )
+  }
+
+  newArma(){
+    this.armaDialog = true;
+  }
+
+  hideDialog() {
+    this.armaDialog = false;  
+  }
+
+
+  delete(){
+
+  }
+  save(){
+    const params = this.activatedRoute.snapshot.params;
+    this.arma.documento_id = params['id']
+    this.firstService.saveArmaDoc(this.arma).subscribe(
+      res=>{
+        console.log(res);
+        this.getArmas();
+      }, err=>console.log(err)
+    )
+    this.armaDialog = false;
+  }
+
+  replaceValuesCalificacion(idT:number){
+    for (let valor of this.calificacionArma){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    } 
+    return "No clasificado"
+  }
+  replaceValuesTipo(idT:number){
+    for (let valor of this.tipoArma){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    } 
+    return "No clasificado"
+  }
 }
+

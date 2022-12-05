@@ -5,9 +5,144 @@
                 <h5 class="text-center text-3xl">TRATAMIENTO DE INFORMACIÓN - DOCUMENTO </h5>
             </div>
             <p-tabMenu [model]="items"  [scrollable]="true" [activeItem]="items[0]"></p-tabMenu>
-            
 
-            
+
+            <p-toolbar styleClass="mb-4 mt-3">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newPersona()" ></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+                    </div>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Administrar personas identificadas</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" > 
+                    <tr>
+                        <th pSortableColumn="id">Tipo de arma <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Nro de serie <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Calibre <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Calificación <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Propietario <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Posesión <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Nro serie <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">SUCAMEC cod. <p-sortIcon field="id"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-documento>
+                    <tr>
+                       
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
+                            
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            
+                            
+                        </td>
+                        <td>
+                            
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+
+
         </div>
+
+        <p-dialog [(visible)]="personaDialog" [style]="{width: '450px'}" header="Detalles de la persona" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                
+                <div class="field">
+                    <label for="name">Tipo de arman</label>
+                    <p-dropdown id="status"  optionLabel="label"  placeholder="Seleccione un Telefono">
+                    </p-dropdown>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="nombre">Número de serie</label>
+                        <input type="text" pInputText id="name"  />    
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">Calibre</label>
+                        <input type="text" pInputText id="name"  />   
+                    </div>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Calificación</label>
+                        <p-dropdown id="status"  optionLabel="label"  placeholder="Seleccione un Telefono">
+                        </p-dropdown>   
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">SUCAMEC cod.</label>
+                        <input type="text" pInputText id="name"  />   
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="nombre">Propietario</label>
+                    <input type="text" pInputText id="name"  />    
+                </div>
+                <div class="field">
+                    <label for="nombre">Posesión</label>
+                    <input type="text" pInputText id="name"  />    
+                </div>
+
+              
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" ></button>
+            </ng-template>
+        </p-dialog>
+
     </div>
 </div>

@@ -8,13 +8,13 @@
             <p-toolbar styleClass="mb-4 mt-3">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newDocAngente()" ></button>
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newInsumo()" ></button>
                         <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
                     </div>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+            <p-table #dt  [value]="insumos" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -39,27 +39,27 @@
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-documento>
+                <ng-template pTemplate="body" let-insumo>
                     <tr>
                        
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
+                            {{replaceValuesCalificacion(insumo.insumo_calificacion_id)}}
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            
+                            {{insumo.nombre}}
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
                             
-                            
+                            {{insumo.cantidad}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            
+                            {{replaceValuesSituacion(insumo.insumo_situacion_id)}}
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
+                            {{replaceValuesIntervenido(insumo.insumo_intervenido_id)}}
                             
                         </td>
                         
@@ -73,7 +73,44 @@
                     </tr>
                 </ng-template>
             </p-table>
-
         </div>
+        <p-dialog [(visible)]="insumoDialog" [style]="{width: '450px'}" header="Detalle de insumo" [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                
+                <div class="field">
+                    <label for="name">Calificación</label>
+                    <p-dropdown id="status" [options]="calificacion" optionLabel="descripcion"  placeholder="Seleccione una calificación" optionValue="id"  [(ngModel)]="insumo.insumo_calificacion_id">
+                    </p-dropdown>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="insumo.nombre" />    
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">Cantidad</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="insumo.cantidad" />   
+                    </div>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Situación</label>
+                        <p-dropdown id="status" appendTo="body" [options]="situacion" optionLabel="descripcion" placeholder="Seleccione una situación" optionValue="id" [(ngModel)]="insumo.insumo_situacion_id">
+                        </p-dropdown>   
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">Intervención</label>
+                        <p-dropdown id="status" appendTo="body" [options]="intervencion" optionLabel="descripcion"  placeholder="Seleccione tipo de intervención" optionValue="id" [(ngModel)]="insumo.insumo_intervenido_id">
+                        </p-dropdown>   
+                    </div>
+                </div>
+              
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

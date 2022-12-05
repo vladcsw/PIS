@@ -73,4 +73,14 @@ export class DocInteligenciaComponent implements OnInit {
     } 
     return "No clasificado"
   }
+
+  sendToStore(){
+    const params = this.activatedRoute.snapshot.params;
+    this.firstService.archivarDoc(params['id']).subscribe(
+      res=>{
+        console.log(res)
+        this.router.navigate(["/analista/docRecibidos"])
+      },err=> console.log(err)
+    )
+  }
 }

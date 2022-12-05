@@ -14,7 +14,7 @@ export class DocRecibidosComponent implements OnInit {
 
   documentoClasificacion: documentoClasificacion  [];
   documentoPrioridad: documentoPrioridad  [];
-  documentos: documento[];
+  documentos: any=[];
   nuevoDocumento: documento;
 
 
@@ -51,7 +51,7 @@ export class DocRecibidosComponent implements OnInit {
   getDocuments(){
     this.firstService.getDocumento().subscribe(
       res=>{
-        this.documentos = res['data']['documentos']
+        this.documentos = res
       },
       err=>console.log(err)
     )

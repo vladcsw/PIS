@@ -99,18 +99,15 @@
                    <p-tabPanel header = "Datos del documento">
                     <div class="field">
                         <labe> Tipo de documento</labe>
-                        <p-dropdown  optionLabel="descripcion"  optionValue="id"></p-dropdown>
+                        <p-dropdown  [options]="tipoDocumento"   optionLabel="descripcion"  optionValue="id" placeholder="Seleccione tipo documento"></p-dropdown>
                     </div>
                     <div class="formgrid grid">
 
                         <div class="field col">
                             <labe> Organo</labe>
-                            <p-dropdown  optionLabel="descripcion"  optionValue="id"></p-dropdown>
+                            <p-dropdown  [options]="organosPoliciales" optionLabel="descripcion"  optionValue="id" placeholder="Seleccione un organo"></p-dropdown>
                         </div>
-                        <div class="field col">
-                            <labe> Sub-organo</labe>
-                            <p-dropdown  optionLabel="descripcion"  optionValue="id"></p-dropdown>
-                        </div>
+                      
 
                     </div>
                     
@@ -120,11 +117,11 @@
                     </div>
                     <div class="field">
                         <labe> Prioridad</labe>
-                        <p-dropdown [options]="documentoPrioridad" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_prioridad_id" optionValue="id"></p-dropdown>
+                        <p-dropdown [options]="documentoPrioridad" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_prioridad_id" optionValue="id" placeholder="Seleccione una prioridad"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Clasificación</labe>
-                        <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_clasificacion_id" optionValue="id"></p-dropdown>
+                        <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_clasificacion_id" optionValue="id" placeholder="Seleccione una clasificacion"></p-dropdown>
 
                     </div>
                     <div class="field">

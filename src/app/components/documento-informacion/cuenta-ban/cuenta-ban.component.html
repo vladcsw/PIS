@@ -9,13 +9,13 @@
             <p-toolbar styleClass="mb-4 mt-3">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newDocAngente()" ></button>
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newCuenta()" ></button>
                         <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
                     </div>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+            <p-table #dt [value]="cuentas"  responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -37,16 +37,15 @@
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-documento>
+                <ng-template  pTemplate="body" let-cuenta>
                     <tr>
                        
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
+                            {{cuenta.numeroCuenta}}
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            
-                            
+                            {{cuenta.banco}}
                         </td>
                         <td>
                             <div class="flex">
@@ -58,8 +57,30 @@
                     </tr>
                 </ng-template>
             </p-table>
-
-
         </div>
+
+        <p-dialog [(visible)]="cuentaDialog" [style]="{width: '450px'}" header="Detalle de cuenta banc." [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                
+                
+            
+                <div class="field ">
+                    <label for="nombre">Número de cuenta</label>
+                    <input type="text" pInputText id="name"  [(ngModel)]="cuenta.numeroCuenta" />    
+                </div>
+                <div class="field ">
+                    <label for="nombre">Entidad bancaria</label>
+                    <input type="text" pInputText id="name"  [(ngModel)]="cuenta.banco"/>    
+                </div>
+                
+            </ng-template>
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+            </ng-template>
+        </p-dialog>
+
     </div>
+
 </div>
