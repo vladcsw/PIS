@@ -64,6 +64,7 @@ export class ArmaComponent implements OnInit {
   }
 
   newArma(){
+    this.arma = {}
     this.armaDialog = true;
   }
 

@@ -16,11 +16,11 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+            <p-table #dt  [value]="personas" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                 selectionMode="multiple" [rowHover]="true" dataKey="id">
+                selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Administrar personas identificadas</h5>
@@ -33,50 +33,54 @@
                 </ng-template>
                 <ng-template pTemplate="header" > 
                     <tr>
-                        <th pSortableColumn="id">Tipo de arma <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">Nro de serie <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">Calibre <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">Calificación <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">Propietario <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">Posesión <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">Nro serie <p-sortIcon field="id"></p-sortIcon></th>
-                        <th pSortableColumn="id">SUCAMEC cod. <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Nombres <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Prim. apellido <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Seg. apellid <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Estado Civil <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Género <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Nacionalidad<p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Fecha de Nacimiento <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Tipo de documento <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Documento <p-sortIcon field="id"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-documento>
+                <ng-template pTemplate="body" let-persona>
                     <tr>
-                       
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
+                            {{persona.nombre}}
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            
-                            
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
-                            
-                        </td>
-                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            
+                            {{persona.primer_apellido}}
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
+                            {{persona.segundo_apellido}}
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            
+                            {{persona.estadoCivil}}
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            
+                            {{replaceValuesGenero(persona.distrito_id)}}
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            {{replaceValuesNacionalidad(persona.centro_poblado_id)}}
                             
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
+                            {{persona.fec_nacimiento}}
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            {{replaceValuesDocumento(persona.pais_id)}}
+                            
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
+                            {{persona.dni}}
                             
                         </td>
                         <td>
@@ -96,51 +100,66 @@
 
         </div>
 
-        <p-dialog [(visible)]="personaDialog" [style]="{width: '450px'}" header="Detalles de la persona" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="personaDialog" [style]="{width: '700px'}" header="Detalles de la persona" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="nombre">Nombres</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="persona.nombre" />    
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">Primer apellido</label>
+                        <input type="text" pInputText id="name"  [(ngModel)]="persona.primer_apellido"/>    
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">Segundo apellido</label>
+                        <input type="text" pInputText id="name"  [(ngModel)]="persona.segundo_apellido"/>    
+                    </div>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Tipo de documento</label>
+                        <p-dropdown id="status" [options]="tipoDocumentos" optionLabel="descripcion" optionValue="id"  placeholder="Seleccione un tipo" [(ngModel)]="persona.pais_id"><!-- TODO: cambiar esto. solo es momentaneo -->
+                        </p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label for="nombre">Documento</label>
+                        <input type="text" pInputText id="documento" [(ngModel)]="persona.dni" />    
+                    </div>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Estado civíl</label>
+                        <p-dropdown id="status"  [options]="estadoCivil" optionLabel="descripcion" optionValue="descripcion" placeholder="Seleccione un estado civil" [(ngModel)]="persona.estadoCivil">
+                        </p-dropdown>
+                    </div>
+                    <div class="field col">
+                        <label for="name">Género</label>
+                        <p-dropdown id="status"  [options]="generos" optionLabel="descripcion" optionValue="id"  placeholder="Seleccione un género"  [(ngModel)]="persona.distrito_id"><!-- TODO: cambiar -->
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="name">Fecha de nacimiento</label>
+                    <input type="date" pInputText id="documento"  [(ngModel)]="persona.fec_nacimiento"/>    
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Lugar de nacimiento</label>
+                        <input type="text" pInputText id="documento" [(ngModel)]="persona.apellido" />    <!-- TODO: cambiar -->
+                    </div>
+                    <div class="field col">
+                        <label for="name">Nacionalidad</label>
+                        <p-dropdown id="status"  [options]="nacionalidades" optionLabel="descripcion" optionValue="id"  placeholder="Seleccione una nacionalidad" [(ngModel)]="persona.centro_poblado_id" ><!-- TODO:cambiar -->
+                        </p-dropdown>
+                    </div>
+                </div>
                 
-                <div class="field">
-                    <label for="name">Tipo de arman</label>
-                    <p-dropdown id="status"  optionLabel="label"  placeholder="Seleccione un Telefono">
-                    </p-dropdown>
-                </div>
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="nombre">Número de serie</label>
-                        <input type="text" pInputText id="name"  />    
-                    </div>
-                    <div class="field col">
-                        <label for="nombre">Calibre</label>
-                        <input type="text" pInputText id="name"  />   
-                    </div>
-                </div>
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="name">Calificación</label>
-                        <p-dropdown id="status"  optionLabel="label"  placeholder="Seleccione un Telefono">
-                        </p-dropdown>   
-                    </div>
-                    <div class="field col">
-                        <label for="nombre">SUCAMEC cod.</label>
-                        <input type="text" pInputText id="name"  />   
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label for="nombre">Propietario</label>
-                    <input type="text" pInputText id="name"  />    
-                </div>
-                <div class="field">
-                    <label for="nombre">Posesión</label>
-                    <input type="text" pInputText id="name"  />    
-                </div>
-
-              
             </ng-template>
 
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" ></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
             </ng-template>
         </p-dialog>
 

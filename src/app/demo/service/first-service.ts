@@ -77,4 +77,19 @@ export class FirstService {
    saveModalidadDoc(modalidad:any){
     return this.http.post(`${this.API_URI}documento_modalidad/save`,modalidad);
    }
+   getPersonaDoc(id:number){
+    return this.http.get(`${this.API_URI}tratamiento/persona/${id}`)
+   }
+   savePersonaDoc(persona:any){
+    return this.http.post(`${this.API_URI}documento_persona/save`,persona);
+   }
+   savePersona(persona:any){
+    return this.http.post(`${this.API_URI}persona/save`,persona);
+   }
+   getPersonaByDni(dni:any){
+    return this.http.get(`${this.API_URI}persona/getDNI/${dni}`)
+   }
+   getAllPersonas(){
+    return this.http.get(`${this.API_URI}persona/list`)
+   }
 }

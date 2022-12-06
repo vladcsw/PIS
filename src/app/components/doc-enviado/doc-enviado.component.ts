@@ -65,7 +65,7 @@ export class DocEnviadoComponent implements OnInit {
 
   ngOnInit(): void {
     
-    //this.getDocumentos()
+    this.getDocumentos()
     //this.getClasificacion()
     //this.getPrioridades()
 
