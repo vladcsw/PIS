@@ -71,8 +71,8 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="editInmueble(inmueble)" ></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteInmueble(inmueble.id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -81,17 +81,35 @@
         </div>
 
 
-        <p-dialog [(visible)]="inmuebleDialog" [style]="{width: '450px'}" header="Detalle del inmueble" [modal]="true" class="p-fluid">
+        <p-dialog 
+        [(visible)]="inmuebleDialog" 
+        [style]="{width: '450px'}" 
+        header=" {{editInmuebleOption ? 'Editar inmueble' : 'Detalle del inmueble' }}  " 
+        [modal]="true"  
+        class="p-fluid">
             <ng-template pTemplate="content">
                 <div class="formgrid grid">
                     <div class="field col">
                         <label for="name">Tipo de inmueble</label>
-                        <p-dropdown id="status"  [options]="tipoInmueble" optionLabel="descripcion"  placeholder="Seleccione tipo" optionValue="id" [(ngModel)]="inmueble.inmueble_tipo_id">
+                        <p-dropdown id="status"  
+                            [options]="tipoInmueble" 
+                            optionLabel="descripcion" 
+                            optionValue="id"
+                          
+                            placeholder="Seleccione tipo" 
+                            [(ngModel)]="inmueble.inmueble_tipo_id"
+                        >
                         </p-dropdown>
                     </div>
                     <div class="field col">
                         <label for="name">Zona</label>
-                        <p-dropdown id="status"  [options]="zonaInmueble" optionLabel="descripcion" placeholder="Seleccione tipo"  optionValue="id">
+                        <p-dropdown id="status"  
+                        [options]="zonaInmueble" 
+                        optionLabel="descripcion" 
+                        placeholder="Seleccione tipo"  
+                        optionValue="id"
+                        [(ngModel)]="inmueble.inmueble_tipo_id"
+                    >
                         </p-dropdown>
                     </div>
                 </div>
@@ -114,10 +132,19 @@
             </ng-template>
 
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()" ></button>
+                <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="save()" ></button>
             </ng-template>
         </p-dialog>
-
+        <p-dialog [(visible)]="deleteInmuebleDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>¿Deseas eliminar el inmueble seleccionado?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteInmuebleDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="comfirmDeleteInmueble()"></button>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Inmueble } from 'src/app/demo/domain/inmueble';
+
+
 @Component({
   selector: 'app-inmuebles',
   templateUrl: './inmuebles.component.html',
@@ -16,6 +19,11 @@ export class InmueblesComponent implements OnInit {
   inmuebleDialog: boolean;
   tipoInmueble:any = []
   zonaInmueble:any = []
+
+  editInmuebleOption: boolean = false;
+  deleteInmuebleDialog: boolean = false;
+  deleteSelectedInmuebleId: number;
+  
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -33,22 +41,43 @@ export class InmueblesComponent implements OnInit {
   ];
   if(this.tipoInmueble.length == 0){
     this.tipoInmueble=[
-      {descripcion: 'Terreno', id:'1'},
-      {descripcion: 'Casa', id:'2'},
+      {descripcion: 'Terreno', id:1},
+      {descripcion: 'Casa', id:2},
     ]
   }
 
   if(this.zonaInmueble.length == 0){
     this.zonaInmueble=[
-      {descripcion: 'Rural', id:'1'},
-      {descripcion: 'Urbano', id:'2'},
+      {descripcion: 'Rural', id:1},
+      {descripcion: 'Urbano', id:2},
     ]
 
     this.getInmuebles()
   }
 
   }
+  editInmueble(inmueble: Inmueble) {
+    this.inmuebleDialog = true;
+    this.inmueble= {...inmueble};
+    this.editInmuebleOption = true;
+  }
+  deleteInmueble(id: number){
+    this.deleteSelectedInmuebleId = id;
+    this.deleteInmuebleDialog = true;
+  }
 
+  comfirmDeleteInmueble(){
+    this.deleteInmuebleDialog = false;
+    this.firstService.deleteInmuebleDoc(this.deleteSelectedInmuebleId).subscribe(
+      res => {
+        console.log("Inmueble eliminado");
+        this.getInmuebles()
+      },
+      err=>console.log(err)
+    )
+    this.deleteSelectedInmuebleId = null;
+  }
+  
   getInmuebles(){
     const params = this.activatedRoute.snapshot.params;
     this.firstService.getInmuebleDoc(params['id']).subscribe(
@@ -61,6 +90,7 @@ export class InmueblesComponent implements OnInit {
   newInmueble(){
     this.inmueble= {};
     this.inmuebleDialog = true;
+    this.editInmuebleOption = false
   }
 
   hideDialog() {
@@ -68,10 +98,9 @@ export class InmueblesComponent implements OnInit {
   }
 
 
-  delete(){
-
-  }
+ 
   save(){
+    
     const params = this.activatedRoute.snapshot.params;
     this.inmueble.documento_id=params['id']
     this.firstService.saveInmuebleDOc(this.inmueble).subscribe(
@@ -81,6 +110,8 @@ export class InmueblesComponent implements OnInit {
       },
       err=>console.log(err)
     )
+    
+    this.editInmuebleOption = false
     this.inmuebleDialog=false
   }
 

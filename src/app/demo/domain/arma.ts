@@ -8,6 +8,4 @@ export interface Arma{
     numeroSerie?:number;
     sucamedCodigo?:number;
     documento_id?:number;
-
-
 }

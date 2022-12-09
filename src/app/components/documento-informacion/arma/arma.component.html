@@ -80,8 +80,8 @@
                             
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                                    class="p-button-rounded p-button-success mr-2 " (click)="editArma(arma)" ></button> 
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteArma(arma.id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -89,7 +89,10 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="armaDialog" [style]="{width: '450px'}" header="Detalle del armamento" [modal]="true" class="p-fluid">
+        <p-dialog 
+        [(visible)]="armaDialog"
+         [style]="{width: '450px'}" 
+         header="{{editIArmaOption ? 'Editar Armamento' : 'Detalle del Armamento' }} " [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
                 
                 <div class="field">
@@ -137,6 +140,16 @@
             </ng-template>
         </p-dialog>
 
+        <p-dialog [(visible)]="deleteArmaDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>¿Deseas eliminar el arma seleccionada?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteArmaDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDeleteArma()"></button>
+            </ng-template>
+        </p-dialog>
 
     </div>
 </div>

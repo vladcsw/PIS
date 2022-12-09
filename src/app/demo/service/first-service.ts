@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 import { documento } from '../domain/documento';
+import { Inmueble } from '../domain/inmueble';
 
 
 @Injectable({
@@ -50,6 +51,11 @@ export class FirstService {
    saveArmaDoc(arma:any){
     return this.http.post(`${this.API_URI}documento_arma/save`,arma);
    }
+   deleteArmaDoc(id:number){
+    return this.http.delete(`${this.API_URI}documento_arma/delete/${id}`)
+   }
+  
+  
    saveCuentaBanDOc(cuenta:any){
     return this.http.post(`${this.API_URI}documento_cuenta_bancaria/save`,cuenta);
    }
@@ -57,20 +63,29 @@ export class FirstService {
     return this.http.get(`${this.API_URI}tratamiento/cuenta_bancaria/${id}`)
    }
 
+   deleteCuentaBanDoc(id:number){
+    return this.http.delete(`${this.API_URI}documento_cuenta_bancaria/delete/${id}`)
+   }
+
+
    getInmuebleDoc(id:number){
     return this.http.get(`${this.API_URI}tratamiento/inmueble/${id}`)
    }
    saveInmuebleDOc(inmueble:any){
     return this.http.post(`${this.API_URI}documento_inmueble/save`,inmueble);
    }
-
+   deleteInmuebleDoc(id:number){
+    return this.http.delete(`${this.API_URI}documento_inmueble/delete/${id}`)
+   }
+  
    getInsumosDoc(id:number){
     return this.http.get(`${this.API_URI}tratamiento/insumo/${id}`)
    }
    saveInsumoDoc(insumo:any){
     return this.http.post(`${this.API_URI}documento_insumo/save`,insumo);
    }
-   deleteInsumoDoc(id:any){
+
+   deleteInsumoDoc(id:number){
     return this.http.delete(`${this.API_URI}documento_insumo/delete/${id}`)
    }
    getModalidadDoc(id:number){
@@ -80,6 +95,11 @@ export class FirstService {
    saveModalidadDoc(modalidad:any){
     return this.http.post(`${this.API_URI}documento_modalidad/save`,modalidad);
    }
+
+   deleteModalidadDoc(id:number){
+    return this.http.delete(`${this.API_URI}documento_modalidad/delete/${id}`)
+   }
+
    getPersonaDoc(id:number){
     return this.http.get(`${this.API_URI}tratamiento/persona/${id}`)
    }

@@ -18,6 +18,10 @@ export class ModalidadComponent implements OnInit {
   modalidades:any=[]
   modalidadesForm:any=[]
 
+  editModalidadOption: boolean = false;
+  deleteModalidadDialog: boolean = false;
+  deleteModalidadId: number;
+
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -68,20 +72,40 @@ export class ModalidadComponent implements OnInit {
   newModalidad(){
     this.modalidad = {}
     this.modalidadDialog = true;
+    this.editModalidadOption = false;
+  }
+  editModalidad(modalidad : Modalidad){
+    this.editModalidadOption = true;
+    this.modalidadDialog = true;
+    this.modalidad = {...modalidad};
   }
 
   hideDialog() {
     this.modalidadDialog = false;  
   }
 
+  deleteModalidad(id: number){
+    this.deleteModalidadDialog = true;
+    this.deleteModalidadId = id;
+  }
 
-  delete(){
+  confirmDeleteModalidad(){
+    this.deleteModalidadDialog = false;
+    this.firstService.deleteModalidadDoc(this.deleteModalidadId).subscribe(
+      res => {
+        console.log(res);
+        this.getModalidades();
+      },
+      err => console.log(err)
+    )
+    this.deleteModalidadId = null;
 
   }
 
   save(){
     const params = this.activatedRoute.snapshot.params;
     this.modalidad.documento_id=params['id']
+    console.log(this.modalidad);
     this.firstService.saveModalidadDoc(this.modalidad).subscribe(
       res=>{
         console.log(res);
@@ -89,6 +113,7 @@ export class ModalidadComponent implements OnInit {
       },err =>console.log(getMultipleValuesInSingleSelectionError)
     )
     this.modalidadDialog=false
+    this.editModalidadOption = false;
   }
 
   replaceValuesTipo(idT:number){

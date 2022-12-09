@@ -16,6 +16,10 @@ export class ArmaComponent implements OnInit {
   calificacionArma:any = [];
   armas:any=[]
   
+  editIArmaOption: boolean = false;
+  deleteArmaDialog: boolean = false;
+  deleteSelectedArmaId: number;
+
   constructor(private firstService:FirstService,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -34,16 +38,16 @@ export class ArmaComponent implements OnInit {
 
   if(this.tipoArma.length==0){
     this.tipoArma=[
-      {descripcion: 'Revólver', id:'1'},
-      {descripcion: 'Pistola', id:'2'},
-      {descripcion: 'Fusil', id:'3'},
+      {descripcion: 'Revólver', id:1},
+      {descripcion: 'Pistola', id:2},
+      {descripcion: 'Fusil', id:3},
     ]
   }
 
   if(this.calificacionArma.length==0){
     this.calificacionArma=[
-      {descripcion: 'Fabrica', id:'1'},
-      {descripcion: 'Hechiza', id:'2'},
+      {descripcion: 'Fabrica', id:1},
+      {descripcion: 'Hechiza', id:2},
     ]
   }
 
@@ -66,6 +70,14 @@ export class ArmaComponent implements OnInit {
   newArma(){
     this.arma = {}
     this.armaDialog = true;
+    this.editIArmaOption = false;
+  }
+
+  editArma(arma: Arma){
+    this.editIArmaOption = true;
+    this.armaDialog = true;
+    this.arma = {...arma}
+
   }
 
   hideDialog() {
@@ -73,8 +85,19 @@ export class ArmaComponent implements OnInit {
   }
 
 
-  delete(){
+  deleteArma(id: number){
+    this.deleteArmaDialog = true;
+    this.deleteSelectedArmaId = id;
+  }
 
+  confirmDeleteArma(){
+    this.deleteArmaDialog = false;
+    this.firstService.deleteArmaDoc(this.deleteSelectedArmaId).subscribe(
+      res =>{console.log(res)
+        this.getArmas()
+      }, err =>console.log(err)
+    )
+    this.deleteSelectedArmaId = null;
   }
   save(){
     const params = this.activatedRoute.snapshot.params;
@@ -86,6 +109,7 @@ export class ArmaComponent implements OnInit {
       }, err=>console.log(err)
     )
     this.armaDialog = false;
+    this.editIArmaOption = false;
   }
 
   replaceValuesCalificacion(idT:number){

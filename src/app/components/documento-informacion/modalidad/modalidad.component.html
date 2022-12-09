@@ -42,12 +42,13 @@
                     <tr>
                        
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
-                            {{replaceValuesModalidad(modalidad.modalidad_empleada_id)}}
+                            {{replaceValuesModalidad(modalidad.modalidad_tipo_id)}}
+                            
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
                             
-                            {{replaceValuesTipo(modalidad.modalidad_tipo_id)}}
+                            {{replaceValuesTipo(modalidad.modalidad_empleada_id)}}
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
                             {{modalidad.descripcion}}
@@ -55,15 +56,20 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="editModalidad(modalidad)" ></button> 
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteModalidad(modalidad.id)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-        <p-dialog [(visible)]="modalidadDialog" [style]="{width: '450px'}" header="Detalle la modalidad" [modal]="true" class="p-fluid">
+        <p-dialog 
+        [(visible)]="modalidadDialog" 
+        [style]="{width: '450px'}" 
+        header="{{ editModalidadOption ? 'Editar modalidad':'Detalle la modalidad'}}" 
+        [modal]="true" 
+        class="p-fluid">
             <ng-template pTemplate="content">
                 
                 <div class="field">
@@ -90,6 +96,17 @@
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()" ></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteModalidadDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>¿Deseas eliminar  la modalidad seleccionada?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteModalidadDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDeleteModalidad()"></button>
             </ng-template>
         </p-dialog>
 

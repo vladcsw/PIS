@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AgendaComponent implements OnInit {
   agenda:any;
   items: MenuItem[];
+  tipotelefonos: any = [];
   agendaDialog: boolean;
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
@@ -28,6 +29,25 @@ export class AgendaComponent implements OnInit {
       {label: 'AGENDA', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/agenda', params['id']]},
       
   ];
+
+  if(this.tipotelefonos.length==0){
+    this.tipotelefonos=[
+      {descripcion: 'telefono 0', id:1},
+      {descripcion: 'telefono 1', id:2},
+      {descripcion: 'telefono 2', id:3},
+    ]
+  }
+
+  }
+
+  
+  replaceValuesTipo(idT:number){
+    for (let valor of this.tipotelefonos){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    } 
+    return "No clasificado"
   }
 
   getAgendas(){

@@ -19,6 +19,10 @@ export class InsumoComponent implements OnInit {
   situacion:any=[]
   intervencion:any=[]
 
+  editInsumoOption: boolean = false;
+  deleteInsumoDialog: boolean = false;
+  deleteSelectedInsumoId: number;
+
 
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
@@ -38,21 +42,21 @@ export class InsumoComponent implements OnInit {
 
   if(this.calificacion.length ===0){
     this.calificacion=[
-      {descripcion: 'Fiscalizado', id:'1'},
-      {descripcion: 'No fiscalizado', id:'2'},
+      {descripcion: 'Fiscalizado', id:1},
+      {descripcion: 'No fiscalizado', id:2},
     ]
   }
   if(this.situacion.length ===0){
     this.situacion=[
-      {descripcion: 'Decomiso', id:'1'},
-      {descripcion: 'Incautado', id:'2'},
-      {descripcion: 'Proceso administrativo', id:'3'},
+      {descripcion: 'Decomiso', id:1},
+      {descripcion: 'Incautado', id:2},
+      {descripcion: 'Proceso administrativo', id:3},
     ]
   }
   if(this.intervencion.length ===0){
     this.intervencion=[
-      {descripcion: 'SUNAT', id:'1'},
-      {descripcion: 'Policía', id:'2'},
+      {descripcion: 'SUNAT', id:1},
+      {descripcion: 'Policía', id:2},
     ]
   }
   this.getInsumos()
@@ -71,22 +75,32 @@ export class InsumoComponent implements OnInit {
   newInsumo(){
     this.insumo= {};
     this.insumoDialog = true;
+    this.editInsumoOption = false;
   }
 
   hideDialog() {
     this.insumoDialog = false;
   }
+  editInsumo(insumo: Insumo) {
+    this.insumoDialog = true;
+    this.insumo= {...insumo};
+    this.editInsumoOption = true;
+  }
 
-
-  delete(id:number){
-    this.firstService.deleteInsumoDoc(id).subscribe(
+  deleteInsumo(id: number){
+    this.deleteSelectedInsumoId = id;
+    this.deleteInsumoDialog = true;
+  }
+  confirDeleteInsumo(){
+    this.deleteInsumoDialog = false;
+    this.firstService.deleteInsumoDoc(this.deleteSelectedInsumoId).subscribe(
       res =>{console.log(res)
         this.getInsumos()
       }, err =>console.log(err)
     )
-
-
+    this.deleteSelectedInsumoId = null;
   }
+
   save(){
     const params = this.activatedRoute.snapshot.params;
     this.insumo.documento_id = params['id']
@@ -96,6 +110,7 @@ export class InsumoComponent implements OnInit {
         this.getInsumos()
       },err=>console.log(err)
     )
+    this.editInsumoOption = false;
     this.insumoDialog=false
   }
 

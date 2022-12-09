@@ -65,7 +65,13 @@
                 
                 <div class="field">
                     <label for="name">Teléfono</label>
-                    <p-dropdown id="status"  optionLabel="label"  placeholder="Seleccione un Telefono">
+                    <p-dropdown 
+                        id="status" 
+                        [options]="tipotelefonos" 
+                        optionLabel="descripcion"  
+                        optionValue="id"
+                        optionLabel="descripcion" 
+                        placeholder="Seleccione un Telefono">
                     </p-dropdown>
                 </div>
                 <div class="field">

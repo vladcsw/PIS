@@ -15,6 +15,10 @@ export class CuentaBanComponent implements OnInit {
   cuentas:any=[]
   cuenta:CuentaBan;
 
+  editCuentaOption: boolean = false;
+  deleteCuentaDialog: boolean = false;
+  deleteSelectedCuentaId: number;
+
 
 
   constructor( private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
@@ -39,6 +43,12 @@ export class CuentaBanComponent implements OnInit {
   newCuenta(){
     this.cuenta= {};
     this.cuentaDialog = true;
+    this.editCuentaOption = false;
+  }
+  editCuenta(cuenta : CuentaBan){
+    this.cuentaDialog = true;
+    this.editCuentaOption = true;
+    this.cuenta = {...cuenta};
   }
 
   hideDialog() {
@@ -46,8 +56,21 @@ export class CuentaBanComponent implements OnInit {
   }
 
 
-  delete(){
+  deleteCuenta(id: number){
+    this.deleteCuentaDialog = true;
+    this.deleteSelectedCuentaId = id;
+  }
 
+  confirmDeleteCuenta(){
+    this.deleteCuentaDialog = false;
+    this.firstService.deleteCuentaBanDoc(this.deleteSelectedCuentaId).subscribe(
+      res => {
+        console.log(res);
+        this.getCuentasBan();
+      },
+      err => console.log(err)
+    )
+    this.deleteSelectedCuentaId = null;
   }
 
   getCuentasBan(){
@@ -68,7 +91,8 @@ export class CuentaBanComponent implements OnInit {
       res=>this.getCuentasBan(),
       err=>console.log(err)
     )
-    this.cuentaDialog=false
+    this.editCuentaOption = false;
+    this.cuentaDialog=false;
   }
 
 }
