@@ -9,7 +9,7 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newInsumo()" ></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" ></button>
                     </div>
                 </ng-template>
             </p-toolbar>
@@ -47,7 +47,7 @@
                             
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
-                            {{insumo.nombre}}
+                            {{insumo.id}}
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
@@ -67,7 +67,7 @@
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(insumo.id)"></button>
                             </div>
                         </td>
                     </tr>

@@ -70,6 +70,9 @@ export class FirstService {
    saveInsumoDoc(insumo:any){
     return this.http.post(`${this.API_URI}documento_insumo/save`,insumo);
    }
+   deleteInsumoDoc(id:any){
+    return this.http.delete(`${this.API_URI}documento_insumo/delete/${id}`)
+   }
    getModalidadDoc(id:number){
     return this.http.get(`${this.API_URI}tratamiento/modalidad/${id}`)
    }
@@ -92,4 +95,5 @@ export class FirstService {
    getAllPersonas(){
     return this.http.get(`${this.API_URI}persona/list`)
    }
+
 }

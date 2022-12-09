@@ -78,7 +78,13 @@ export class InsumoComponent implements OnInit {
   }
 
 
-  delete(){
+  delete(id:number){
+    this.firstService.deleteInsumoDoc(id).subscribe(
+      res =>{console.log(res)
+        this.getInsumos()
+      }, err =>console.log(err)
+    )
+
 
   }
   save(){
@@ -119,5 +125,7 @@ export class InsumoComponent implements OnInit {
     } 
     return "No clasificado"
   }
+
+  
 
 }

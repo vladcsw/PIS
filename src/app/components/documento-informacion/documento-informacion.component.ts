@@ -4,6 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import{ FirstService } from '../../demo/service/first-service'
 import { Persona } from 'src/app/demo/domain/persona';
 import { DocumentoPersona } from 'src/app/demo/domain/documentoPersona';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import { InputTextModule } from 'primeng/inputtext';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-documento-informacion',
@@ -15,7 +18,9 @@ export class DocumentoInformacionComponent implements OnInit {
   items: MenuItem[]; 
   persona:Persona;
   allPersonas:any = [];
+  
   personas:any=[];
+
   personaDialog: boolean;   
   personasDoc:any = []
   documentoPersona:DocumentoPersona;
@@ -24,6 +29,14 @@ export class DocumentoInformacionComponent implements OnInit {
   tipoDocumentos:any =[];
   nacionalidades:any =[];
   rowsPerPageOptions = [5, 10, 20];
+  dniBuscar:any="";
+  personaEncontradaDialog:boolean;
+  
+
+  text: string;
+
+  results2: any[];
+  results: any[];
 
   
 
@@ -85,6 +98,36 @@ export class DocumentoInformacionComponent implements OnInit {
     this.getPersonas()
   }
 
+  search(event) {
+    //<p-autoComplete [(ngModel)]="text" [suggestions]="results" field="nombre" (completeMethod)="search($event)"></p-autoComplete>
+    console.log(event.query)
+    this.results2  = [
+      "Iron Man",
+      "Iron Man1",
+      "Iron Man",
+      "Iron Man",
+      "Iron Man3",
+      "Iron Man4",
+      "Spiderman",
+      "Thor",
+      "Spiderman2",
+      "Spiderman3",
+      "Spiderman4",
+      "Hulk",
+      "Black Widow",
+      "Hawk Eye"
+  ];
+  
+  console.log(this.personas)
+  this.results= this.personas.filter(item=> {
+    console.log(item)
+    item = item.nombre.toLowerCase()
+    event.query = event.query.toLowerCase()
+    
+    return item.includes(event.query)
+  })
+ }
+
   getPersonas(){
     this.personas=[]
     this.firstService.getAllPersonas().subscribe(
@@ -104,8 +147,7 @@ export class DocumentoInformacionComponent implements OnInit {
             }
           }
         }
-        console.log("personas en el doc")
-        console.log(this.personas)
+
       }, err => console.log(err)
     )
 
@@ -115,6 +157,7 @@ export class DocumentoInformacionComponent implements OnInit {
     this.persona = {}
     this.documentoPersona = {}
     this.personaDialog = true;
+    
   }
 
   hideDialog() {
@@ -130,16 +173,11 @@ export class DocumentoInformacionComponent implements OnInit {
     this.documentoPersona.documento_id = params['id']
     this.firstService.savePersona(this.persona).subscribe(
       res=>{
-        console.log(res)
-        console.log("el dni")
-        console.log(this.persona.dni)
+
 
         this.firstService.getPersonaByDni(this.persona.dni).subscribe(
           res=>{
             this.documentoPersona.persona_id = res['data']['persona']['id']
-            console.log("dni recien guardado:")
-            console.log(res['data']['persona']['id'])
-            console.log("Se encontró y ahora se pasa a guardar al documento")
             this.firstService.savePersonaDoc(this.documentoPersona).subscribe(
               res=>{
                 console.log(res);
@@ -181,6 +219,16 @@ export class DocumentoInformacionComponent implements OnInit {
       }
     }
     return "No clasificado"
+  }
+
+  nombreBusqueda(nombre:any){
+
+  }
+  DniBusqueda(){
+    console.log(this.personas.filter(item=> 
+      item.dni == this.dniBuscar
+    ))
+    this.personaEncontradaDialog = true
   }
 
 
