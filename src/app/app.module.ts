@@ -178,6 +178,7 @@ import { ArmaComponent } from './components/documento-informacion/arma/arma.comp
 import { CuentaBanComponent } from './components/documento-informacion/cuenta-ban/cuenta-ban.component';
 import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
 import { AgendaComponent } from './components/documento-informacion/agenda/agenda.component';
+import { TelefonoComponent } from './components/documento-informacion/telefono/telefono.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -343,6 +344,7 @@ FullCalendarModule.registerPlugins([
           CuentaBanComponent,
           ModalidadComponent,
           AgendaComponent,
+          TelefonoComponent,
 
     ],
     providers: [

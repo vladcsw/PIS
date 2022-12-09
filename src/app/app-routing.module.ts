@@ -51,6 +51,7 @@ import { CuentaBanComponent } from './components/documento-informacion/cuenta-ba
 import {EmpresasComponent } from './components/documento-informacion/empresas/empresas.component';
 import { InsumoComponent } from './components/documento-informacion/insumo/insumo.component';
 import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
+import {  TelefonoComponent } from './components/documento-informacion/telefono/telefono.component';
 
 
 
@@ -106,6 +107,7 @@ import { ModalidadComponent } from './components/documento-informacion/modalidad
                     {path: 'analista/docRecib/analisis/modalidad/:id', component: ModalidadComponent},
                     {path: 'analista/docRecib/analisis/agenda/:id', component: AgendaComponent},
                     {path: 'analista/docRecib/analisis/juridica/:id', component: DocumentoInformacionComponent},
+                    {path: 'analista/docRecib/analisis/telefono/:id', component: TelefonoComponent},
                     
                 ]
             },

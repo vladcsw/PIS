@@ -30,8 +30,11 @@ export class DocumentoInformacionComponent implements OnInit {
   nacionalidades:any =[];
   rowsPerPageOptions = [5, 10, 20];
   dniBuscar:any="";
-  personaEncontradaDialog:boolean;
-  
+
+
+  personaEncontradaDiv:boolean;
+  personaNoEncontrada:boolean;
+  personaEncontrada:any =[];
 
   text: string;
 
@@ -123,7 +126,6 @@ export class DocumentoInformacionComponent implements OnInit {
     console.log(item)
     item = item.nombre.toLowerCase()
     event.query = event.query.toLowerCase()
-    
     return item.includes(event.query)
   })
  }
@@ -225,10 +227,21 @@ export class DocumentoInformacionComponent implements OnInit {
 
   }
   DniBusqueda(){
-    console.log(this.personas.filter(item=> 
+    
+    this.personaEncontrada=this.personas.filter(item=> 
       item.dni == this.dniBuscar
-    ))
-    this.personaEncontradaDialog = true
+    )[0]
+    console.log(this.personaEncontrada)
+    if(this.personaEncontrada != undefined && this.personaEncontrada.length !=0  ){
+      this.personaEncontradaDiv = true
+      this.personaNoEncontrada = false;
+    }else{
+      this.personaNoEncontrada = true;
+      this.personaEncontradaDiv = false
+      
+    }
+    
+    
   }
 
 

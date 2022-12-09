@@ -116,4 +116,11 @@ export class FirstService {
     return this.http.get(`${this.API_URI}persona/list`)
    }
 
+   getTelefonosDoc(id:any){
+    return this.http.get(`${this.API_URI}tratamiento/telefono/${id}`)
+   }
+   saveTelefonoDoc(telefono:any){
+    return this.http.post(`${this.API_URI}documento_telefono/save`,telefono);
+   }
+
 }

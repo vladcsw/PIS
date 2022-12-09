@@ -156,6 +156,12 @@
                                 <p-dropdown id="status"  [options]="nacionalidades" optionLabel="descripcion" optionValue="id"  placeholder="Seleccione una nacionalidad" [(ngModel)]="persona.centro_poblado_id" ><!-- TODO:cambiar -->
                                 </p-dropdown>
                             </div>
+                            
+                        </div>
+                        <div class="formgrid grid">
+                            <div class="field col-3">
+                                <button pButton type="button" label="Guardar" (click)="save()"></button>
+                            </div>
                         </div>
                         
                     </ng-template>
@@ -182,20 +188,46 @@
                             <div class="field">
                                 
                             </div>
-                            <div *ngIf="personaEncontradaDialog">
+                            <div *ngIf="personaEncontradaDiv">
                                 <p-panel header="Resultado" [toggleable]="true" [collapsed] = "false" >
                                     <div class="formgrid grid">
-
+                                        <div class="field col">
+                                            <b for="">Nombre</b>
+                                            <p>{{personaEncontrada.nombre}}</p>
+                                        </div>
+                                        <div class="field col">
+                                            <b for="">Apellidos</b>
+                                            <p>{{personaEncontrada.primer_apellido}} {{personaEncontrada.segundo_apellido}} </p>
+                                        </div>
+                                    </div>
+                                    <div class="formgrid grid">
+                                        <div class="field col">
+                                            <b for="">Tipo de documento</b>
+                                            <p>{{replaceValuesDocumento(personaEncontrada.pais_id)}}</p>
+                                        </div>
+                                        <div class="field col">
+                                            <b for="">Documento:</b>
+                                            <p>{{personaEncontrada.dni}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="formgrid grid">
+                                        
                                         <div class="field col-3">
                                             <button pButton type="button" label="Guardar"></button>
                                         </div>
                                     </div>
-                                    
+                                </p-panel>
+                            </div>
+                            <div *ngIf="personaNoEncontrada">
+                                <p-panel header="Resultado" [toggleable]="true" [collapsed] = "false" >
+                                    <div class="formgrid grid">
+                                        <div class="field col-3">
+                                            <p>Ninguna coincidencia encontrada</p>
+                                        </div>
+                                    </div>
                                 </p-panel>
                             </div>
                         </div>
-                        
-                        
                     </ng-template>
                     
                 </p-tabPanel>
@@ -204,7 +236,7 @@
             
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+                
             </ng-template>
         </p-dialog>
 

@@ -2,21 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Router, ActivatedRoute } from '@angular/router';
-
-
+import { Telefono } from 'src/app/demo/domain/telefono';
 @Component({
-  selector: 'app-agenda',
-  templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss']
+  selector: 'app-telefono',
+  templateUrl: './telefono.component.html',
+  styleUrls: ['./telefono.component.scss']
 })
-export class AgendaComponent implements OnInit {
-  agenda:any;
+export class TelefonoComponent implements OnInit {
+
+
+  
+  telefonoDialog: boolean;
   items: MenuItem[];
-  tipotelefonos: any = [];
-  agendaDialog: boolean;
+  proveedores:any =[]
+  telefonos:any =[]
+  telefono:Telefono = {};
+
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    
+
     const params = this.activatedRoute.snapshot.params;
     this.items = [
       {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis', params['id'] ]},
@@ -27,45 +33,45 @@ export class AgendaComponent implements OnInit {
       {label: 'CUENTAS', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/cuentas', params['id']]},
       {label: 'MODALIDAD', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/modalidad', params['id']]},
       {label: 'AGENDA', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/agenda', params['id']]},
-      {label: 'TELEFONO', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/telefono', params['id']]},
-      
+      {label: 'TELEFONO', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/telefono/:id', params['id']]},  
   ];
-
-  if(this.tipotelefonos.length==0){
-    this.tipotelefonos=[
-      {descripcion: 'telefono 0', id:1},
-      {descripcion: 'telefono 1', id:2},
-      {descripcion: 'telefono 2', id:3},
+  if(this.proveedores.length==0){
+    this.proveedores=[
+      {descripcion: 'Claro', id:1},
+      {descripcion: 'Movistar', id:2},
+      {descripcion: 'Enter', id:3},
+      {descripcion: 'Bitel', id:4},
     ]
   }
-
   }
 
-  
-  replaceValuesTipo(idT:number){
-    for (let valor of this.tipotelefonos){
-      if(valor.id==idT){
-        return valor.descripcion
-      }
-    } 
-    return "No clasificado"
+  getTelefonos(){
+    const params = this.activatedRoute.snapshot.params;
+    this.firstService.getTelefonosDoc(params['id']).subscribe(
+      res=>{
+        this.telefonos = res
+      },err=>console.log(err)
+    )
   }
 
-  getAgendas(){
-
+  newTelefono(){
+    this.telefono = {}
+    this.telefonoDialog = true
   }
 
-  newAgenda(){
-    this.agenda = {};
-    this.agendaDialog = true;
-  }
-
-  delete(){
-
-  }
   hideDialog() {
-    this.agendaDialog = false;  
+    this.telefonoDialog= false;  
   }
 
+  save(){
+    const params = this.activatedRoute.snapshot.params;
+    this.telefono.documento_id=params['id']
+    this.firstService.saveTelefonoDoc(this.telefono).subscribe(
+      res=>{
+        this.getTelefonos()
+      },err=>console.log(err)
+    )
+    this.telefonoDialog= false;  
+  }
 
 }
