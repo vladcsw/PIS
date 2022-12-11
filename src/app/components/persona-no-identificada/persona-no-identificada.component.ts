@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Persona } from 'src/app/models/PersonaNoIdentificada';
-
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { PersonaNoIdentificadaService } from 'src/app/services/persona-no-identificada.service';
 
 @Component({
@@ -38,9 +38,12 @@ nacionalidades  = [
     
   }
 
-  constructor(private persona: PersonaNoIdentificadaService) { }
+  constructor(private persona: PersonaNoIdentificadaService, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
+    this.breadcrumbService.setItems([
+      {label: 'Persona No identificada'},
+  ]);
   }
   
   save(){

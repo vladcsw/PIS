@@ -5,7 +5,7 @@ import{ FirstService } from '../../demo/service/first-service'
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
-
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 
 @Component({
@@ -18,13 +18,19 @@ export class DocInteligenciaComponent implements OnInit {
   documentoPrioridad: documentoPrioridad  [];
   documento:documento;
 
-  constructor( private firstService:FirstService, private router:Router, private activatedRoute:ActivatedRoute,) { }
+  constructor(private breadcrumbService: BreadcrumbService, private firstService:FirstService, private router:Router, private activatedRoute:ActivatedRoute,) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
     this.getDocumento(params['id'])
     this.getClasificacionDocumento()
     this.getPrioridadDocumento()
+
+    this.breadcrumbService.setItems([
+      {label: 'Analista'},
+      {label: 'Documentos recibidos'},
+      {label: 'Detalle'}
+  ]);
 
   }
 

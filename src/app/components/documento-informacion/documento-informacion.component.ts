@@ -7,6 +7,7 @@ import { DocumentoPersona } from 'src/app/demo/domain/documentoPersona';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { InputTextModule } from 'primeng/inputtext';
 import { query } from '@angular/animations';
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
   selector: 'app-documento-informacion',
@@ -43,11 +44,16 @@ export class DocumentoInformacionComponent implements OnInit {
 
   
 
-  constructor(public router: Router, private activatedRoute:ActivatedRoute, private firstService:FirstService) {}
+  constructor(private breadcrumbService: BreadcrumbService, public router: Router, private activatedRoute:ActivatedRoute, private firstService:FirstService) {}
 
   ngOnInit(): void {
-
-    const params = this.activatedRoute.snapshot.params;
+    this.breadcrumbService.setItems([
+      {label: 'Analista'},
+      {label: 'Documentos recibidos'},
+      {label: 'Tratamiento de Informacion '}
+  ]);
+    
+  const params = this.activatedRoute.snapshot.params;
 
     this.items = [
       {label: 'PERSONAS', icon: 'pi pi-fw pi-users'},
@@ -60,6 +66,8 @@ export class DocumentoInformacionComponent implements OnInit {
       {label: 'AGENDA', icon: 'pi pi-fw pi-car', routerLink: ['/analista/docRecib/analisis/agenda', params['id']]},
       
   ];
+
+
   if(this.generos.length==0){
     this.generos=[
       {descripcion: 'Masculino', id:'1'},

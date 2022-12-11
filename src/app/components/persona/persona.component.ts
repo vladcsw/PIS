@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
   selector: 'app-persona',
@@ -34,9 +35,13 @@ distritos  = [
   { name: 'Arequipa', code: 'Arequipa' }
 ];
 
-  constructor() { }
+  constructor(private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
+    
+this.breadcrumbService.setItems([
+  {label: 'Persona'},
+]);
     this.tieredItems = [
       {label:'CARPETA POLICIAL '},
       {label:'CARPETA FISCAL'},

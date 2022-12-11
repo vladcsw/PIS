@@ -13,6 +13,7 @@ export class AgendaComponent implements OnInit {
   agenda:any;
   items: MenuItem[];
   tipotelefonos: any = [];
+  telefonos:any =[];
   agendaDialog: boolean;
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
@@ -31,16 +32,18 @@ export class AgendaComponent implements OnInit {
       
   ];
 
-  if(this.tipotelefonos.length==0){
-    this.tipotelefonos=[
-      {descripcion: 'telefono 0', id:1},
-      {descripcion: 'telefono 1', id:2},
-      {descripcion: 'telefono 2', id:3},
-    ]
-  }
+  this.getTelefonos();
 
   }
 
+  getTelefonos(){
+    const params = this.activatedRoute.snapshot.params;
+    this.firstService.getTelefonosDoc(params['id']).subscribe(
+      res=>{
+        this.telefonos = res
+      },err=>console.log(err)
+    )
+  }
   
   replaceValuesTipo(idT:number){
     for (let valor of this.tipotelefonos){

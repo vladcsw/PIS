@@ -4,6 +4,7 @@ import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
 import{ FirstService } from '../../demo/service/first-service'
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
   selector: 'app-doc-recibidos',
@@ -18,9 +19,14 @@ export class DocRecibidosComponent implements OnInit {
   nuevoDocumento: documento;
 
 
-  constructor(private router: Router,  private firstService: FirstService) { }
+  constructor(private router: Router,  private firstService: FirstService, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
+    this.breadcrumbService.setItems([
+      {label: 'Analista'},
+      {label: 'Documentos recibidos'}
+  ]);
+
     this.getDocuments()
     this.getPrioridadDocumento()
     this.getClasificacionDocumento()
