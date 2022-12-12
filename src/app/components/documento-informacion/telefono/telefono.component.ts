@@ -18,6 +18,10 @@ export class TelefonoComponent implements OnInit {
   telefonos:any =[]
   telefono:Telefono = {};
 
+  editITelefonoOption: boolean = false;
+  deleteTelefonoDialog: boolean = false;
+  deleteSelectedTelefonoId: number;
+
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -43,6 +47,7 @@ export class TelefonoComponent implements OnInit {
       {descripcion: 'Bitel', id:4},
     ]
   }
+  this.getTelefonos();
   }
 
   getTelefonos(){
@@ -55,10 +60,32 @@ export class TelefonoComponent implements OnInit {
   }
 
   newTelefono(){
+
     this.telefono = {}
     this.telefonoDialog = true
+    this.editITelefonoOption = false;
   }
 
+  editTelefono(telefono: Telefono){
+    this.telefonoDialog = true
+    this.editITelefonoOption = true;
+    this.telefono = {...telefono};
+  }
+  deleteTelefono(id: number){
+    this.deleteTelefonoDialog= true;
+    this.deleteSelectedTelefonoId = id;
+  }
+  confirmDeleteTelefono(){
+    this.deleteTelefonoDialog= false;
+    this.firstService.deleteTelefonoDoc(this.deleteSelectedTelefonoId).subscribe(
+      res => {
+        console.log(res);
+        this.getTelefonos();
+      },
+      err => console.log("error deleting telefono")
+    )
+    this.deleteSelectedTelefonoId = null;
+  }
   hideDialog() {
     this.telefonoDialog= false;  
   }
@@ -72,6 +99,7 @@ export class TelefonoComponent implements OnInit {
       },err=>console.log(err)
     )
     this.telefonoDialog= false;  
+    this.editITelefonoOption = false;
   }
 
 }

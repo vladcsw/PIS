@@ -122,5 +122,8 @@ export class FirstService {
    saveTelefonoDoc(telefono:any){
     return this.http.post(`${this.API_URI}documento_telefono/save`,telefono);
    }
+   deleteTelefonoDoc(id:number){
+    return this.http.delete(`${this.API_URI}documento_telefono/delete/${id}`)
+   }
 
 }

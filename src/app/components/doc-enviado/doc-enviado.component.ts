@@ -4,6 +4,7 @@ import { DocEnviadoService } from 'src/app/services/doc-enviado.service';
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
@@ -52,7 +53,7 @@ export class DocEnviadoComponent implements OnInit {
 
 
 
-  constructor(private documento: DocEnviadoService, private firstService: FirstService) { }
+  constructor(private documento: DocEnviadoService, private firstService: FirstService, private breadcrumbService: BreadcrumbService) { }
   docEnviadoDialog: boolean;
 
 
@@ -64,7 +65,10 @@ export class DocEnviadoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
+    this.breadcrumbService.setItems([
+      {label: 'Agente'},
+      {label: 'Envio de Documentos'}
+  ]);
     this.getDocumentos()
     //this.getClasificacion()
     //this.getPrioridades()

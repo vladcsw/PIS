@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
   selector: 'app-carpeta',
@@ -11,9 +12,14 @@ export class CarpetaComponent implements OnInit {
 
   index: number = 0;
 
-  constructor() { }
+  constructor(private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
+    this.breadcrumbService.setItems([
+      {label: 'Analista'},
+      {label: 'Bandeja de carpeta'},
+  ]);
+    
   }
   newDocAngente(){
     this.carpetaDialog = true;
