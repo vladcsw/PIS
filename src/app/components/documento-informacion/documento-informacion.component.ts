@@ -8,11 +8,15 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import { InputTextModule } from 'primeng/inputtext';
 import { query } from '@angular/animations';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-documento-informacion',
   templateUrl: './documento-informacion.component.html',
-  styleUrls: ['./documento-informacion.component.scss']
+  styleUrls: ['../../../assets/demo/badges.scss'],
+  
+  providers: [MessageService, ConfirmationService]
 })
 export class DocumentoInformacionComponent implements OnInit {
 
@@ -44,7 +48,10 @@ export class DocumentoInformacionComponent implements OnInit {
 
   
 
-  constructor(private breadcrumbService: BreadcrumbService, public router: Router, private activatedRoute:ActivatedRoute, private firstService:FirstService) {}
+
+  constructor(private breadcrumbService: BreadcrumbService, public router: Router, private activatedRoute:ActivatedRoute, private firstService:FirstService, private messageService: MessageService,
+    private confirmationService: ConfirmationService) {}
+
 
   ngOnInit(): void {
     this.breadcrumbService.setItems([
@@ -183,21 +190,24 @@ export class DocumentoInformacionComponent implements OnInit {
     this.documentoPersona.documento_id = params['id']
     this.firstService.savePersona(this.persona).subscribe(
       res=>{
-
-
         this.firstService.getPersonaByDni(this.persona.dni).subscribe(
           res=>{
             this.documentoPersona.persona_id = res['data']['persona']['id']
             this.firstService.savePersonaDoc(this.documentoPersona).subscribe(
               res=>{
+                
                 console.log(res);
                 this.getPersonas()
+                if(this.documentoPersona.id){
+                  this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Persona Actualizado', life: 3000});
+                }else{
+                  this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Persona Creado', life: 3000});
+                }
               }, err => console.log(err)
             )
           }, err =>console.log(err)
         )
       }, err => console.log(err)
-      
     );
     
 
@@ -206,6 +216,19 @@ export class DocumentoInformacionComponent implements OnInit {
     //buscarla 
     //agregarla al documento 
   }
+  saveV2(){
+    this.documentoPersona = {}
+    const params = this.activatedRoute.snapshot.params;
+    this.documentoPersona.documento_id = params['id']
+    this.documentoPersona.persona_id = this.personaEncontrada.id
+    
+    this.firstService.savePersonaDoc(this.documentoPersona).subscribe(
+      res=>{
+        this.getPersonas()
+      },err=>console.log(err)
+    )
+  }
+
   replaceValuesGenero(idT:number){
     for (let valor of this.generos){
       if(valor.id==idT){
@@ -236,7 +259,7 @@ export class DocumentoInformacionComponent implements OnInit {
   }
   DniBusqueda(){
     
-    this.personaEncontrada=this.personas.filter(item=> 
+    this.personaEncontrada=this.allPersonas.filter(item=> 
       item.dni == this.dniBuscar
     )[0]
     console.log(this.personaEncontrada)
@@ -246,7 +269,6 @@ export class DocumentoInformacionComponent implements OnInit {
     }else{
       this.personaNoEncontrada = true;
       this.personaEncontradaDiv = false
-      
     }
     
     

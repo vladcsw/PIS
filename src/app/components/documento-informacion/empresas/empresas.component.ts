@@ -2,15 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import{ FirstService } from '../../../demo/service/first-service'
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-empresas',
   templateUrl: './empresas.component.html',
-  styleUrls: ['./empresas.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class EmpresasComponent implements OnInit {
   items: MenuItem[];
-  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;

@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class AgendaComponent implements OnInit {
   agenda:any;
@@ -15,7 +17,8 @@ export class AgendaComponent implements OnInit {
   tipotelefonos: any = [];
   telefonos:any =[];
   agendaDialog: boolean;
-  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;

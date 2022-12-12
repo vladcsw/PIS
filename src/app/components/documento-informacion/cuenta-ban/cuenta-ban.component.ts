@@ -3,10 +3,14 @@ import {MenuItem} from 'primeng/api';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { CuentaBan } from 'src/app/demo/domain/cuentaBanc';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-cuenta-ban',
   templateUrl: './cuenta-ban.component.html',
-  styleUrls: ['./cuenta-ban.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class CuentaBanComponent implements OnInit {
   items: MenuItem[];
@@ -21,7 +25,8 @@ export class CuentaBanComponent implements OnInit {
 
 
 
-  constructor( private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor( private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -89,7 +94,14 @@ export class CuentaBanComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     this.cuenta.documento_id=params['id']
     this.firstService.saveCuentaBanDOc(this.cuenta).subscribe(
-      res=>this.getCuentasBan(),
+      res=>{
+        this.getCuentasBan()
+        if(this.cuenta.id){
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Cuenta Registrada Actualizada', life: 3000});
+        }else{
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Cuenta Creada', life: 3000});
+        }
+      },
       err=>console.log(err)
     )
     this.editCuentaOption = false;

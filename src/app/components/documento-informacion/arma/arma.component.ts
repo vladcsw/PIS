@@ -3,10 +3,14 @@ import {MenuItem} from 'primeng/api';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Router, ActivatedRoute } from '@angular/router';
 import {Arma} from '../../../demo/domain/arma'
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-arma',
   templateUrl: './arma.component.html',
-  styleUrls: ['./arma.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class ArmaComponent implements OnInit {
   items: MenuItem[];
@@ -20,7 +24,8 @@ export class ArmaComponent implements OnInit {
   deleteArmaDialog: boolean = false;
   deleteSelectedArmaId: number;
 
-  constructor(private firstService:FirstService,private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService,private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -96,8 +101,10 @@ export class ArmaComponent implements OnInit {
     this.firstService.deleteArmaDoc(this.deleteSelectedArmaId).subscribe(
       res =>{console.log(res)
         this.getArmas()
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
       }, err =>console.log(err)
     )
+    
     this.deleteSelectedArmaId = null;
   }
   save(){
@@ -105,6 +112,11 @@ export class ArmaComponent implements OnInit {
     this.arma.documento_id = params['id']
     this.firstService.saveArmaDoc(this.arma).subscribe(
       res=>{
+        if(this.arma.id){
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Arma Actualizada', life: 3000});
+        }else{
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Arma Creada', life: 3000});
+        }
         console.log(res);
         this.getArmas();
       }, err=>console.log(err)

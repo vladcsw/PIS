@@ -4,12 +4,14 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Inmueble } from 'src/app/demo/domain/inmueble';
-
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-inmuebles',
   templateUrl: './inmuebles.component.html',
-  styleUrls: ['./inmuebles.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class InmueblesComponent implements OnInit {
 
@@ -24,7 +26,8 @@ export class InmueblesComponent implements OnInit {
   deleteInmuebleDialog: boolean = false;
   deleteSelectedInmuebleId: number;
   
-  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -107,7 +110,13 @@ export class InmueblesComponent implements OnInit {
     this.firstService.saveInmuebleDOc(this.inmueble).subscribe(
       res=>{
         console.log(res);
+
         this.getInmuebles()
+        if(this.inmueble.id){
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Inmueble Actualizado', life: 3000});
+        }else{
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Inmueble Creada', life: 3000});
+        }
       },
       err=>console.log(err)
     )
