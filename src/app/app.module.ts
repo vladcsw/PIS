@@ -179,6 +179,8 @@ import { CuentaBanComponent } from './components/documento-informacion/cuenta-ba
 import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
 import { AgendaComponent } from './components/documento-informacion/agenda/agenda.component';
 import { TelefonoComponent } from './components/documento-informacion/telefono/telefono.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { ParcComponent } from './components/busqueda/parc/parc.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -345,6 +347,8 @@ FullCalendarModule.registerPlugins([
           ModalidadComponent,
           AgendaComponent,
           TelefonoComponent,
+          BusquedaComponent,
+          ParcComponent,
 
     ],
     providers: [

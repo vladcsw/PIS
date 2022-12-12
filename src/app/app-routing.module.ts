@@ -36,7 +36,7 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 import { CarpetaComponent } from './components/carpeta/carpeta.component'
-import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component'; 
+import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component';
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
 import { VincularCarpetaComponent } from './components/vincular-carpeta/vincular-carpeta.component';
@@ -52,6 +52,7 @@ import {EmpresasComponent } from './components/documento-informacion/empresas/em
 import { InsumoComponent } from './components/documento-informacion/insumo/insumo.component';
 import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
 import {  TelefonoComponent } from './components/documento-informacion/telefono/telefono.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 
 
@@ -108,14 +109,14 @@ import {  TelefonoComponent } from './components/documento-informacion/telefono/
                     {path: 'analista/docRecib/analisis/agenda/:id', component: AgendaComponent},
                     {path: 'analista/docRecib/analisis/juridica/:id', component: DocumentoInformacionComponent},
                     {path: 'analista/docRecib/analisis/telefono/:id', component: TelefonoComponent},
-                    
+                    {path: 'busqueda', component: BusquedaComponent},
                 ]
             },
             {path: 'login', component: LoginComponent},
             {path: 'error', component: AppErrorComponent},
             {path: 'access', component: AppAccessdeniedComponent},
             {path: 'notfound', component: AppNotfoundComponent},
-            
+
             {path: 'wizard', component: AppWizardComponent},
             {path: '**', redirectTo: '/notfound'},
         ], {scrollPositionRestoration: 'enabled'})
