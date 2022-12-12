@@ -9,10 +9,14 @@ import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import{ FirstService } from '../../demo/service/first-service'
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-doc-enviado',
   templateUrl: './doc-enviado.component.html',
-  styleUrls: ['./doc-enviado.component.scss']
+  styleUrls: ['../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 
 export class DocEnviadoComponent implements OnInit {
@@ -53,7 +57,10 @@ export class DocEnviadoComponent implements OnInit {
 
 
 
-  constructor(private documento: DocEnviadoService, private firstService: FirstService, private breadcrumbService: BreadcrumbService) { }
+  constructor(private documento: DocEnviadoService, private firstService: FirstService, private breadcrumbService: BreadcrumbService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
+
   docEnviadoDialog: boolean;
 
 
@@ -197,10 +204,14 @@ export class DocEnviadoComponent implements OnInit {
     console.log(this.docEnviado);
     this.documento.saveDocEnviado(this.docEnviado)
     .subscribe(
-      res => {console.log(res);},
+      res => {console.log(res)
+        this.getDocumentos()
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Creado', life: 3000});
+      },
       err => {console.log("backend no responde");}
         )
-
+        this.docEnviadoDialog = false;
+        
   }
   getDocuments(){
     this.firstService.getDocumento().subscribe(
@@ -215,6 +226,8 @@ export class DocEnviadoComponent implements OnInit {
       res =>{
         console.log(res);
         this.getDocuments()
+        this.getDocumentos()
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento eliminado', life: 3000});
       },
       err=> console.log(err)
     )

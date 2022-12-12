@@ -101,7 +101,7 @@ export class ArmaComponent implements OnInit {
     this.firstService.deleteArmaDoc(this.deleteSelectedArmaId).subscribe(
       res =>{console.log(res)
         this.getArmas()
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Arma Eliminada', life: 3000});
       }, err =>console.log(err)
     )
     

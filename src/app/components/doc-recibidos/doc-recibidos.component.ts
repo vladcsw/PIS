@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
 import{ FirstService } from '../../demo/service/first-service'
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
+import { MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-doc-recibidos',
   templateUrl: './doc-recibidos.component.html',
-  styleUrls: ['./doc-recibidos.component.scss']
+  styleUrls: ['../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class DocRecibidosComponent implements OnInit {
 
@@ -19,9 +22,26 @@ export class DocRecibidosComponent implements OnInit {
   nuevoDocumento: documento;
 
 
-  constructor(private router: Router,  private firstService: FirstService, private breadcrumbService: BreadcrumbService) { }
+  constructor(private router: Router,  private firstService: FirstService, 
+    private breadcrumbService: BreadcrumbService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private route: ActivatedRoute,
+    
+     ) { }
 
   ngOnInit(): void {
+    /* Detectar si la ruta proviene de el archivo de documentos */
+    const params = this.route.snapshot.queryParamMap;
+    setTimeout(() => {
+      if(params.get('fromStore')){
+        
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Archivado', life: 3000});  
+      }
+    });
+    
+    
+
     this.breadcrumbService.setItems([
       {label: 'Analista'},
       {label: 'Documentos recibidos'}
@@ -37,6 +57,7 @@ export class DocRecibidosComponent implements OnInit {
   }
 
   getClasificacionDocumento(){
+    
     this.firstService.getClasificacion().subscribe(
       res => {
         this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
@@ -63,6 +84,7 @@ export class DocRecibidosComponent implements OnInit {
     )
   }
   delete(id:number){
+    this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Archivado', life: 3000});
     this.firstService.deleteDocumento(id).subscribe(
       res =>{
         console.log(res);
