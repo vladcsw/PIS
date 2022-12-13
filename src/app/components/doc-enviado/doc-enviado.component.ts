@@ -167,11 +167,14 @@ export class DocEnviadoComponent implements OnInit {
   uploadAllFiles(){
     console.log("Iniciando subida");
     this.message = '';
+    if (this.selectedFiles)
+    {
     for (let i = 0; i < this.selectedFiles.length; i++) {
       this.upload(i, this.selectedFiles[i]);
       console.log("Subiendo el archivo: ", this.selectedFiles[i]);
     }
     console.log("Se terminaron de subir");
+}
   }
   upload(index, file)
   {
@@ -207,7 +210,14 @@ export class DocEnviadoComponent implements OnInit {
     console.log(this.docEnviado);
     this.documento.saveDocEnviado(this.docEnviado)
     .subscribe(
-      res => {console.log(res)
+      res => {
+
+        this.auxID = res['data']['documento']['id']
+        console.log(res['data']['documento']['id'])
+        this.uploadAllFiles();
+        this.selectedFiles = null;
+
+        console.log(res)
         this.getDocumentos()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Creado', life: 3000});
       },
