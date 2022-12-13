@@ -114,31 +114,31 @@
 
                     <div class="field">
                         <labe> Asunto</labe>
-                        <textarea type="text" pInputText [(ngModel)]="docEnviado.asunto"></textarea>
+                        <textarea type="text" pInputText [(ngModel)]="nuevoDocumento.asunto"></textarea>
                     </div>
                     <div class="field">
                         <labe> Prioridad</labe>
-                        <p-dropdown [options]="documentoPrioridad" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_prioridad_id" optionValue="id" placeholder="Seleccione una prioridad"></p-dropdown>
+                        <p-dropdown [options]="documentoPrioridad" optionLabel="descripcion" [(ngModel)]="nuevoDocumento.documento_prioridad_id" optionValue="id" placeholder="Seleccione una prioridad"></p-dropdown>
                     </div>
                     <div class="field">
                         <labe> Clasificación</labe>
-                        <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion" [(ngModel)]="docEnviado.documento_clasificacion_id" optionValue="id" placeholder="Seleccione una clasificacion"></p-dropdown>
+                        <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion" [(ngModel)]="nuevoDocumento.documento_clasificacion_id" optionValue="id" placeholder="Seleccione una clasificacion"></p-dropdown>
 
                     </div>
                     <div class="field">
                         <labe> Fecha de obtención inf.</labe>
 
-                        <input type="date" pInputText id="name"  [(ngModel)]="docEnviado.obtencionInformacion" />
+                        <input type="date" pInputText id="name"  [(ngModel)]="nuevoDocumento.obtencionInformacion" />
                     </div>
                     <div _ngcontent-lys-c169="" class="field">
                         <labe> Agente que firma</labe>
                         <span _ngcontent-lys-c169="" class="p-input-icon-right">
-                            <input _ngcontent-lys-c169="" type="text" [(ngModel)]="docEnviado.documento_persona" pinputtext="" placeholder="Buscar CIP" class="p-inputtext p-component p-element">
+                            <input _ngcontent-lys-c169="" type="text" [(ngModel)]="nuevoDocumento.documento_persona" pinputtext="" placeholder="Buscar CIP" class="p-inputtext p-component p-element">
                             <i _ngcontent-lys-c169="" class="pi pi-search"></i>
                         </span>     </div>
                     <div class="field">
                         <labe> ¿Que, Quien, Cuando, Como?</labe>
-                        <textarea type="text" pInputText  [(ngModel)]="docEnviado.descripcion"  ></textarea>
+                        <textarea type="text" pInputText  [(ngModel)]="nuevoDocumento.descripcion"  ></textarea>
                     </div>
 
                    </p-tabPanel>

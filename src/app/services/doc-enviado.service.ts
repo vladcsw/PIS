@@ -19,7 +19,7 @@ export class DocEnviadoService {
     deleteDocEnviado(id: string) {
         return this.http.delete(`${this.API_URI}/documentos/${id}`);
     }
-    saveDocEnviado(doc:  DocEnviado) {
+    saveDocEnviado(doc:  any) {
         return this.http.post(`${this.API_URI}/documento/save`, doc);
     }
     upload(file: File, archivo: string): Observable<HttpEvent<any>>{

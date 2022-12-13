@@ -23,7 +23,7 @@ export class DocEnviadoComponent implements OnInit {
   documentoClasificacion: any = [];
   documentoPrioridad: any =[];
   documentos: any = [];
-  nuevoDocumento: documento;
+  nuevoDocumento: documento = {};
   organosPoliciales:any = [];
   subOrganos:any = [];
   tipoDocumento:any = [];
@@ -206,14 +206,13 @@ export class DocEnviadoComponent implements OnInit {
   }
 
   save(){
-    console.log("este documento se va a enviar:")
-    console.log(this.docEnviado);
-    this.documento.saveDocEnviado(this.docEnviado)
+
+    this.documento.saveDocEnviado(this.nuevoDocumento)
     .subscribe(
       res => {
 
         this.auxID = res['data']['documento']['id']
-        console.log(res['data']['documento']['id'])
+        
         this.uploadAllFiles();
         this.selectedFiles = null;
 
@@ -265,6 +264,10 @@ export class DocEnviadoComponent implements OnInit {
       }
     }
     return "No clasificado"
+  }
+  hideDialog(){
+    this.nuevoDocumento = {}
+    this.docEnviadoDialog = false;
   }
 
 

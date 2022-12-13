@@ -21,7 +21,7 @@ export class VincularCarpetaComponent implements OnInit {
   ngOnInit(): void {
     this.firtService.getCarpeta().subscribe(
       res=>{
-        console.log(res['data']['CARPETA'])
+
         this.carpetas=res['data']['CARPETA']
       }
       ,err=>console.log(err)
@@ -39,14 +39,9 @@ export class VincularCarpetaComponent implements OnInit {
         this.documento.carpeta_id = idCarpeta
         this.firtService.saveDocumento(this.documento).subscribe(
           res =>{
-            console.log("ESTE ES EL DOCUMENTO  Q SE EDITO***************")
-            console.log(this.documento)
-            console.log(res)
             this.router.navigate(["/analista/docRecibidos"],{queryParams:{fromFile: 'si'}})
-          },err=>console.log()
+          },err=>console.log(err)
         )
-        console.log("ESTE ES EL DOCUMENTO  Q SE VA A EDITAR")
-        console.log(res['data']['documento'])
       }, err => console.log(err)
       )
 
