@@ -25,7 +25,7 @@
                     </div>
                 </ng-template>
 
-                
+
             </p-toolbar>
 
 
@@ -44,9 +44,9 @@
                         </span>
                     </div>
                 </ng-template>
-                <ng-template pTemplate="header" > 
+                <ng-template pTemplate="header" >
                     <tr>
-                       
+
                         <th pSortableColumn="id">N° <p-sortIcon field="id"></p-sortIcon></th>
                         <th pSortableColumn="asunto">ASUNTO <p-sortIcon field="asunto"></p-sortIcon></th>
                         <th pSortableColumn="documento_prioridad">PRIORIDAD<p-sortIcon field="documento_prioridad"></p-sortIcon></th>
@@ -58,13 +58,13 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-documento>
                     <tr>
-                        
+
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">N°</span>
                             {{documento.id}}
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">ASUNTO</span>
                             {{documento.asunto}}
-                            
+
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">PRIORIDAD</span>
                             {{replaceValuesPrioridad(documento.documento_prioridad_id)}}
@@ -74,11 +74,11 @@
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">FECHA OBTENCION INF.</span>
                             {{documento.obtencionInformacion}}
-                            
+
                         </td>
                         <td style="width:14%; min-width: 10rem;"><span class="p-column-title">PREGUNTAS</span>
                             {{documento.descripcion}}
-                            
+
                         </td>
                         <td>
                             <div class="flex">
@@ -107,10 +107,10 @@
                             <labe> Organo</labe>
                             <p-dropdown  [options]="organosPoliciales" optionLabel="descripcion"  optionValue="id" placeholder="Seleccione un organo"></p-dropdown>
                         </div>
-                      
+
 
                     </div>
-                    
+
                     <div class="field">
                         <labe> Asunto</labe>
                         <textarea type="text" pInputText [(ngModel)]="docEnviado.asunto"></textarea>
@@ -126,7 +126,7 @@
                     </div>
                     <div class="field">
                         <labe> Fecha de obtención inf.</labe>
-                       
+
                         <input type="date" pInputText id="name"  [(ngModel)]="docEnviado.obtencionInformacion" />
                     </div>
                     <div _ngcontent-lys-c169="" class="field">
@@ -142,7 +142,7 @@
 
                    </p-tabPanel>
                    <p-tabPanel header = "Archivos ajuntos" >
-                        <p-fileUpload name="myfile[]" url="./upload.php" 
+                        <p-fileUpload name="myfile[]" url="./upload.php"
                         multiple="multiple" accept="application/pdf"
                         [customUpload]="true"
                         (uploadHandler)="uploadfun($event)"
@@ -204,7 +204,8 @@
                         <div class="card">
                             <p-fieldset legend="Documentos adjuntos" >
                                 <ng-template pTemplate="content">
-                                        <div class="field col">    
+                                        <div class="field col" *ngFor="let a of selectedFiles">
+                                            {{a.name}}
                                         </div>
                                 </ng-template>
                             </p-fieldset>
@@ -279,7 +280,7 @@
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
-                <button pButton pRipple label="Upload" icon="pi pi-check" class="p-button-text" (click)="uploadAllFiles()"></button>
+                <!-- <button pButton pRipple label="Upload" icon="pi pi-check" class="p-button-text" (click)="uploadAllFiles()"></button> -->
             </ng-template>
         </p-dialog>
     </div>

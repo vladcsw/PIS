@@ -52,6 +52,13 @@ export class BusquedaComponent implements OnInit {
         this.loading = false;
     })
 
+
+    this.busquedaSevice.getDataPost('provincia').subscribe(xd =>{
+        console.log(xd)
+    })
+
+
+
     this.items = [
         {label: 'PERSONAS', icon: 'pi pi-fw pi-users', command: (event) =>{
 

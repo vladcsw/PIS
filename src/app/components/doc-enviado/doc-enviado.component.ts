@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import{ FirstService } from '../../demo/service/first-service'
+
 @Component({
   selector: 'app-doc-enviado',
   templateUrl: './doc-enviado.component.html',
@@ -33,6 +34,8 @@ export class DocEnviadoComponent implements OnInit {
   //Nombre del archivo para usarlo posteriormente en la vista html
   fileName = "";
   fileInfos: Observable<any>;
+
+  auxID: string;
 
 
   @HostBinding("class") classes ="row";
@@ -109,7 +112,7 @@ export class DocEnviadoComponent implements OnInit {
       ]
     }
 
-    
+
   }
 
   getPrioridades(){
@@ -152,6 +155,7 @@ export class DocEnviadoComponent implements OnInit {
     event.files.length == 1 ? this.fileName = event.files[0].name : this.fileName = event.files.length + " archivos";
     this.selectedFiles = event.files;
     console.log("Multiple Files are uploaded: ", event.files);
+    console.log(this.selectedFiles)
 
   }
   uploadAllFiles(){
@@ -168,7 +172,7 @@ export class DocEnviadoComponent implements OnInit {
 
     this.progressInfo[index] = { value: 0, fileName: file.name };
 
-    this.documento.upload(file, this.docEnviado).subscribe(
+    this.documento.upload(file, this.auxID).subscribe(
       event => {
 
         if (event.type === HttpEventType.UploadProgress) {
@@ -195,11 +199,13 @@ export class DocEnviadoComponent implements OnInit {
   save(){
     console.log("este documento se va a enviar:")
     console.log(this.docEnviado);
-    this.documento.saveDocEnviado(this.docEnviado)
-    .subscribe(
-      res => {console.log(res);},
-      err => {console.log("backend no responde");}
-        )
+    this.documento.saveDocEnviado(this.docEnviado).subscribe( x=>{
+        this.auxID = x['data']['documento']['id']
+        console.log(x['data']['documento']['id'])
+        this.uploadAllFiles();
+    }
+    )
+
 
   }
   getDocuments(){

@@ -22,12 +22,15 @@ export class DocEnviadoService {
     saveDocEnviado(doc:  DocEnviado) {
         return this.http.post(`${this.API_URI}/documento/save`, doc);
     }
-    upload(file: File, archivo: any): Observable<HttpEvent<any>>{
+    upload(file: File, archivo: string): Observable<HttpEvent<any>>{
         const formData: FormData = new FormData();
         formData.append('files', file);
-        formData.append('archivo', "1");
+        console.log('archivo-'+archivo)
+        formData.append('archivo', archivo);
+
         //formData.append('archivo', JSON.stringify(archivo));
 
+        //return this.http.post<any>(`${this.API_URI}/upload`, formData, {   });
         const req = new HttpRequest('POST', `${this.API_URI}/upload`, formData, {
           reportProgress: true,
           responseType: 'json',
