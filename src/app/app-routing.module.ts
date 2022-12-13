@@ -43,6 +43,7 @@ import { VincularCarpetaComponent } from './components/vincular-carpeta/vincular
 import { DocRecibidosComponent } from './components/doc-recibidos/doc-recibidos.component';
 import { VistaDocComponent } from './components/vista-doc/vista-doc.component';
 import { PedidoInfoComponent } from './components/pedido-info/pedido-info.component';
+import { DocArchivadoComponent } from './components/doc-archivado/doc-archivado.component';
 import { DocumentoInformacionComponent} from './components/documento-informacion/documento-informacion.component';
 import { InmueblesComponent } from './components/documento-informacion/inmuebles/inmuebles.component';
 import { AgendaComponent } from './components/documento-informacion/agenda/agenda.component';
@@ -109,6 +110,7 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
                     {path: 'analista/docRecib/analisis/agenda/:id', component: AgendaComponent},
                     {path: 'analista/docRecib/analisis/juridica/:id', component: DocumentoInformacionComponent},
                     {path: 'analista/docRecib/analisis/telefono/:id', component: TelefonoComponent},
+                    {path: 'analista/docArchivado', component: DocArchivadoComponent},
                     {path: 'busqueda', component: BusquedaComponent},
                 ]
             },

@@ -3,10 +3,14 @@ import {MenuItem} from 'primeng/api';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { Telefono } from 'src/app/demo/domain/telefono';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-telefono',
   templateUrl: './telefono.component.html',
-  styleUrls: ['./telefono.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class TelefonoComponent implements OnInit {
 
@@ -18,11 +22,14 @@ export class TelefonoComponent implements OnInit {
   telefonos:any =[]
   telefono:Telefono = {};
 
+
   editITelefonoOption: boolean = false;
   deleteTelefonoDialog: boolean = false;
   deleteSelectedTelefonoId: number;
 
-  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
+
 
   ngOnInit(): void {
     
@@ -96,6 +103,11 @@ export class TelefonoComponent implements OnInit {
     this.firstService.saveTelefonoDoc(this.telefono).subscribe(
       res=>{
         this.getTelefonos()
+        if(this.telefono.id){
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Telefono Actualizado', life: 3000});
+        }else{
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de telefono Creado', life: 3000});
+        }
       },err=>console.log(err)
     )
     this.telefonoDialog= false;  

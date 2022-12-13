@@ -9,11 +9,14 @@ import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 import{ FirstService } from '../../demo/service/first-service'
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-doc-enviado',
   templateUrl: './doc-enviado.component.html',
-  styleUrls: ['./doc-enviado.component.scss']
+  styleUrls: ['../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 
 export class DocEnviadoComponent implements OnInit {
@@ -56,7 +59,10 @@ export class DocEnviadoComponent implements OnInit {
 
 
 
-  constructor(private documento: DocEnviadoService, private firstService: FirstService, private breadcrumbService: BreadcrumbService) { }
+  constructor(private documento: DocEnviadoService, private firstService: FirstService, private breadcrumbService: BreadcrumbService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
+
   docEnviadoDialog: boolean;
 
 
@@ -199,13 +205,15 @@ export class DocEnviadoComponent implements OnInit {
   save(){
     console.log("este documento se va a enviar:")
     console.log(this.docEnviado);
-    this.documento.saveDocEnviado(this.docEnviado).subscribe( x=>{
-        this.auxID = x['data']['documento']['id']
-        console.log(x['data']['documento']['id'])
-        this.uploadAllFiles();
-    }
-    )
-
+    this.documento.saveDocEnviado(this.docEnviado)
+    .subscribe(
+      res => {console.log(res)
+        this.getDocumentos()
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Creado', life: 3000});
+      },
+      err => {console.log("backend no responde");}
+        )
+        this.docEnviadoDialog = false;
 
   }
   getDocuments(){
@@ -221,6 +229,8 @@ export class DocEnviadoComponent implements OnInit {
       res =>{
         console.log(res);
         this.getDocuments()
+        this.getDocumentos()
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento eliminado', life: 3000});
       },
       err=> console.log(err)
     )

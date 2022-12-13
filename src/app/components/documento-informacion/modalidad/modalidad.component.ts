@@ -4,10 +4,13 @@ import{ FirstService } from '../../../demo/service/first-service'
 import { Router, ActivatedRoute } from '@angular/router';
 import { Modalidad } from 'src/app/demo/domain/modalidad';
 import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-modalidad',
   templateUrl: './modalidad.component.html',
-  styleUrls: ['./modalidad.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class ModalidadComponent implements OnInit {
   items: MenuItem[];
@@ -22,7 +25,8 @@ export class ModalidadComponent implements OnInit {
   deleteModalidadDialog: boolean = false;
   deleteModalidadId: number;
 
-  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -111,6 +115,11 @@ export class ModalidadComponent implements OnInit {
       res=>{
         console.log(res);
         this.getModalidades()
+        if(this.modalidad.id){
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Modalidad Actualizado', life: 3000});
+        }else{
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Modalidad Agregada', life: 3000});
+        }
       },err =>console.log(getMultipleValuesInSingleSelectionError)
     )
     this.modalidadDialog=false

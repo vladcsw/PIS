@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import{ FirstService } from '../../demo/service/first-service'
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
@@ -11,14 +12,16 @@ import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 @Component({
   selector: 'app-doc-inteligencia',
   templateUrl: './doc-inteligencia.component.html',
-  styleUrls: ['./doc-inteligencia.component.scss']
+  styleUrls: ['../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class DocInteligenciaComponent implements OnInit {
   documentoClasificacion: documentoClasificacion  [];
   documentoPrioridad: documentoPrioridad  [];
   documento:documento;
 
-  constructor(private breadcrumbService: BreadcrumbService, private firstService:FirstService, private router:Router, private activatedRoute:ActivatedRoute,) { }
+  constructor(private breadcrumbService: BreadcrumbService, private firstService:FirstService, private router:Router, private activatedRoute:ActivatedRoute,private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -85,7 +88,8 @@ export class DocInteligenciaComponent implements OnInit {
     this.firstService.archivarDoc(params['id']).subscribe(
       res=>{
         console.log(res)
-        this.router.navigate(["/analista/docRecibidos"])
+        
+        this.router.navigate(["/analista/docRecibidos"],{queryParams:{fromStore: 'si'}})
       },err=> console.log(err)
     )
   }

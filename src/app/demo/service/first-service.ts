@@ -125,5 +125,8 @@ export class FirstService {
    deleteTelefonoDoc(id:number){
     return this.http.delete(`${this.API_URI}documento_telefono/delete/${id}`)
    }
+   getDocumentosArchivados(){
+    return this.http.get(`${this.API_URI}documento/papelera`)
+   }
 
 }

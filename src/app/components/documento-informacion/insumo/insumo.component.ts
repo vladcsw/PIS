@@ -3,12 +3,14 @@ import {MenuItem} from 'primeng/api';
 import{ FirstService } from '../../../demo/service/first-service'
 import { Insumo } from 'src/app/demo/domain/insumo';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-insumo',
   templateUrl: './insumo.component.html',
-  styleUrls: ['./insumo.component.scss']
+  styleUrls: ['../../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class InsumoComponent implements OnInit {
   items: MenuItem[];
@@ -24,7 +26,8 @@ export class InsumoComponent implements OnInit {
   deleteSelectedInsumoId: number;
 
 
-  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute) { }
+  constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -109,6 +112,11 @@ export class InsumoComponent implements OnInit {
       res=>{
         console.log(res)
         this.getInsumos()
+        if(this.insumo.id){
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Inusmo Actualizado', life: 3000});
+        }else{
+          this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de insumo creado', life: 3000});
+        }
       },err=>console.log(err)
     )
     this.editInsumoOption = false;
