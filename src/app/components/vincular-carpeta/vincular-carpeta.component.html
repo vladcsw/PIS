@@ -24,9 +24,7 @@
                 </ng-template>
                 <ng-template pTemplate="header" > 
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
+                      
                         <th carpetatableColumn="id">Nº CARP.INT <p-sortIcon field="id"></p-sortIcon></th>
                         <th carpetatableColumn="alias">NOMBRE DE CARPETA INTELIGENCIA(ALIAS)  <p-sortIcon field="alias"></p-sortIcon></th>
                         <th carpetatableColumn="documento">FECHA <p-sortIcon field="documento"></p-sortIcon></th>
@@ -37,9 +35,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-carpeta>
                     <tr>
-                        <td>
-                            <p-tableCheckbox ></p-tableCheckbox>
-                        </td>
+                       
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Nº CARP.INT</span>
                             {{carpeta.id}}
                         </td>
@@ -54,9 +50,8 @@
                             {{carpeta.hora}}
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton
+                                    class="pi pi-link p-button-success mr-2" (click)="vincular(carpeta.id)"> Vincular</button>
                             </div>
                         </td>
                     </tr>
@@ -64,16 +59,7 @@
             </p-table>
         </div>
 
-        <p-fieldset legend="Acciones" >
-            <ng-template pTemplate="content">
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <button pButton pRipple label="ENVIAR"  class="p-button-success mr-2" ></button>
-                    </div>
-                    
-                </div>
-            </ng-template>
-        </p-fieldset>
+        
         
     </div>
 </div>

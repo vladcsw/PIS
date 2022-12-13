@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-
+            <p-toast position="bottom-right"></p-toast>
             <div class="flex flex-wrap align-items-center justify-content-center card-container">
                 <h5 class="text-center text-3xl">Bandeja de carpetas</h5>
             </div>
@@ -9,37 +9,24 @@
             <p-toolbar styleClass="mb-4 mt-3">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"  (click)="newDocAngente()" ></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"  (click)="crearCarpeta()" ></button>
                     </div>
                 </ng-template>
 
                 
             </p-toolbar>
             <br />
-            <p-fieldset legend="Filtros" >
-                <ng-template pTemplate="content">
-                    <div class="formgrid grid">
-                        <div class="field col">
-                            <label for="inicicios" class="mr-3">Inicio</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
-                        </div>
-                        <div class="field col" >
-                            <label for="name" class="mr-3">Fin</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-fieldset>
+
+
             <br/>
-            <p-table #dt   responsiveLayout="scroll" [rows]="10"
+            <p-table #dt [value]="carpetas"  responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
                 [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                  selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Administrar Documentos</h5>
+                        <h5 class="m-0">Administrar Carpetas</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
@@ -49,47 +36,27 @@
                 </ng-template>
                 <ng-template pTemplate="header" > 
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
                         <th pSortableColumn="tipoDocumento">Nº <p-sortIcon field="tipoDocumento"></p-sortIcon></th>
-                        <th pSortableColumn="nombre">ACCIONES  <p-sortIcon field="nombre"></p-sortIcon></th>
-                        <th pSortableColumn="primerApellido">CODIGO <p-sortIcon field="primerApellido"></p-sortIcon></th>
-                        <th pSortableColumn="segundoApellido">EQUIPO OPERATIVO <p-sortIcon field="segundoApellido"></p-sortIcon></th>
-                        <th pSortableColumn="documento">FECHA PEDIDO <p-sortIcon field="documento"></p-sortIcon></th>
-                        <th pSortableColumn="documento">FECHA REVISION  <p-sortIcon field="documento"></p-sortIcon></th>
-                        <th pSortableColumn="documento">CARPETA INTERNA <p-sortIcon field="documento"></p-sortIcon></th>
-                        <th pSortableColumn="documento">ESTADO <p-sortIcon field="documento"></p-sortIcon></th>
-                        <th></th>
+                        <th pSortableColumn="nombre">NOMBRE  <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="primerApellido">FECHA <p-sortIcon field="primerApellido"></p-sortIcon></th>
+                        <th>ACCIONES</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-person>
+                <ng-template pTemplate="body" let-carpeta>
                     <tr>
-                        <td>
-                            <p-tableCheckbox ></p-tableCheckbox>
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Documento</span>
-                            
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Nro</span>
+                            {{carpeta.id}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Nombre</span>
-                            
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">P .Apellido</span>
-                            
-                        </td>
-                        <td style="width:14%; min-width:8rem;">
-                            <span class="p-column-title">S .Apellido</span>
-                            
+                            {{carpeta.nombre}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Nro Documento </span>
-                            
+                            <span class="p-column-title">Fecha de creación</span>
+                            {{carpeta.fecha}}
                         </td>
-                        <td style="width:14%; min-width: 10rem;">
-                            <span class="p-column-title">Status</span>
-                            
-                        </td>
+                        
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
@@ -106,149 +73,25 @@
 
             <p-dialog [(visible)]="carpetaDialog" [style]="{width: '700px'}" header="Detalles del documento" [modal]="true" class="p-fluid">
                 <ng-template pTemplate="content">
-    
-                    <p-tabView  [(activeIndex)]="index">
-                       <p-tabPanel header = "Documento Inicial">
-                        <div class="field">
-                            <labe> Origen</labe>
-                            <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
-                        </div>
-                        <div class="field">
-                            <labe> CIP del instructor</labe>
-                            <span _ngcontent-lys-c169="" class="p-input-icon-right">
-                                <input _ngcontent-lys-c169="" type="text" pinputtext=""  class="p-inputtext p-component p-element">
-                                <i _ngcontent-lys-c169="" class="pi pi-search"></i>
-                            </span>
-                            
-                        </div>
-
-                        <p-fieldset legend="Datos del instructor" toggleable="true" class="line-height-3 m-0">
-                            <div class="formgrid grid">
-                                <div class="field col">
-                                    <div class="field">
-                                        <labe> Origen:</labe>
-                                    </div>
-                                    <div class="field">
-                                        <labe> CIP:</labe>
-                                    </div>
-                                    <div class="field">
-                                        <labe> DNI:</labe>
-                                    </div>
-                                    <div class="field">
-                                        <labe> Nombres:</labe>
-                                    </div>
-                                    <div class="field">
-                                        <labe> Grado:</labe>
-                                    </div>
-                                    <div class="field">
-                                        <labe> Unidad:</labe>
-                                    </div>
-                                </div>
-                                <div class="field col">
-                                    <div class="field">
-                                        <labe> Telefono:</labe>
-                                    </div>
-                                    <div class="field">
-                                        <labe> Email:</labe>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </p-fieldset>
-
-                        <div class="field mt-3">
-                            <labe> Tipo de documento</labe>
-                            <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
-                        </div>
-
-                        <div class="formgrid grid">
-                            <div class="field col">
-                                <labe> Numero</labe>
-                                <input _ngcontent-lys-c169="" type="text" pinputtext="" class="p-inputtext p-component p-element">
-                            </div>
-                            <div class="field col">
-                                <labe> Año</labe>
-                                <input _ngcontent-lys-c169="" type="text" pinputtext="" class="p-inputtext p-component p-element">
-                            </div>
-                        </div>
-                        <div class="formgrid grid">
-                            <div class="field col">
-                                <labe> Fecha de recepción</labe>
-                                <input type="date" pInputText id="name"   />
-                            </div>
-                            <div class="field col">
-                                <labe> Clasificación</labe>
-                                <p-dropdown [options]="clasificacion" optionLabel="name"></p-dropdown>
-                            </div>
-                        </div>
-                        <div class="field ">
-                            <labe> Resumen del hecho</labe>
-                            <textarea type="text" pInputText></textarea>
-                        </div>
-
-                       </p-tabPanel>
-                       <p-tabPanel header = "Archivos ajuntos" >
-                            <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" accept="application/pdf"></p-fileUpload>
-                        </p-tabPanel>
-                        <p-tabPanel header = "Previsualización">
-                            <div class="card">
-                                <p-fieldset legend="Datos del documento" >
-                                    <ng-template pTemplate="content">
-                                        <div class="formgrid grid">
-                                            <div class="field col">
-                                                <div class="field">
-                                                    <labe> Origen:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> CIP del instructor:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Tipo de documento:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Numero:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Fecha de recepción:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Año:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Año:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Resumen hecho:</labe>
-                                                </div>
-                                            </div>
-                                            <div class="field col" >
-                                                <div class="field">
-                                                    <labe> Año:</labe>
-                                                </div>
-                                                <div class="field">
-                                                    <labe> Clasificación:</labe>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-template>
-                                </p-fieldset>
-                            </div>
-                            <div class="card">
-                                <p-fieldset legend="Documentos adjuntos" >
-                                    <ng-template pTemplate="content">
-                                            <div class="field col">    
-                                            </div>
-                                    </ng-template>
-                                </p-fieldset>
-                            </div>
-                            
-                        </p-tabPanel>
-                    </p-tabView>
+                    <div class="field">
+                        <label for="nombre">Ingresar el nombre de la Carpeta</label>
+                        <input type="text" pInputText id="name"  [(ngModel)]="carpeta.nombre"/>    
+                    </div>
                 </ng-template>
     
                 <ng-template pTemplate="footer">
                     <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="openNext()"></button>
+                    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+                </ng-template>
+            </p-dialog>
+            <p-dialog [(visible)]="crearCarpetaDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
+                <div class="flex align-items-center justify-content-center">
+                    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                    <span>¿Deseas crear una nueva carpeta?</span>
+                </div>
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="crearCarpetaDialog = false"></button>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmCrearCarpeta()"></button>
                 </ng-template>
             </p-dialog>
         </div>

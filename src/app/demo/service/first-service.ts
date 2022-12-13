@@ -129,4 +129,12 @@ export class FirstService {
     return this.http.get(`${this.API_URI}documento/papelera`)
    }
 
+   getCarpetas(){
+    return this.http.get(`${this.API_URI}carpeta/list`)
+   }
+
+   saveCarpeta(carpeta:any){
+    return this.http.post(`${this.API_URI}carpeta/save`, carpeta);
+   }
+
 }

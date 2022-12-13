@@ -95,7 +95,7 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
                     {path: 'carpeta/carpeEnv', component: CarpetaComponent},
                     {path: 'analista/crearCarpeta', component: CrearCarpetaComponent},
                     {path: 'modulo', component: ModuloInicioComponent},// agrege
-                    {path: 'vincularc', component: VincularCarpetaComponent},//agregue
+                    {path: 'vincularc/:id', component: VincularCarpetaComponent},//agregue
                     {path: 'analista/docInteligencia/:id',component:DocInteligenciaComponent},
                     {path: 'analista/docRecibidos', component: DocRecibidosComponent},
                     {path: 'analista/vistaDoc', component: VistaDocComponent},

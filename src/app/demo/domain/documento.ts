@@ -14,4 +14,5 @@ export interface documento{
     documento_caracteristica_id?: number;
     id_dcumento_padre?: number;
     descripcion?: string;
+    carpeta_id?:number;
 }
