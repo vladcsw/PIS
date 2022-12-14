@@ -1,0 +1,92 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            
+            <div class="flex flex-wrap align-items-center justify-content-center card-container">
+                <h5 class="text-center text-3xl">DOCUMENTOS DE LA CARPETA</h5>
+            </div>
+           
+            <br />
+    
+
+            <br/>
+            <p-table #dt  [value]="documentos" responsiveLayout="scroll" [rows]="10"
+                [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"
+                [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                 selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Administrar Documentos</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Search..." />
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" > 
+                    <tr>
+                       
+                        <th pSortableColumn="tipoDocumento">CODIGO <p-sortIcon field="tipoDocumento"></p-sortIcon></th>
+                        <th pSortableColumn="nombre">TIPO DE DOCUMENTO  <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="primerApellido">ASUNTO <p-sortIcon field="primerApellido"></p-sortIcon></th>
+                        <th pSortableColumn="segundoApellido">PRIORIDAD <p-sortIcon field="segundoApellido"></p-sortIcon></th>
+                        <th pSortableColumn="documento">CLASIFICACION  <p-sortIcon field="documento"></p-sortIcon></th>
+                        
+                        <th pSortableColumn="documento">OBTENCION INFORMACION <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th pSortableColumn="documento">INSTRICUTOR <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th pSortableColumn="documento">SITUACION <p-sortIcon field="documento"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-documento>
+                    <tr>
+                    
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
+                            {{documento.codigo}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Tipo de documento</span>
+                            {{documento.tipoDocumento}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Asunto</span>
+                            {{documento.asunto}}
+                        </td>
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Prioridad</span>
+                            {{(documento.documento_prioridad_id)}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Clasificación </span>
+                            {{(documento.documento_clasificacion_id)}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;">
+                            <span class="p-column-title">Obtenciñon de inf</span>
+                            {{documento.obtencionInformacion}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;">
+                            <span class="p-column-title">Instructor</span>
+                            {{documento.instructor}}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;">
+                            <span class="p-column-title">Situación</span>
+                            {{documento.situacion}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <a [routerLink]="['/analista/docInteligencia', documento.id]" pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary mr-2"></a>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success mr-2"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                                
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        
+    </div>
+</div>

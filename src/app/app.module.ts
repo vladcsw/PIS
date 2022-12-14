@@ -182,6 +182,7 @@ import { TelefonoComponent } from './components/documento-informacion/telefono/t
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ParcComponent } from './components/busqueda/parc/parc.component';
 import { DocArchivadoComponent } from './components/doc-archivado/doc-archivado.component';
+import { DocumentosComponent } from './components/carpeta/documentos/documentos.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -351,6 +352,7 @@ FullCalendarModule.registerPlugins([
           BusquedaComponent,
           ParcComponent,
           DocArchivadoComponent,
+          DocumentosComponent,
 
     ],
     providers: [

@@ -36,6 +36,7 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { LoginComponent } from './components/login/login.component';
 import { DocEnviadoComponent } from './components/doc-enviado/doc-enviado.component';
 import { CarpetaComponent } from './components/carpeta/carpeta.component'
+import { DocumentosComponent } from './components/carpeta/documentos/documentos.component'
 import { DocInteligenciaComponent } from './components/doc-inteligencia/doc-inteligencia.component';
 import { CrearCarpetaComponent } from './components/crear-carpeta/crear-carpeta.component';
 import { PersonaNoIdentificadaComponent } from './components/persona-no-identificada/persona-no-identificada.component';
@@ -54,6 +55,7 @@ import { InsumoComponent } from './components/documento-informacion/insumo/insum
 import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
 import {  TelefonoComponent } from './components/documento-informacion/telefono/telefono.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
+
 
 
 
@@ -93,6 +95,7 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
                     {path: 'personaNoIdentificada', component: PersonaNoIdentificadaComponent},
                     {path: 'agente/docsEnv', component: DocEnviadoComponent},
                     {path: 'carpeta/carpeEnv', component: CarpetaComponent},
+                    {path: 'carpeta/carpeEnv/documentos/:id', component: DocumentosComponent},
                     {path: 'analista/crearCarpeta', component: CrearCarpetaComponent},
                     {path: 'modulo', component: ModuloInicioComponent},// agrege
                     {path: 'vincularc/:id', component: VincularCarpetaComponent},//agregue
