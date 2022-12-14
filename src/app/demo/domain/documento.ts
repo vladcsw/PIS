@@ -15,4 +15,5 @@ export interface documento{
     id_dcumento_padre?: number;
     descripcion?: string;
     carpeta_id?:number;
+    documento_organo_id?:number;
 }
