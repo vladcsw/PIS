@@ -5,12 +5,12 @@
             <div class="flex flex-wrap align-items-center justify-content-center card-container">
                 <h5 class="text-center text-3xl">TRATAMIENTO DE INFORMACIÓN - DOCUMENTO </h5>
             </div>
-            <p-tabMenu [model]="items"  [scrollable]="true" [activeItem]="items[7]"></p-tabMenu>
+            <p-tabMenu [model]="items"  [scrollable]="true" [activeItem]="items[6]"></p-tabMenu>
             <p-toolbar styleClass="mb-4 mt-3">
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"  (click)="newTelefono()"></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+                        
                     </div>
                 </ng-template>
             </p-toolbar>
@@ -33,6 +33,7 @@
                 <ng-template pTemplate="header" > 
                     <tr>
                         <th pSortableColumn="id">Proveedor <p-sortIcon field="id"></p-sortIcon></th>
+                        <th pSortableColumn="id">Numero telf. <p-sortIcon field="id"></p-sortIcon></th>
                         <th pSortableColumn="id">Propietario<p-sortIcon field="id"></p-sortIcon></th>
                         <th pSortableColumn="id">Poseseion <p-sortIcon field="id"></p-sortIcon></th>
                         <th></th>
@@ -44,6 +45,9 @@
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Proveedor</span>
                             {{telefono.persona_proveedor_id}}
                             
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Proveedor</span>
+                            {{telefono.numeroTelefono}}
                             
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Propietario</span>
@@ -76,13 +80,20 @@
                     <p-dropdown id="status" [options]="proveedores" optionLabel="descripcion" optionValue="id" placeholder="Seleccione un proveedor" [(ngModel)]="telefono.persona_proveedor_id" >
                     </p-dropdown>
                 </div>
+                
                 <div class="field">
-                    <label for="name">Propietario</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="telefono.persona_propietario_id"/>    
+                    <label for="">Número telefónico</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="telefono.numeroTelefono" />   
                 </div>
                 <div class="field">
                     <label for="name">Propietario</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="telefono.persona_posesion_id"/>    
+                    <p-dropdown  [options]="personasDoc"   optionLabel="nombre"  optionValue="id" placeholder="Seleccione una persona" [(ngModel)]="telefono.persona_propietario_id"></p-dropdown>
+                    
+                </div>
+                <div class="field">
+                    <label for="name">Propietario</label>
+                    <p-dropdown  [options]="personasDoc"   optionLabel="nombre"  optionValue="id" placeholder="Seleccione una persona" [(ngModel)]="telefono.persona_posesion_id"></p-dropdown>
+                    
                 </div>
             </ng-template>
 

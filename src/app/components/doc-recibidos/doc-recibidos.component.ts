@@ -39,8 +39,10 @@ export class DocRecibidosComponent implements OnInit {
 
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Archivado', life: 3000});
       }
+      if(params.get('fromFile')){
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Agregado a Carpeta', life: 3000});
+      }
     });
-
 
 
     this.breadcrumbService.setItems([

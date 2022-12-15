@@ -23,7 +23,7 @@ export class DocEnviadoComponent implements OnInit {
   documentoClasificacion: any = [];
   documentoPrioridad: any =[];
   documentos: any = [];
-  nuevoDocumento: documento;
+  nuevoDocumento: documento = {};
   organosPoliciales:any = [];
   subOrganos:any = [];
   tipoDocumento:any = [];
@@ -84,15 +84,15 @@ export class DocEnviadoComponent implements OnInit {
 
     if (this.organosPoliciales.length==0){
       this.organosPoliciales=[
-        {descripcion: 'Dirección Nacional de Investigación Criminal', id:'1'},
-        {descripcion: 'Dirección Antidrogas PNP', id:'2'},
-        {descripcion: 'Dirección de Investigación Criminal', id:'3'},
-        {descripcion: 'Dirección de Investigación de Lavado de Activos', id:'4'},
-        {descripcion: 'Dirección Contra la Trata de Personas y Tráfico Ilicito de Migrantes', id:'5'},
-        {descripcion: 'Dirección Contra la Corrupción', id:'6'},
-        {descripcion: 'Dirección de Policía Fiscal', id:'7'},
-        {descripcion: 'Dirección Nacional de Orden y Seguridad', id:'8'},
-        {descripcion: 'Dirección de Seguridad de Estado', id:'9'},
+        {descripcion: 'Dirección Nacional de Investigación Criminal', id:1},
+        {descripcion: 'Dirección Antidrogas PNP', id:2},
+        {descripcion: 'Dirección de Investigación Criminal', id:3},
+        {descripcion: 'Dirección de Investigación de Lavado de Activos', id:4},
+        {descripcion: 'Dirección Contra la Trata de Personas y Tráfico Ilicito de Migrantes', id:5},
+        {descripcion: 'Dirección Contra la Corrupción', id:6},
+        {descripcion: 'Dirección de Policía Fiscal', id:7},
+        {descripcion: 'Dirección Nacional de Orden y Seguridad', id:8},
+        {descripcion: 'Dirección de Seguridad de Estado', id:9},
       ]
     }
 
@@ -206,14 +206,13 @@ export class DocEnviadoComponent implements OnInit {
   }
 
   save(){
-    console.log("este documento se va a enviar:")
-    console.log(this.docEnviado);
-    this.documento.saveDocEnviado(this.docEnviado)
+
+    this.documento.saveDocEnviado(this.nuevoDocumento)
     .subscribe(
       res => {
 
         this.auxID = res['data']['documento']['id']
-        console.log(res['data']['documento']['id'])
+        
         this.uploadAllFiles();
         this.selectedFiles = null;
 
@@ -265,6 +264,10 @@ export class DocEnviadoComponent implements OnInit {
       }
     }
     return "No clasificado"
+  }
+  hideDialog(){
+    this.nuevoDocumento = {}
+    this.docEnviadoDialog = false;
   }
 
 

@@ -11,7 +11,7 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="newArma()" ></button>
-                        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"></button>
+                        
                     </div>
                 </ng-template>
             </p-toolbar>
@@ -125,11 +125,13 @@
 
                 <div class="field">
                     <label for="nombre">Propietario</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="arma.persona_propietario_id"/>    
+                    <p-dropdown  [options]="personasDoc"   optionLabel="nombre"  optionValue="id" placeholder="Seleccione una persona" [(ngModel)]="arma.persona_propietario_id"></p-dropdown>
+                    
                 </div>
                 <div class="field">
                     <label for="nombre">Posesión</label>
-                    <input type="text" pInputText id="name"  [(ngModel)]="arma.persona_procesion_id"/>    
+                    <p-dropdown  [options]="personasDoc"   optionLabel="nombre"  optionValue="id" placeholder="Seleccione una persona" [(ngModel)]="arma.persona_procesion_id"></p-dropdown>
+                    
                 </div>
 
               
