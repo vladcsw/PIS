@@ -58,7 +58,10 @@ export class DocInteligenciaComponent implements OnInit {
         this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   getPrioridadDocumento(){
@@ -67,7 +70,10 @@ export class DocInteligenciaComponent implements OnInit {
         this.documentoPrioridad = res['data']['PRIORIDAD']
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -76,7 +82,10 @@ export class DocInteligenciaComponent implements OnInit {
       res=>{
         this.documento = res['data']['documento']
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -104,7 +113,13 @@ export class DocInteligenciaComponent implements OnInit {
         console.log(res)
 
         this.router.navigate(["/analista/docRecibidos"],{queryParams:{fromStore: 'si'}})
-      },err=> console.log(err)
+      },err=> {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        {
+          this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+          console.log(err)
+        } 
+      } 
     )
   }
 }

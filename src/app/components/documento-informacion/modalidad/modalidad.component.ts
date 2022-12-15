@@ -79,7 +79,10 @@ export class ModalidadComponent implements OnInit {
     this.firstService.getModalidadDoc(params['id']).subscribe(
       res=>{
         this.modalidades = res
-      },err=>console.log(err)
+      },err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -110,7 +113,10 @@ export class ModalidadComponent implements OnInit {
         console.log(res);
         this.getModalidades();
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.deleteModalidadId = null;
 

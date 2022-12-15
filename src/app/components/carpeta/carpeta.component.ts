@@ -39,7 +39,11 @@ export class CarpetaComponent implements OnInit {
     this.firstService.getCarpetas().subscribe(
       res=>{
         this.carpetas = res['data']['CARPETA'];
-      },err => console.log(err)
+      },err =>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        
+        console.log(err)
+      } 
     )
   }
   editCarpeta(carpeta : any){
@@ -71,7 +75,10 @@ export class CarpetaComponent implements OnInit {
       res =>{
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Carpeta Creada', life: 3000});
         this.getCarpetas();
-      }, err => console.log(err)
+      }, err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.carpetaDialog = false
     this.editICarpetaOption = false;

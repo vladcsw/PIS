@@ -132,7 +132,10 @@ export class DocEnviadoComponent implements OnInit {
         this.documentoPrioridad = res['data']['PRIORIDAD']
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -142,7 +145,10 @@ export class DocEnviadoComponent implements OnInit {
         this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -152,7 +158,10 @@ export class DocEnviadoComponent implements OnInit {
         this.documentos = res
         this.allDocumentos=res
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
 
 
@@ -226,7 +235,10 @@ export class DocEnviadoComponent implements OnInit {
         this.getDocumentos()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Creado', life: 3000});
       },
-      err => {console.log("backend no responde");}
+      err =>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
         )
         this.docEnviadoDialog = false;
 
@@ -236,7 +248,10 @@ export class DocEnviadoComponent implements OnInit {
       res=>{
         this.documentos = res['data']['documentos']
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   delete(id:number){
@@ -247,7 +262,10 @@ export class DocEnviadoComponent implements OnInit {
         this.getDocumentos()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento eliminado', life: 3000});
       },
-      err=> console.log(err)
+      err=> {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
 
   }
