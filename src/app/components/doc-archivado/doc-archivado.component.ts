@@ -10,7 +10,8 @@ import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-doc-archivado',
   templateUrl: './doc-archivado.component.html',
-  styleUrls: ['./doc-archivado.component.scss']
+  styleUrls: ['../../../assets/demo/badges.scss'],
+  providers: [MessageService, ConfirmationService]
 })
 export class DocArchivadoComponent implements OnInit {
 

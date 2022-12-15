@@ -158,5 +158,13 @@ export class TelefonoComponent implements OnInit {
     this.telefonoDialog= false;  
     this.editITelefonoOption = false;
   }
+  replaceValuesPersona(idT:number){
+    for (let valor of this.personasDoc){
+      if(valor.id==idT){
+        return valor.nombre
+      }
+    } 
+    return "No clasificado"
+  }
 
 }

@@ -289,6 +289,16 @@ export class DocEnviadoComponent implements OnInit {
     }
     return "No clasificado"
   }
+  replaceValuesOrgano(idT:number){
+    for (let valor of this.organosPoliciales){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    }
+    return "No clasificado"
+  }
+  
+
   hideDialog(){
     this.nuevoDocumento = {}
     this.docEnviadoDialog = false;

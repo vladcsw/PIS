@@ -7,20 +7,7 @@
             </div>
 
             <br />
-            <p-fieldset legend="Filtros"  >
-                <ng-template pTemplate="content">
-                    <div class="formgrid grid">
-                        <div class="field col">
-                            <label for="inicicios" class="mr-3">Inicio</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
-                        </div>
-                        <div class="field col" >
-                            <label for="name" class="mr-3">Fin</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
-                        </div>
-                    </div>
-                </ng-template>
-            </p-fieldset>
+
             <br/>
             <p-table  [value]="documentos"
                 [globalFilterFields]="['documento_id']">

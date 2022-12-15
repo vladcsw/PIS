@@ -105,13 +105,13 @@
                 <p-tabView  [(activeIndex)]="index">
                    <p-tabPanel header = "Datos del documento">
                     <div class="field">
-                        <labe> Tipo de documento</labe>
+                        <label> Tipo de documento</label>
                         <p-dropdown  [options]="tipoDocumento"   optionLabel="descripcion"  optionValue="id" placeholder="Seleccione tipo documento"></p-dropdown>
                     </div>
                     <div class="formgrid grid">
 
                         <div class="field col">
-                            <labe> Organo</labe>
+                            <label> Organo</label>
                             <p-dropdown  [options]="organosPoliciales" optionLabel="descripcion"  optionValue="id" placeholder="Seleccione un organo" [(ngModel)]="nuevoDocumento.documento_organo_id"></p-dropdown>
                         </div>
 
@@ -119,31 +119,26 @@
                     </div>
 
                     <div class="field">
-                        <labe> Asunto</labe>
+                        <label> Asunto</label>
                         <textarea type="text" pInputText [(ngModel)]="nuevoDocumento.asunto"></textarea>
                     </div>
                     <div class="field">
-                        <labe> Prioridad</labe>
+                        <label> Prioridad</label>
                         <p-dropdown [options]="documentoPrioridad" optionLabel="descripcion" [(ngModel)]="nuevoDocumento.documento_prioridad_id" optionValue="id" placeholder="Seleccione una prioridad"></p-dropdown>
                     </div>
                     <div class="field">
-                        <labe> Clasificación</labe>
+                        <label> Clasificación</label>
                         <p-dropdown [options]="documentoClasificacion" optionLabel="descripcion" [(ngModel)]="nuevoDocumento.documento_clasificacion_id" optionValue="id" placeholder="Seleccione una clasificacion"></p-dropdown>
 
                     </div>
                     <div class="field">
-                        <labe> Fecha de obtención inf.</labe>
+                        <label> Fecha de obtención inf.</label>
 
                         <input type="date" pInputText id="name"  [(ngModel)]="nuevoDocumento.obtencionInformacion" />
                     </div>
-                    <div _ngcontent-lys-c169="" class="field">
-                        <labe> Agente que firma</labe>
-                        <span _ngcontent-lys-c169="" class="p-input-icon-right">
-                            <input _ngcontent-lys-c169="" type="text" [(ngModel)]="nuevoDocumento.documento_persona" pinputtext="" placeholder="Buscar CIP" class="p-inputtext p-component p-element">
-                            <i _ngcontent-lys-c169="" class="pi pi-search"></i>
-                        </span>     </div>
+
                     <div class="field">
-                        <labe> ¿Que, Quien, Cuando, Como?</labe>
+                        <label> ¿Que, Quien, Cuando, Como?</label>
                         <textarea type="text" pInputText  [(ngModel)]="nuevoDocumento.descripcion"  ></textarea>
                     </div>
 
@@ -163,51 +158,37 @@
                                     <div class="formgrid grid">
                                         <div class="field col">
                                             <div class="field">
-                                                <labe> Origen:</labe>
+                                                <label> Tipo de documento:</label>
+                                                <i>Nota de Agente</i>
                                             </div>
                                             <div class="field">
-                                                <labe> Tipo de documento:</labe>
-                                                <p></p>
+                                                <label> Organo:</label>
+                                                <i>{{nuevoDocumento.documento_organo_id == '' ? ' No seleccionado... ': replaceValuesOrgano(nuevoDocumento.documento_organo_id)}}</i>
                                             </div>
                                             <div class="field">
-                                                <labe> Número:</labe>
+                                                <label> Asunto:</label>
+                                                <i>{{nuevoDocumento.asunto == '' ? ' No seleccionado... ': nuevoDocumento.asunto}}</i>
                                                 
                                             </div>
                                             <div class="field">
-                                                <labe> Siglas:</labe>
+                                                <label> Prioridad:</label>
+                                                <i>{{nuevoDocumento.documento_prioridad_id == '' ? ' No seleccionado... ': replaceValuesPrioridad(nuevoDocumento.documento_prioridad_id)}}</i>
                                             </div>
                                             <div class="field">
-                                                <labe> Prioridad:</labe>
-                                                <p ></p>
+                                                <label> Clasificacion:</label>
+                                                <i>{{nuevoDocumento.documento_clasificacion_id == '' ? ' No seleccionado... ': replaceValuesClasificacion(nuevoDocumento.documento_clasificacion_id)}}</i>
                                             </div>
                                             <div class="field">
-                                                <labe> Fecha de recepción:</labe>
-                                                <p>{{nuevoDocumento.obtencionInformacion}}</p>
+                                                <label> Fecha de recepción:</label>
+                                                <i>{{nuevoDocumento.obtencionInformacion== '' ? ' No seleccionado... ': nuevoDocumento.obtencionInformacion}}</i>
                                             </div>
+
                                             <div class="field">
-                                                <labe> Resumen hecho:</labe>
+                                                <label>Cuerpo del documento:</label>
+                                                <i>{{nuevoDocumento.descripcion == '' ? ' No seleccionado... ': nuevoDocumento.descripcion}}</i>
                                             </div>
                                         </div>
-                                        <div class="field col" >
-                                            <div class="field">
-                                                <labe> Procedencia:</labe>
-                                            </div>
-                                            <div class="field">
-                                                <labe> Denominación:</labe>
-                                            </div>
-                                            <div class="field">
-                                                <labe> Año:</labe>
-                                            </div>
-                                            <div class="field">
-                                                <labe> Clasificación:</labe>
-                                            </div>
-                                            <div class="field">
-                                                <labe> Días plazo de atención:</labe>
-                                            </div>
-                                            <div class="field">
-                                                <labe> Número de folio:</labe>
-                                            </div>
-                                        </div>
+                                      
                                     </div>
                                 </ng-template>
                             </p-fieldset>

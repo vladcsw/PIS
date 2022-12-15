@@ -197,6 +197,14 @@ export class InmueblesComponent implements OnInit {
     } 
     return "No clasificado"
   }
+  replaceValuesPersona(idT:number){
+    for (let valor of this.personasDoc){
+      if(valor.id==idT){
+        return valor.nombre
+      }
+    } 
+    return "No clasificado"
+  }
 
 
 }
