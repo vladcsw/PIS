@@ -23,6 +23,7 @@ export class DocEnviadoComponent implements OnInit {
   documentoClasificacion: any = [];
   documentoPrioridad: any =[];
   documentos: any = [];
+  allDocumentos: any = [];
   nuevoDocumento: documento = {};
   organosPoliciales:any = [];
   subOrganos:any = [];
@@ -39,6 +40,10 @@ export class DocEnviadoComponent implements OnInit {
   fileInfos: Observable<any>;
 
   auxID: string;
+
+  //filtros
+  fechaInicio:any = ""
+  fechaFin:any = ""
 
 
   @HostBinding("class") classes ="row";
@@ -145,6 +150,7 @@ export class DocEnviadoComponent implements OnInit {
     this.firstService.getDocumento().subscribe(
       res=>{
         this.documentos = res
+        this.allDocumentos=res
       },
       err=>console.log(err)
     )
@@ -268,6 +274,17 @@ export class DocEnviadoComponent implements OnInit {
   hideDialog(){
     this.nuevoDocumento = {}
     this.docEnviadoDialog = false;
+  }
+
+  aplicarFiltro(){
+    
+    this.documentos = this.allDocumentos.filter(item => {
+      let fin:Date = new Date(this.fechaFin)
+      let inicio:Date = new Date(this.fechaInicio)
+      let fechaDoc:Date = new Date(item.obtencionInformacion)
+      if(fechaDoc>=inicio && fechaDoc<=fin){return true
+      }else{return false} 
+    })
   }
 
 

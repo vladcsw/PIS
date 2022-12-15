@@ -15,6 +15,11 @@ export class DocArchivadoComponent implements OnInit {
   documentoClasificacion:any = [];
   documentoPrioridad :any = [];
   documentos:any = [];
+  allDocumentos: any = [];
+
+  //filtros
+  fechaInicio:any = ""
+  fechaFin:any = ""
 
   constructor(private firstService: FirstService, ) { }
 
@@ -41,6 +46,8 @@ export class DocArchivadoComponent implements OnInit {
     this.firstService.getDocumentosArchivados().subscribe(
       res => {
         this.documentos = res
+        this.allDocumentos = res
+        
 
       },
       err => console.log(err)
@@ -62,6 +69,17 @@ export class DocArchivadoComponent implements OnInit {
       }
     }
     return "No clasificado"
+  }
+
+  aplicarFiltro(){
+    
+    this.documentos = this.allDocumentos.filter(item => {
+      let fin:Date = new Date(this.fechaFin)
+      let inicio:Date = new Date(this.fechaInicio)
+      let fechaDoc:Date = new Date(item.obtencionInformacion)
+      if(fechaDoc>=inicio && fechaDoc<=fin){return true
+      }else{return false} 
+    })
   }
 
 }

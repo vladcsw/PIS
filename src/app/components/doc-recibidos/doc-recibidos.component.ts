@@ -19,7 +19,12 @@ export class DocRecibidosComponent implements OnInit {
   documentoClasificacion: documentoClasificacion  [];
   documentoPrioridad: documentoPrioridad  [];
   documentos: any=[];
+  allDocumentos: any = [];
   nuevoDocumento: documento;
+
+    //filtros
+    fechaInicio:any = ""
+    fechaFin:any = ""
 
   constructor(private router: Router,  private firstService: FirstService,
     private breadcrumbService: BreadcrumbService,
@@ -82,6 +87,7 @@ export class DocRecibidosComponent implements OnInit {
     this.firstService.getDocumento().subscribe(
       res=>{
         this.documentos = res
+        this.allDocumentos=res
       },
       err=>console.log(err)
     )
@@ -113,6 +119,15 @@ export class DocRecibidosComponent implements OnInit {
       }
     }
     return "No clasificado"
+  }
+  aplicarFiltro(){
+    this.documentos = this.allDocumentos.filter(item => {
+      let fin:Date = new Date(this.fechaFin)
+      let inicio:Date = new Date(this.fechaInicio)
+      let fechaDoc:Date = new Date(item.obtencionInformacion)
+      if(fechaDoc>=inicio && fechaDoc<=fin){return true
+      }else{return false} 
+    })
   }
 
 

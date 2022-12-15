@@ -12,11 +12,17 @@
                     <div class="formgrid grid">
                         <div class="field col">
                             <label for="inicicios" class="mr-3">Inicio</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
+                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body" [(ngModel)]="fechaInicio"></p-calendar>
                         </div>
                         <div class="field col" >
                             <label for="name" class="mr-3">Fin</label>
-                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body"></p-calendar>
+                            <p-calendar [showIcon]="true" inputId="icon" appendTo="body" [(ngModel)]="fechaFin"></p-calendar>
+                        </div>
+                    </div>
+                    <div class="formgrid grid">
+                        <div class="field col-6">
+                            <button pButton pRipple label="Buscar" icon="pi pi-plus" class="p-button-success mr-2"  (click)="aplicarFiltro()"></button>
+                            <button pButton pRipple label="Limpiar" icon="pi pi-trash" class="p-button-danger" (click)="getDocuments()"></button>
                         </div>
                     </div>
                 </ng-template>
