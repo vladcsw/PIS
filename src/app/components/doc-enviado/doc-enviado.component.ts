@@ -235,7 +235,10 @@ export class DocEnviadoComponent implements OnInit {
         this.getDocumentos()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Creado', life: 3000});
       },
-      err => {console.log("backend no responde");}
+      err =>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
         )
         this.docEnviadoDialog = false;
 
