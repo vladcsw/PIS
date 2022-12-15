@@ -16,8 +16,8 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class DocRecibidosComponent implements OnInit {
 
-  documentoClasificacion: documentoClasificacion  [];
-  documentoPrioridad: documentoPrioridad  [];
+  documentoClasificacion: any = [];
+  documentoPrioridad: any =[];
   documentos: any=[];
   allDocumentos: any = [];
   nuevoDocumento: documento;
@@ -38,7 +38,20 @@ export class DocRecibidosComponent implements OnInit {
   ngOnInit(): void {
     /* Detectar si la ruta proviene de el archivo de documentos */
     const params = this.route.snapshot.queryParamMap;
-
+    if(this.documentoClasificacion.length ==0){
+      this.documentoClasificacion=[
+        {descripcion: 'baja', id:1},
+        {descripcion: 'media', id:2},
+        {descripcion: 'alta', id:3},
+      ]
+    }
+    if (this.documentoPrioridad.length==0){
+      this.documentoPrioridad = [
+        {descripcion: 'baja', id:1},
+        {descripcion: 'media', id:2},
+        {descripcion: 'alta', id:3},
+      ]
+    }
     setTimeout(() => {
       if(params.get('fromStore')){
 
@@ -49,6 +62,7 @@ export class DocRecibidosComponent implements OnInit {
       }
     });
 
+    
 
     this.breadcrumbService.setItems([
       {label: 'Analista'},
@@ -59,6 +73,27 @@ export class DocRecibidosComponent implements OnInit {
     this.getPrioridadDocumento()
     this.getClasificacionDocumento()
   }
+
+  replaceValuesClasificacion(idT:number){
+    for (let valor of this.documentoClasificacion){
+      if(valor.id==idT){
+        return valor.descripcion
+      }
+    }
+    return "No clasificado"
+  }
+  
+  replaceValuesPrioridad(idT:number){
+    for (let valor of this.documentoPrioridad){
+      if(valor.id==idT){
+
+        return valor.descripcion
+        
+      }
+    }
+    return "No clasificado"
+  }
+
   redirect() {
     this.router.navigate(['analista/vistaDoc']);
 
@@ -116,22 +151,9 @@ export class DocRecibidosComponent implements OnInit {
 
   }
 
-  replaceValuesClasificacion(idT:number){
-    for (let valor of this.documentoClasificacion){
-      if(valor.id==idT){
-        return valor.descripcion
-      }
-    }
-    return "No clasificado"
-  }
-  replaceValuesPrioridad(idT:number){
-    for (let valor of this.documentoPrioridad){
-      if(valor.id==idT){
-        return valor.descripcion
-      }
-    }
-    return "No clasificado"
-  }
+
+
+
   aplicarFiltro(){
     this.documentos = this.allDocumentos.filter(item => {
       let fin:Date = new Date(this.fechaFin)

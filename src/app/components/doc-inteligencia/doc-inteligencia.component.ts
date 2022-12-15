@@ -47,7 +47,23 @@ export class DocInteligenciaComponent implements OnInit {
       {label: 'Analista'},
       {label: 'Documentos recibidos'},
       {label: 'Detalle'}
+      
   ]);
+
+  if(this.documentoClasificacion.length ==0){
+    this.documentoClasificacion=[
+      {descripcion: 'baja', id:1},
+      {descripcion: 'media', id:2},
+      {descripcion: 'alta', id:3},
+    ]
+  }
+  if (this.documentoPrioridad.length==0){
+    this.documentoPrioridad = [
+      {descripcion: 'baja', id:1},
+      {descripcion: 'media', id:2},
+      {descripcion: 'alta', id:3},
+    ]
+  }
 
   }
 
