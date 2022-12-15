@@ -6,6 +6,7 @@ import{ FirstService } from '../../../demo/service/first-service'
 import { Inmueble } from 'src/app/demo/domain/inmueble';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
   selector: 'app-inmuebles',
@@ -32,9 +33,17 @@ export class InmueblesComponent implements OnInit {
   personasDoc:any=[]//personas del documento
   
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
+    this.breadcrumbService.setItems([
+      {label: 'Analista'},
+      {label: 'Documentos recibidos'},
+      {label: 'Tratamiento de Informacion '},
+      {label: 'Inmuebles '}
+
+  ]);
+
     const params = this.activatedRoute.snapshot.params;
     this.items = [
       {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis', params['id']]},

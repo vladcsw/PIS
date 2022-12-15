@@ -1,14 +1,10 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-
             <div class="flex flex-wrap align-items-center justify-content-center card-container">
                 <h5 class="text-center text-3xl">DOCUMENTOS DE LA CARPETA</h5>
             </div>
-
             <br />
-
-
             <br/>
             <p-table #dt  [value]="documentos" responsiveLayout="scroll" [rows]="10"
                 [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10"

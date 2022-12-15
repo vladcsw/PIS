@@ -18,6 +18,11 @@ export class CarpetaComponent implements OnInit {
   carpetas:any = []
   carpeta:any ={}
 
+  editICarpetaOption: boolean = false;
+  deleteCarpetaDialog: boolean = false;
+  deleteSelectedCarpetaId: number;
+  
+
   constructor(private breadcrumbService: BreadcrumbService, private firstService:FirstService,private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
 
@@ -37,6 +42,29 @@ export class CarpetaComponent implements OnInit {
       },err => console.log(err)
     )
   }
+  editCarpeta(carpeta : any){
+    this.carpetaDialog = true;
+    this.editICarpetaOption = true;
+    this.carpeta = {...carpeta};
+
+  }
+  deleteTelefono(id: number){
+    this.deleteCarpetaDialog= true;
+    this.deleteSelectedCarpetaId = id;
+  }
+  
+  confirmDeleteCarpeta(){
+    this.deleteCarpetaDialog= false;
+    this.firstService.deleteCarpeta(this.deleteSelectedCarpetaId).subscribe(
+      res => {
+        console.log(res);
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Caarpeta eliminada correctamente', life: 3000});
+        this.getCarpetas();
+      },
+      err => console.log("error deleting carpeta")
+    )
+    this.deleteSelectedCarpetaId = null;
+  }
 
   save(){
     this.firstService.saveCarpeta(this.carpeta).subscribe(
@@ -46,6 +74,7 @@ export class CarpetaComponent implements OnInit {
       }, err => console.log(err)
     )
     this.carpetaDialog = false
+    this.editICarpetaOption = false;
   }
 
   openNext() {

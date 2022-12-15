@@ -5,15 +5,12 @@
             <div class="flex flex-wrap align-items-center justify-content-center card-container">
                 <h5 class="text-center text-3xl">Bandeja de carpetas</h5>
             </div>
-
             <p-toolbar styleClass="mb-4 mt-3">
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2"  (click)="crearCarpeta()" ></button>
                     </div>
                 </ng-template>
-
-                
             </p-toolbar>
             <br />
 
@@ -56,13 +53,12 @@
                             <span class="p-column-title">Fecha de creación</span>
                             {{carpeta.fecha}}
                         </td>
-                        
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="editCarpeta(carpeta)"></button>
                                     <a [routerLink]="['/carpeta/carpeEnv/documentos', carpeta.id]" pButton pRipple icon="pi pi-folder-open " class="p-button-rounded p-button-primary mr-2"></a>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteTelefono(carpeta.id)"></button>
                                 
                                 
 
@@ -75,10 +71,13 @@
 
 
 
-            <p-dialog [(visible)]="carpetaDialog" [style]="{width: '700px'}" header="Detalles del documento" [modal]="true" class="p-fluid">
+            <p-dialog [(visible)]="carpetaDialog" 
+            [style]="{width: '700px'}"
+             header="{{ editICarpetaOption ? 'Editar Carpta' : 'Detalle de la carpeta' }}"
+             [modal]="true" class="p-fluid">
                 <ng-template pTemplate="content">
                     <div class="field">
-                        <label for="nombre">Ingresar el nombre de la Carpeta</label>
+                        <label for="nombre">Nombre de la carpeta</label>
                         <input type="text" pInputText id="name"  [(ngModel)]="carpeta.nombre"/>    
                     </div>
                 </ng-template>
@@ -88,6 +87,7 @@
                     <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
                 </ng-template>
             </p-dialog>
+
             <p-dialog [(visible)]="crearCarpetaDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
                 <div class="flex align-items-center justify-content-center">
                     <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
@@ -98,6 +98,19 @@
                     <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmCrearCarpeta()"></button>
                 </ng-template>
             </p-dialog>
+
+            <p-dialog [(visible)]="deleteCarpetaDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
+                <div class="flex align-items-center justify-content-center">
+                    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                    <span>¿Deseas eliminar la carpeta seleccionada?</span>
+                </div>
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteCarpetaDialog = false"></button>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDeleteCarpeta()"></button>
+                </ng-template>
+            </p-dialog>
+
+            
         </div>
     </div>
 </div>

@@ -5,6 +5,8 @@ import { Insumo } from 'src/app/demo/domain/insumo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
+
 
 @Component({
   selector: 'app-insumo',
@@ -27,10 +29,19 @@ export class InsumoComponent implements OnInit {
 
 
   constructor(private firstService:FirstService, private activatedRoute:ActivatedRoute, private messageService: MessageService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
+
+    this.breadcrumbService.setItems([
+      {label: 'Analista'},
+      {label: 'Documentos recibidos'},
+      {label: 'Tratamiento de Informacion '},
+      {label: 'Insumos '}
+
+  ]);
+
     this.items = [
       {label: 'PERSONAS', icon: 'pi pi-fw pi-users', routerLink: ['/analista/docRecib/analisis', params['id']]},
       {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', routerLink: ['/analista/docRecib/analisis/inmuebles', params['id']]},

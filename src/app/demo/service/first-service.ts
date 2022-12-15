@@ -109,6 +109,10 @@ export class FirstService {
    savePersona(persona:any){
     return this.http.post(`${this.API_URI}persona/save`,persona);
    }
+   deletePersonaDoc(id:number){
+    return this.http.delete(`${this.API_URI}persona/delete/${id}`)
+   }
+
    getPersonaByDni(dni:any){
     return this.http.get(`${this.API_URI}persona/getDNI/${dni}`)
    }
@@ -135,6 +139,9 @@ export class FirstService {
 
    saveCarpeta(carpeta:any){
     return this.http.post(`${this.API_URI}carpeta/save`, carpeta);
+   }
+   deleteCarpeta(id:number){
+    return this.http.delete(`${this.API_URI}carpeta/delete/${id}`)
    }
 
 

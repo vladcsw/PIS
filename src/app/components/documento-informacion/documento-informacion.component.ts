@@ -46,6 +46,9 @@ export class DocumentoInformacionComponent implements OnInit {
   results2: any[];
   results: any[];
 
+  editPersonOption: boolean = false;
+  deletePersonDialog: boolean = false;
+  deleteSelectedPersonId: number;
   
 
 
@@ -57,14 +60,19 @@ export class DocumentoInformacionComponent implements OnInit {
     this.breadcrumbService.setItems([
       {label: 'Analista'},
       {label: 'Documentos recibidos'},
-      {label: 'Tratamiento de Informacion '}
+      {label: 'Tratamiento de Informacion'},
+      {label: 'Persona '}
+
   ]);
     
   const params = this.activatedRoute.snapshot.params;
-
+  
     this.items = [
       {label: 'PERSONAS', icon: 'pi pi-fw pi-users'},
-      {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', routerLink: ['/analista/docRecib/analisis/inmuebles', params['id']]},
+      {label: 'INMUEBLES', icon: 'pi pi-fw pi-home', 
+      routerLink: ['/analista/docRecib/analisis/inmuebles', params['id']]
+      
+      },
       //{label: 'EMPRESAS', icon: 'pi pi-fw pi-globe', routerLink: ['/analista/docRecib/analisis/empresas', params['id']]},
       {label: 'INSUMOS', icon: 'pi pi-fw pi-box', routerLink: ['/analista/docRecib/analisis/insumos', params['id']]},
       {label: 'ARMAS', icon: 'pi pi-fw pi-shield', routerLink: ['/analista/docRecib/analisis/armas', params['id']]},
@@ -78,8 +86,8 @@ export class DocumentoInformacionComponent implements OnInit {
 
   if(this.generos.length==0){
     this.generos=[
-      {descripcion: 'Masculino', id:'1'},
-      {descripcion: 'Femenino', id:'2'},
+      {descripcion: 'Masculino', id:1},
+      {descripcion: 'Femenino', id:2},
     ]
   }
   if(this.estadoCivil.length==0){
@@ -92,25 +100,25 @@ export class DocumentoInformacionComponent implements OnInit {
   }
   if(this.tipoDocumentos.length==0){
     this.tipoDocumentos=[
-      {descripcion: 'DNI', id:'1'},
-      {descripcion: 'Pasaporte', id:'2'},
-      {descripcion: 'Carnet de extragería', id:'3'},
-      {descripcion: 'Partida de nacimiento', id:'4'},
+      {descripcion: 'DNI', id:1},
+      {descripcion: 'Pasaporte', id:2},
+      {descripcion: 'Carnet de extragería', id:3},
+      {descripcion: 'Partida de nacimiento', id:4},
     ]
   }
   if(this.nacionalidades.length==0){
     this.nacionalidades=[
-      {descripcion: 'Peruana', id:'1'},
-      {descripcion: 'Venezolana', id:'2'},
-      {descripcion: 'Argentino', id:'3'},
-      {descripcion: 'Colombiano', id:'4'},
-      {descripcion: 'Chileno', id:'5'},
-      {descripcion: 'Español', id:'6'},
-      {descripcion: 'Americano', id:'7'},
-      {descripcion: 'Ingles', id:'8'},
-      {descripcion: 'Ruso', id:'9'},
-      {descripcion: 'Frances', id:'10'},
-      {descripcion: 'Italiano', id:'11'},
+      {descripcion: 'Peruana', id:1},
+      {descripcion: 'Venezolana', id:2},
+      {descripcion: 'Argentino', id:3},
+      {descripcion: 'Colombiano', id:4},
+      {descripcion: 'Chileno', id:5},
+      {descripcion: 'Español', id:6},
+      {descripcion: 'Americano', id:7},
+      {descripcion: 'Ingles', id:8},
+      {descripcion: 'Ruso', id:9},
+      {descripcion: 'Frances', id:10},
+      {descripcion: 'Italiano', id:11},
     ]
   }
   
@@ -177,6 +185,31 @@ export class DocumentoInformacionComponent implements OnInit {
     this.personaDialog = true;
     
   }
+  editPersona(persona: Persona){
+    this.personaDialog = true
+    this.editPersonOption = true;
+    this.persona = {...persona};
+  }
+
+  deletePersona(id: number){
+    this.deletePersonDialog= true;
+    this.deleteSelectedPersonId = id;
+  }
+
+  confirmDeletePersona(){
+    this.deletePersonDialog= false;
+    this.firstService.deletePersonaDoc(this.deleteSelectedPersonId).subscribe(
+      res => {
+        console.log(res);
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Persona eliminado correctamente', life: 3000});
+        this.getPersonas();
+      },
+      err => console.log("error deleting persona")
+    )
+    this.deleteSelectedPersonId = null;
+
+  }
+
 
   hideDialog() {
     this.personaDialog = false;  
@@ -214,6 +247,7 @@ export class DocumentoInformacionComponent implements OnInit {
     
 
     this.personaDialog = false;
+    this.editPersonOption = false;
     //agregar a la persona
     //buscarla 
     //agregarla al documento 
@@ -229,6 +263,7 @@ export class DocumentoInformacionComponent implements OnInit {
         this.getPersonas()
       },err=>console.log(err)
     )
+    this.editPersonOption = false;
   }
 
   replaceValuesGenero(idT:number){

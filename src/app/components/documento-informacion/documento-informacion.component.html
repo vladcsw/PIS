@@ -88,8 +88,8 @@
                             
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
+                                    class="p-button-rounded p-button-success mr-2"  (click)="editPersona(persona)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePersona(persona.id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -101,7 +101,10 @@
 
         </div>
 
-        <p-dialog [(visible)]="personaDialog" [style]="{width: '700px'}" header="Detalles de la persona" [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="personaDialog" 
+        [style]="{width: '700px'}" 
+        header="{{ editPersonOption ? 'Editar Persona' : 'Detalle de la persona' }}"
+         [modal]="true" class="p-fluid">
             <p-tabView>
                 <p-tabPanel header="Registrar persona">
                    
@@ -233,6 +236,17 @@
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
                 
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deletePersonDialog" header="Confirmar" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span>¿Deseas eliminar la persona seleccionada?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletePersonDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Si" (click)="confirmDeletePersona()"></button>
             </ng-template>
         </p-dialog>
 
