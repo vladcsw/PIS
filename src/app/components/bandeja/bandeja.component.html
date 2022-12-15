@@ -1,0 +1,80 @@
+<p-toast position="bottom-right"></p-toast>
+<div *ngIf="firma === '1'">
+
+    <div *ngIf="msg?.length===0" class="chicken">
+        <a pButton type="button" label="Redactar Solicitud" icon="pi pi-check" class="mr-2" (click)="solicitud()"></a>
+    </div>
+    <div *ngFor="let m of msg"    >
+        <div [ngClass]="{'cat':m.firma === 2, 'dog':m.firma === 1}"  >
+            <div *ngIf="m.firma === 2">
+                <p-card header="{{m.asunto}}"  subheader="{{m.de}}" [style]="{width: '800px'}" styleClass="p-card-shadow" >
+                    <pre>{{m.pedido}}</pre>
+                    <ng-template pTemplate="footer" >
+                        <div *ngIf="aux === m" class="dog">
+                            <!-- <p-button label="Responder" icon="pi pi-check"  ></p-button> -->
+                            <a pButton [routerLink]="['/analista/pedidoInf/',id,1]" type="button" label="Responder" icon="pi pi-check" class="mr-2"></a>
+                        </div>
+                    </ng-template>
+                </p-card>
+            </div>
+            <div *ngIf="m.firma === 1">
+                <p-card header="{{m.asunto}}"  subheader="{{m.de}}" [style]="{width: '800px', 'background-color':'var(--cyan-100)'}" styleClass="p-card-shadow" >
+                    <pre>{{m.pedido}}</pre>
+                    <ng-template pTemplate="footer" >
+                        <div *ngIf="aux === m" class="dog">
+                            <!-- <p-button label="Responder" icon="pi pi-check"  ></p-button> -->
+                            <a pButton [routerLink]="['/analista/pedidoInf/',id,1]" type="button" label="Responder" icon="pi pi-check" class="mr-2"></a>
+                        </div>
+                    </ng-template>
+                </p-card>
+            </div>
+            </div>
+        <br>
+    </div>
+</div>
+
+<div *ngIf="firma === '2'">
+    <div *ngFor="let m of msg">
+        <div [ngClass]="{'dog':m.firma === 2, 'cat':m.firma === 1}">
+        <!-- <div [ngClass]="{'dog':m.firma === 2, 'cat':m.firma === 1}">
+            <p-card header="{{m.asunto}}"  subheader="{{m.de}}" [style]="{width: '800px'}" styleClass="p-card-shadow">
+                <p >{{m.pedido}}</p>
+                <ng-template pTemplate="footer">
+                    <div *ngIf="aux === m" class="dog">
+                        <a pButton [routerLink]="['/analista/pedidoInf/',id,2]" type="button" label="Responder" icon="pi pi-check" class="mr-2"></a>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div> -->
+        <div *ngIf="m.firma === 1">
+            <p-card header="{{m.asunto}}"  subheader="{{m.de}}" [style]="{width: '800px'}" styleClass="p-card-shadow" >
+                <pre>{{m.pedido}}</pre>
+                <ng-template pTemplate="footer" >
+                    <div *ngIf="aux === m" class="dog">
+                        <!-- <p-button label="Responder" icon="pi pi-check"  ></p-button> -->
+                        <a pButton [routerLink]="['/analista/pedidoInf/',id,2]" type="button" label="Responder" icon="pi pi-check" class="mr-2"></a>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+        <div *ngIf="m.firma === 2">
+            <p-card header="{{m.asunto}}"  subheader="{{m.de}}" [style]="{width: '800px', 'background-color':'var(--cyan-100)'}" styleClass="p-card-shadow" >
+                <pre>{{m.pedido}}</pre>
+                <ng-template pTemplate="footer" >
+                    <div *ngIf="aux === m" class="dog">
+                        <!-- <p-button label="Responder" icon="pi pi-check"  ></p-button> -->
+                        <a pButton [routerLink]="['/analista/pedidoInf/',id,2]" type="button" label="Responder" icon="pi pi-check" class="mr-2"></a>
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+
+        <br>
+    </div>
+
+</div>
+
+<div #divx>
+</div>
+

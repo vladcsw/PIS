@@ -32,7 +32,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Modulo Agente',
                 items:[
                     {label:'Envio de doc', icon: 'pi pi-fw pi-send',routerLink: ['agente/docsEnv']},
-                    {label:'Solicitudes de inf.', icon: 'pi pi-fw pi-file'}
+                    {label:'Solicitudes de inf.', icon: 'pi pi-fw pi-file',routerLink: ['solicitudes']}
                 ]
             },
             {

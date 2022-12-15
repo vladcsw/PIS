@@ -54,6 +54,8 @@ import { InsumoComponent } from './components/documento-informacion/insumo/insum
 import { ModalidadComponent } from './components/documento-informacion/modalidad/modalidad.component';
 import {  TelefonoComponent } from './components/documento-informacion/telefono/telefono.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { BandejaComponent } from './components/bandeja/bandeja.component';
+import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 
 
 
@@ -99,7 +101,7 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
                     {path: 'analista/docInteligencia/:id',component:DocInteligenciaComponent},
                     {path: 'analista/docRecibidos', component: DocRecibidosComponent},
                     {path: 'analista/vistaDoc', component: VistaDocComponent},
-                    {path: 'analista/pedidoInf', component: PedidoInfoComponent},
+                    {path: 'analista/pedidoInf/:id/:firma', component: PedidoInfoComponent},
                     {path: 'analista/docRecib/analisis/:id', component: DocumentoInformacionComponent},
                     {path: 'analista/docRecib/analisis/inmuebles/:id', component: InmueblesComponent},
                     {path: 'analista/docRecib/analisis/empresas/:id', component: EmpresasComponent},
@@ -112,6 +114,8 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
                     {path: 'analista/docRecib/analisis/telefono/:id', component: TelefonoComponent},
                     {path: 'analista/docArchivado', component: DocArchivadoComponent},
                     {path: 'busqueda', component: BusquedaComponent},
+                    {path: 'bandeja/:id/:firma', component: BandejaComponent},
+                    {path: 'solicitudes', component: SolicitudesComponent},
                 ]
             },
             {path: 'login', component: LoginComponent},

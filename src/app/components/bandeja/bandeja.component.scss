@@ -1,0 +1,22 @@
+.cat{
+ display: flex;
+ justify-content: start;
+ align-items: center;
+}
+
+.dog{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+   }
+
+   .chicken{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+.pig{
+    background-color:red;
+}
+

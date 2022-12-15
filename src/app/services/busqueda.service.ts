@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { options } from 'preact';
 import { observable } from 'rxjs';
 
@@ -17,6 +17,22 @@ export class BusquedaService {
 
     getDocumento(id: string){
         return this.http.get(`${this.API_URI}/documento/get/${id}`);
+    }
+
+    getAllDocumento(id: any){
+        return this.http.get(`${this.API_URI}/documento/getAll/${id}`);
+    }
+
+    savePedido(tabla:string, pedido: any) {
+        return this.http.post(`${this.API_URI}/${tabla}/save`, pedido);
+    }
+
+    getPedido(id:string) {
+        return this.http.get(`${this.API_URI}/tratamiento/pedido/${id}`);
+    }
+
+    getPedidoDistinct() {
+        return this.http.get(`${this.API_URI}/tratamiento/pedido/distinct/`);
     }
 
     getDataPost(tabla: string){

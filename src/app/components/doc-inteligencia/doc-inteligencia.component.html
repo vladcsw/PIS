@@ -1,7 +1,9 @@
 <div class="grid">
     <div class="col-12">
+        <p-toast position="bottom-right"></p-toast>
         <div class="card">
             <p-toast position="bottom-right"></p-toast>
+
             <div class="flex flex-wrap align-items-center justify-content-center card-container">
                 <h5 class="text-center text-3xl">DOCUMENTO INTELIGENCIA - RECIBIDO </h5>
             </div>
@@ -28,7 +30,7 @@
                                 <b> Descripción:</b>
                                 <p>{{documento.descripcion}}</p>
                             </div>
-                           
+
                         </div>
                         <div class="field col" >
                             <div class="field">
@@ -42,21 +44,21 @@
                         </div>
                     </div>
                         <div class="field col">
-                            
+
                             <a [routerLink]="['/analista/docRecib/analisis', documento.id]" pButton type="button" label="Tratamiento de información" class=" mr-2 p-button-warning"></a>
-                            <a [routerLink]="['/analista/pedidoInf']" pButton type="button" label="Pedido de información" class=" mr-2 p-button-warning"></a>
+                            <a [routerLink]="['/analista/pedidoInf', documento.id, 1]" pButton type="button" label="Pedido de información" class=" mr-2 p-button-warning"></a>
                             <a pButton type="button" label="Archivar documento " class=" mr-2 p-button-warning" (click)="sendToStore()"></a>
                             <a [routerLink]="['/vincularc']" pButton type="button" label="Vincular a una carpeta" class=" mr-2 p-button-warning"></a>
                             <button pButton type="button" label="Crear carpeta" class=" mr-2 p-button-warning"></button>
 
 
-
-                           
                         </div>
-                        
-                
+
+
                 </ng-template>
             </p-fieldset>
-            </div>
+        </div>
+
+
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
@@ -7,7 +7,9 @@ import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
-
+import { BusquedaService } from 'src/app/services/busqueda.service';
+import { compileClassMetadata } from '@angular/compiler';
+import { waitForAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'app-doc-inteligencia',
@@ -19,11 +21,23 @@ export class DocInteligenciaComponent implements OnInit {
   documentoClasificacion: documentoClasificacion  [];
   documentoPrioridad: documentoPrioridad  [];
   documento:documento;
+  t: any = [];
 
   constructor(private breadcrumbService: BreadcrumbService, private firstService:FirstService, private router:Router, private activatedRoute:ActivatedRoute,private messageService: MessageService,
-    private confirmationService: ConfirmationService) { }
+    private confirmationService: ConfirmationService, private busquedaService: BusquedaService) {
+
+
+
+        if (this.router.getCurrentNavigation().extras.state){
+            console.log(this.router.getCurrentNavigation().extras.state.example);
+            setTimeout(() => {
+            this.messageService.add({severity: 'success', summary: 'Éxito', detail: 'Solicitud Enviada', life: 3000});
+        });
+        }
+     }
 
   ngOnInit(): void {
+
     const params = this.activatedRoute.snapshot.params;
     this.getDocumento(params['id'])
     this.getClasificacionDocumento()
@@ -71,7 +85,7 @@ export class DocInteligenciaComponent implements OnInit {
       if(valor.id==idT){
         return valor.descripcion
       }
-    } 
+    }
     return "No clasificado"
   }
   replaceValuesPrioridad(idT:number){
@@ -79,7 +93,7 @@ export class DocInteligenciaComponent implements OnInit {
       if(valor.id==idT){
         return valor.descripcion
       }
-    } 
+    }
     return "No clasificado"
   }
 
@@ -88,7 +102,7 @@ export class DocInteligenciaComponent implements OnInit {
     this.firstService.archivarDoc(params['id']).subscribe(
       res=>{
         console.log(res)
-        
+
         this.router.navigate(["/analista/docRecibidos"],{queryParams:{fromStore: 'si'}})
       },err=> console.log(err)
     )

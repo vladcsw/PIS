@@ -5,7 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 // PrimeNG Components for demos
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -144,7 +144,7 @@ import {NodeService} from './demo/service/nodeservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
 import{ FirstService } from './demo/service/first-service'
- 
+
 // Application services
 import {BreadcrumbService} from './app.breadcrumb.service';
 import {MenuService} from './app.menu.service';
@@ -182,6 +182,8 @@ import { TelefonoComponent } from './components/documento-informacion/telefono/t
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ParcComponent } from './components/busqueda/parc/parc.component';
 import { DocArchivadoComponent } from './components/doc-archivado/doc-archivado.component';
+import { BandejaComponent } from './components/bandeja/bandeja.component';
+import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
 
 
 FullCalendarModule.registerPlugins([
@@ -277,7 +279,8 @@ FullCalendarModule.registerPlugins([
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
-        AppCodeModule
+        AppCodeModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AppComponent,
@@ -351,6 +354,8 @@ FullCalendarModule.registerPlugins([
           BusquedaComponent,
           ParcComponent,
           DocArchivadoComponent,
+          BandejaComponent,
+          SolicitudesComponent,
 
     ],
     providers: [

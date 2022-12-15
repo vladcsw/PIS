@@ -1,36 +1,41 @@
 <div class="grid  p-fluid justify-content-center">
+
     <div class="col-8 " >
+        <form [formGroup]="usuario" (ngSubmit)="save()">
         <div class="card">
             <div class="flex flex-wrap align-items-center justify-content-center card-container pb-5">
-                <h5 class="text-center text-3xl">ORDEN DE BUSQUEDA Nº0105-2022</h5>
+                <h5 class="text-center text-3xl">{{solicitud}}</h5>
             </div>
 
             <h5>Para</h5>
-			<p-dropdown  placeholder="Para" [showClear]="true"></p-dropdown>
-
-            <h5>Asunto</h5>
-            
-            <input type="text" pInputText placeholder="Default">
-            
+			<p-dropdown  [options]="agentes" [(ngModel)]="selectedAgent" placeholder="Para" [showClear]="true" formControlName="para"></p-dropdown>
 
             <h5>Prioridad</h5>
-			<p-dropdown  placeholder="Seleccione la prioridad" [showClear]="true"></p-dropdown>
+			<p-dropdown [options]="prioridades" [(ngModel)]="selected" placeholder="Seleccione la prioridad" [showClear]="true" formControlName="prioridad" ></p-dropdown>
 
-                   
         </div>
-
 
         <div class="card">
-            
+
             <h5>Asunto</h5>
-			<textarea rows="2" cols="80" placeholder="Your Message" pInputTextarea></textarea>
+            <input [ngClass]="{'g-invalid ng-dirty': confirmar}" [(ngModel)]="asunto" pInputText placeholder="Default" formControlName="asunto" >
+            <div *ngIf="usuario.controls['asunto'].errors?.['required'] && confirmar">
+                <small id="username2-help" class="p-error block">Escribir asunto</small>
+            </div>
 
             <h5>Pedido</h5>
-			<textarea rows="2" cols="80" placeholder="Your Message" pInputTextarea></textarea>
-
-            <div class="field col-12 md:col-6 ">
-                <button pButton pRipple label="Solicitar" class="mr-2 mb-2" ></button>
+			<textarea [ngClass]="{'g-invalid ng-dirty': confirmar}" rows="10" cols="80" [(ngModel)]="pedido" placeholder="Your Message" pInputTextarea formControlName="pedido" ></textarea>
+            <div *ngIf="usuario.controls['pedido'].errors?.['required'] && confirmar">
+                <small id="username2-help" class="p-error block">Escribir pedido</small>
             </div>
+
+            <div class="field col-12 md:col-12 " >
+                <button pButton pRipple label="Confirmar" width = "100%" ></button>
+
+            </div>
+
         </div>
+
+    </form>
     </div>
 </div>

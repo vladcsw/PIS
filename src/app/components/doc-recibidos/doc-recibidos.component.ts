@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
@@ -21,26 +21,27 @@ export class DocRecibidosComponent implements OnInit {
   documentos: any=[];
   nuevoDocumento: documento;
 
-
-  constructor(private router: Router,  private firstService: FirstService, 
+  constructor(private router: Router,  private firstService: FirstService,
     private breadcrumbService: BreadcrumbService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private route: ActivatedRoute,
-    
-     ) { }
+     ) {
+
+      }
 
   ngOnInit(): void {
     /* Detectar si la ruta proviene de el archivo de documentos */
     const params = this.route.snapshot.queryParamMap;
+
     setTimeout(() => {
       if(params.get('fromStore')){
-        
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Archivado', life: 3000});  
+
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Archivado', life: 3000});
       }
     });
-    
-    
+
+
 
     this.breadcrumbService.setItems([
       {label: 'Analista'},
@@ -57,7 +58,7 @@ export class DocRecibidosComponent implements OnInit {
   }
 
   getClasificacionDocumento(){
-    
+
     this.firstService.getClasificacion().subscribe(
       res => {
         this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
@@ -92,15 +93,15 @@ export class DocRecibidosComponent implements OnInit {
       },
       err=> console.log(err)
     )
-    
+
   }
-  
+
   replaceValuesClasificacion(idT:number){
     for (let valor of this.documentoClasificacion){
       if(valor.id==idT){
         return valor.descripcion
       }
-    } 
+    }
     return "No clasificado"
   }
   replaceValuesPrioridad(idT:number){
@@ -108,7 +109,7 @@ export class DocRecibidosComponent implements OnInit {
       if(valor.id==idT){
         return valor.descripcion
       }
-    } 
+    }
     return "No clasificado"
   }
 
