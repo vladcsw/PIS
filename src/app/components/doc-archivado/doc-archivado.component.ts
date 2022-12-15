@@ -4,6 +4,8 @@ import { Router,ActivatedRoute } from '@angular/router';
 import { documento }  from '../../demo/domain/documento'
 import { documentoClasificacion }  from '../../demo/domain/documentoClasificación'
 import { documentoPrioridad }  from '../../demo/domain/documentoPrioridad'
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-doc-archivado',
@@ -21,7 +23,8 @@ export class DocArchivadoComponent implements OnInit {
   fechaInicio:any = ""
   fechaFin:any = ""
 
-  constructor(private firstService: FirstService, ) { }
+  constructor(private firstService: FirstService, private messageService: MessageService,
+    private confirmationService: ConfirmationService ) { }
 
   ngOnInit(): void {
 
@@ -50,7 +53,10 @@ export class DocArchivadoComponent implements OnInit {
         
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 

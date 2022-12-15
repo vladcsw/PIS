@@ -90,7 +90,10 @@ export class ArmaComponent implements OnInit {
             
           }
         )
-      }, err => console.log(err)
+      }, err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -102,7 +105,10 @@ export class ArmaComponent implements OnInit {
         console.log("armas")
         console.log(res)
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -135,7 +141,10 @@ export class ArmaComponent implements OnInit {
       res =>{console.log(res)
         this.getArmas()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Arma Eliminada', life: 3000});
-      }, err =>console.log(err)
+      }, err =>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     
     this.deleteSelectedArmaId = null;
@@ -152,7 +161,10 @@ export class ArmaComponent implements OnInit {
         }
         console.log(res);
         this.getArmas();
-      }, err=>console.log(err)
+      }, err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.armaDialog = false;
     this.editIArmaOption = false;

@@ -73,7 +73,10 @@ export class CuentaBanComponent implements OnInit {
         console.log(res);
         this.getCuentasBan();
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.deleteSelectedCuentaId = null;
   }
@@ -85,7 +88,10 @@ export class CuentaBanComponent implements OnInit {
       res=>{
         this.cuentas=res;
         console.log()
-      }, err=>console.log(err)
+      }, err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   save(){
@@ -101,7 +107,10 @@ export class CuentaBanComponent implements OnInit {
           this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Cuenta Creada', life: 3000});
         }
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.editCuentaOption = false;
     this.cuentaDialog=false;

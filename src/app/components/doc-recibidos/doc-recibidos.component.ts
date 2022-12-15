@@ -71,7 +71,10 @@ export class DocRecibidosComponent implements OnInit {
         this.documentoClasificacion = res['data']['DOCUMENTO_CLASIFICACION']
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   getPrioridadDocumento(){
@@ -80,7 +83,10 @@ export class DocRecibidosComponent implements OnInit {
         this.documentoPrioridad = res['data']['PRIORIDAD']
 
       },
-      err => console.log(err)
+      err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   getDocuments(){
@@ -89,7 +95,10 @@ export class DocRecibidosComponent implements OnInit {
         this.documentos = res
         this.allDocumentos=res
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   delete(id:number){
@@ -99,7 +108,10 @@ export class DocRecibidosComponent implements OnInit {
         console.log(res);
         this.getDocuments()
       },
-      err=> console.log(err)
+      err=> {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
 
   }

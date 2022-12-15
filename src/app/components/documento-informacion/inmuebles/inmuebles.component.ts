@@ -90,7 +90,10 @@ export class InmueblesComponent implements OnInit {
             
           }
         )
-      }, err => console.log(err)
+      }, err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
   editInmueble(inmueble: Inmueble) {
@@ -110,7 +113,10 @@ export class InmueblesComponent implements OnInit {
         console.log("Inmueble eliminado");
         this.getInmuebles()
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.deleteSelectedInmuebleId = null;
   }
@@ -120,7 +126,10 @@ export class InmueblesComponent implements OnInit {
     this.firstService.getInmuebleDoc(params['id']).subscribe(
       res=>{
         this.inmuebles = res
-      },err=>console.log(err)
+      },err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -151,7 +160,10 @@ export class InmueblesComponent implements OnInit {
           this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de Inmueble Creada', life: 3000});
         }
       },
-      err=>console.log(err)
+      err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     
     this.editInmuebleOption = false

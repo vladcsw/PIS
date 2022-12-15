@@ -71,7 +71,10 @@ export class InsumoComponent implements OnInit {
 
       res=>{
         this.insumos = res
-      },err => console.log(err)
+      },err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
@@ -99,7 +102,10 @@ export class InsumoComponent implements OnInit {
     this.firstService.deleteInsumoDoc(this.deleteSelectedInsumoId).subscribe(
       res =>{console.log(res)
         this.getInsumos()
-      }, err =>console.log(err)
+      }, err =>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.deleteSelectedInsumoId = null;
   }
@@ -116,7 +122,10 @@ export class InsumoComponent implements OnInit {
         }else{
           this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Registro de insumo creado', life: 3000});
         }
-      },err=>console.log(err)
+      },err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     this.editInsumoOption = false;
     this.insumoDialog=false

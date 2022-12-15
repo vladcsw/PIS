@@ -151,7 +151,10 @@ export class DocumentoInformacionComponent implements OnInit {
     this.firstService.getAllPersonas().subscribe(
       res=>{
         this.allPersonas = res['data']['personas']
-      },err=>console.log(err)
+      },err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
     const params = this.activatedRoute.snapshot.params;
     this.firstService.getPersonaDoc(params['id']).subscribe(
@@ -166,7 +169,10 @@ export class DocumentoInformacionComponent implements OnInit {
           }
         }
 
-      }, err => console.log(err)
+      }, err =>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
 
   }
@@ -209,7 +215,10 @@ export class DocumentoInformacionComponent implements OnInit {
             )
           }, err =>console.log(err)
         )
-      }, err => console.log(err)
+      }, err => {
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     );
     
 
@@ -227,7 +236,10 @@ export class DocumentoInformacionComponent implements OnInit {
     this.firstService.savePersonaDoc(this.documentoPersona).subscribe(
       res=>{
         this.getPersonas()
-      },err=>console.log(err)
+      },err=>{
+        this.messageService.add({ severity: 'error', summary: 'Ups!! algo salió mal', detail: 'No se puede obtener los datos neecesarios', life: 3000 });  
+        console.log(err)
+      } 
     )
   }
 
