@@ -1,13 +1,13 @@
 <div class="grid">
     <div class="col-12">
         <div class="card">
-            
+
             <div class="flex flex-wrap align-items-center justify-content-center card-container">
                 <h5 class="text-center text-3xl">DOCUMENTOS DE LA CARPETA</h5>
             </div>
-           
+
             <br />
-    
+
 
             <br/>
             <p-table #dt  [value]="documentos" responsiveLayout="scroll" [rows]="10"
@@ -25,15 +25,15 @@
                         </span>
                     </div>
                 </ng-template>
-                <ng-template pTemplate="header" > 
+                <ng-template pTemplate="header" >
                     <tr>
-                       
+
                         <th pSortableColumn="tipoDocumento">CODIGO <p-sortIcon field="tipoDocumento"></p-sortIcon></th>
                         <th pSortableColumn="nombre">TIPO DE DOCUMENTO  <p-sortIcon field="nombre"></p-sortIcon></th>
                         <th pSortableColumn="primerApellido">ASUNTO <p-sortIcon field="primerApellido"></p-sortIcon></th>
                         <th pSortableColumn="segundoApellido">PRIORIDAD <p-sortIcon field="segundoApellido"></p-sortIcon></th>
                         <th pSortableColumn="documento">CLASIFICACION  <p-sortIcon field="documento"></p-sortIcon></th>
-                        
+
                         <th pSortableColumn="documento">OBTENCION INFORMACION <p-sortIcon field="documento"></p-sortIcon></th>
                         <th pSortableColumn="documento">INSTRICUTOR <p-sortIcon field="documento"></p-sortIcon></th>
                         <th pSortableColumn="documento">SITUACION <p-sortIcon field="documento"></p-sortIcon></th>
@@ -42,7 +42,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-documento>
                     <tr>
-                    
+
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Código</span>
                             {{documento.codigo}}
                         </td>
@@ -79,7 +79,7 @@
                                 <button pButton pRipple icon="pi pi-pencil"
                                     class="p-button-rounded p-button-success mr-2"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
-                                
+
                             </div>
                         </td>
                     </tr>
@@ -87,6 +87,6 @@
             </p-table>
         </div>
 
-        
+
     </div>
 </div>

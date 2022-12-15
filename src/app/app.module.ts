@@ -182,12 +182,9 @@ import { TelefonoComponent } from './components/documento-informacion/telefono/t
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ParcComponent } from './components/busqueda/parc/parc.component';
 import { DocArchivadoComponent } from './components/doc-archivado/doc-archivado.component';
-<<<<<<< HEAD
 import { BandejaComponent } from './components/bandeja/bandeja.component';
 import { SolicitudesComponent } from './components/solicitudes/solicitudes.component';
-=======
 import { DocumentosComponent } from './components/carpeta/documentos/documentos.component';
->>>>>>> 3d333f95f993492f5550c7a3ffb9e99791bb82a2
 
 
 FullCalendarModule.registerPlugins([
@@ -358,12 +355,9 @@ FullCalendarModule.registerPlugins([
           BusquedaComponent,
           ParcComponent,
           DocArchivadoComponent,
-<<<<<<< HEAD
           BandejaComponent,
           SolicitudesComponent,
-=======
           DocumentosComponent,
->>>>>>> 3d333f95f993492f5550c7a3ffb9e99791bb82a2
 
     ],
     providers: [
