@@ -45,6 +45,11 @@ export class DocEnviadoComponent implements OnInit {
   fechaInicio:any = ""
   fechaFin:any = ""
 
+  editIDocumentoOption: boolean = false;
+  deleteDocumentoDialog: boolean = false;
+  deleteSelectedDocumentoId: number;
+
+
 
   @HostBinding("class") classes ="row";
 
@@ -103,8 +108,8 @@ export class DocEnviadoComponent implements OnInit {
 
     if (this.tipoDocumento.length==0){
       this.tipoDocumento=[
-        {descripcion: 'Nota de agente', id:'1'},
-        {descripcion: 'Solicitud de información', id:'2'},
+        {descripcion: 'Nota de agente', id:1},
+        {descripcion: 'Solicitud de información', id:2},
       ]
     }
 
@@ -171,6 +176,15 @@ export class DocEnviadoComponent implements OnInit {
     this.nuevoDocumento = {};
     this.docEnviadoDialog = true;
   }
+
+  editDocumento(nuevoDocumento: documento){
+    this.docEnviadoDialog = true
+    this.editIDocumentoOption = true;
+    this.nuevoDocumento = {...nuevoDocumento};
+  }
+
+ 
+
   uploadfun(event) {
     this.progressInfo = [];
     event.files.length == 1 ? this.fileName = event.files[0].name : this.fileName = event.files.length + " archivos";
@@ -241,6 +255,7 @@ export class DocEnviadoComponent implements OnInit {
       } 
         )
         this.docEnviadoDialog = false;
+        this.editIDocumentoOption = false;
 
   }
   getDocuments(){

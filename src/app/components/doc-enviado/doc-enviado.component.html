@@ -90,7 +90,7 @@
                         <td>
                             <div class="flex">
                                 <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
+                                    class="p-button-rounded p-button-success mr-2" (click)="editDocumento(documento)"></button>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(documento.id)"></button>
                             </div>
                         </td>
@@ -102,14 +102,16 @@
             
         </div>
 
-        <p-dialog [(visible)]="docEnviadoDialog" [style]="{width: '700px'}" header="Detalles del documento" [modal]="true" class="p-fluid"  >
+        <p-dialog [(visible)]="docEnviadoDialog" [style]="{width: '700px'}" 
+        header= "{{ editIDocumentoOption ? 'Editar Documento' : 'Detalles del documento' }}"
+        [modal]="true" class="p-fluid"  >
             <ng-template pTemplate="content">
 
                 <p-tabView  [(activeIndex)]="index">
                    <p-tabPanel header = "Datos del documento">
                     <div class="field">
                         <label> Tipo de documento</label>
-                        <p-dropdown  [options]="tipoDocumento"   optionLabel="descripcion"  optionValue="id" placeholder="Seleccione tipo documento"></p-dropdown>
+                        <p-dropdown  [options]="tipoDocumento"   optionLabel="descripcion"  optionValue="id" placeholder="Seleccione tipo documento" ></p-dropdown>
                     </div>
                     <div class="formgrid grid">
 
