@@ -111,7 +111,7 @@
                    <p-tabPanel header = "Datos del documento">
                     <div class="field">
                         <label> Tipo de documento</label>
-                        <p-dropdown  [options]="tipoDocumento"   optionLabel="descripcion"  optionValue="id" placeholder="Seleccione tipo documento" ></p-dropdown>
+                        <p-dropdown  [options]="tipoDocumento"   optionLabel="descripcion"  placeholder="Seleccione tipo documento" [(ngModel)]="nuevoDocumento.tipoDocumento" optionValue="descripcion" ></p-dropdown>
                     </div>
                     <div class="formgrid grid">
 

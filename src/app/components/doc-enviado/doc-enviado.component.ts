@@ -180,7 +180,14 @@ export class DocEnviadoComponent implements OnInit {
   editDocumento(nuevoDocumento: documento){
     this.docEnviadoDialog = true
     this.editIDocumentoOption = true;
-    this.nuevoDocumento = {...nuevoDocumento};
+    this.nuevoDocumento = {...nuevoDocumento, "tipoDocumento":this.ConvertTipoDocumento(this.nuevoDocumento.tipoDocumento)};
+   
+  }
+
+  ConvertTipoDocumento(cadena: string ): string {
+    const newCadena : string= cadena?.charAt(0)?.toUpperCase() + cadena?.slice(1)?.toLowerCase();
+    console.log(newCadena)
+    return newCadena
   }
 
  
@@ -245,7 +252,7 @@ export class DocEnviadoComponent implements OnInit {
         this.uploadAllFiles();
         this.selectedFiles = null;
 
-        console.log(res)
+        
         this.getDocumentos()
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Documento Creado', life: 3000});
       },
