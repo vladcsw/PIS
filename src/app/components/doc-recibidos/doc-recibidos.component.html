@@ -94,8 +94,7 @@
                         <td>
                             <div class="flex">
                                 <a [routerLink]="['/analista/docInteligencia', documento.id]" pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary mr-2"></a>
-                                <button pButton pRipple icon="pi pi-pencil"
-                                    class="p-button-rounded p-button-success mr-2"></button>
+
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning mr-2" (click)="delete(documento.id)"></button>
                                 <a [routerLink]="['/bandeja', documento.id, 1]" pButton pRipple icon="pi pi-envelope" class="p-button-rounded p-button-help"></a>
                             </div>
