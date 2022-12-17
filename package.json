@@ -39,7 +39,7 @@
         "web-animations-js": "^2.3.2",
         "zone.js": "~0.11.4"
     },
-  "homepage": "https://hualmss.github.io/PIS/",
+    
     "devDependencies": {
         "@angular-devkit/build-angular": "^14.2.8",
         "@angular/cli": "~14.0.3",
