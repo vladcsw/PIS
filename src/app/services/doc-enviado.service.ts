@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class DocEnviadoService {
-    API_URI = 'http://localhost:8080';
+    //API_URI = 'http://localhost:8080';
+    API_URI = 'https://proyectopnp-production.up.railway.app';
 
     constructor(private http:HttpClient){}
 
