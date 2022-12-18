@@ -32,6 +32,7 @@ export class BusquedaService {
     }
 
     getPedidoDistinct() {
+        console.log("xd")
         return this.http.get(`${this.API_URI}/tratamiento/pedido/distinct/`);
     }
 
